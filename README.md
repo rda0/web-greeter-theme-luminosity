@@ -5,8 +5,8 @@
 
 Customizable LightDM Webkit Greeter Theme based on official LightDM Webkit Greeter Theme of Antergos Linux
 
-Original can be [found here][1]. All credit goes to the great people who 
-created, run, and maintain [Antergos][2].
+Original can be found [here](https://github.com/Antergos/lightdm-webkit-theme-antergos). All credit goes to the great people who 
+created, run, and maintain [Antergos](http://antergos.com).
 
 ## Screenshots
 <img src="img/Screenshot1.png" alt="screenshot1" />
