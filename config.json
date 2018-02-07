@@ -1,0 +1,57 @@
+{
+  "banner": "img/banners/manjaro.svg",
+  "backgrounds": [
+    {
+      "name": "hugo-kemmel-289805",
+      "thumb": "img/thumbs/hugo-kemmel-289805.jpg",
+      "image": "img/wallpapers/hugo-kemmel-289805.jpg"
+    },
+    {
+      "name": "jamison-mcandie-112376",
+      "thumb": "img/thumbs/jamison-mcandie-112376.jpg",
+      "image": "img/wallpapers/jamison-mcandie-112376.jpg"
+    },
+    {
+      "name": "nathan-anderson-268995",
+      "thumb": "img/thumbs/nathan-anderson-268995.jpg",
+      "image": "img/wallpapers/nathan-anderson-268995.jpg"
+    }
+  ],
+  "styles": {
+    "panel": {
+      "position": "absolute",
+      "margin": "auto",
+      "height": "auto",
+      "width": "450px",
+      "top": "50%",
+      "left": "50%",
+      "transform": "translate(-50%, -50%)",
+      "minHeight": "500px",
+      "boxShadow": "0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)",
+      "background": "rgba(0,0,0,.7)",
+      "color": "#FFF"
+    },
+    "background": {
+      "backgroundPosition": "center",
+      "backgroundSize": "cover"
+    },
+    "selectedUser": {
+      "color": "#FFF"
+    },
+    "accountListItem": {
+      "color": "#FFF",
+      "background": "none"
+    },
+    "accountListItem:hover": {
+      "background": "#4285f4"
+    },
+    "actionButton": {
+      "color": "#FFF",
+      "background": "none"
+    },
+    "actionButton:hover": {
+      "color": "#FFF",
+      "background": "#4285f4"
+    }
+  }
+}
