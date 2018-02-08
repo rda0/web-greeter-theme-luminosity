@@ -7,11 +7,11 @@ _bgver=0.6
 pkgrel=1
 pkgdesc="Customizable LightDM Webkit Greeter Theme"
 arch=('any')
-url="https://github.com/Dissonant-Tech/lightdm-webkit-theme-archlinux"
+url="https://github.com/muhammadsayuti/lightdm-webkit-theme-luminos"
 license=('GPLv2')
 depends=('lightdm' 'lightdm-webkit2-greeter')
 install=theme.install
-source=("${pkgname}-${pkgver}.tar.gz::https://github.com/Dissonant-Tech/${pkgname}/archive/${pkgver}.tar.gz"
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/muhammadsayuti/${pkgname}/archive/${pkgver}.tar.gz"
         "http://antergos.com/antergos-wallpapers-${_bgver}.zip")
 md5sums=('fd3885f57962eb3a6760b60fab87ed5d'
             'c996d26914e71897019c33854b0ae634')
