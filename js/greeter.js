@@ -250,9 +250,6 @@ $(document).ready(function () {
     /**
      * UI Initialization.
      */
-    if (localStorage.getItem("bgdefault") !== '0' && (localStorage.getItem("bgsaved") === null)) {
-      defaultBG();
-    }
     if (localStorage.getItem("bgdefault") === null && (localStorage.getItem("bgsaved") === null)) {
       localStorage.setItem("bgdefault", "1");
     }
