@@ -144,7 +144,7 @@ $(document).ready(function () {
     $btns.click(function (e) {
       e.preventDefault();
       $btns.removeClass("active");
-      $(".bgs .background .random").first().removeClass('active');
+      $(".bgs .background .default").first().removeClass('active');
       $(this).addClass("active");
       var bg = $(this).data("img");
       if (bg == 'default') {
