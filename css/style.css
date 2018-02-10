@@ -17,7 +17,11 @@ html {
   z-index:2;
 }
 #bg-switch-close {
-  z-index: 99999;
+  pointer-events: all;
+  cursor: pointer;
+}
+.switch-container{
+  pointer-events: none;
 }
 .bgs{
   display:flex;
