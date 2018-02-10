@@ -147,11 +147,11 @@ $(document).ready(function () {
       $(".bgs .background .random").first().removeClass('active');
       $(this).addClass("active");
       var bg = $(this).data("img");
-      if (bg == 'random') {
-        localStorage.setItem("bgrandom", '1');
-        randomBG();
+      if (bg == 'default') {
+        localStorage.setItem("bgdefault", '1');
+        defaultBG();
       } else {
-        localStorage.setItem("bgrandom", '0');
+        localStorage.setItem("bgdefault", '0');
         $('.bg').fadeTo('slow', 0.3, function () {
           $(".bg").css(Object.assign(config.styles.background, {
             "background-image": "url('" + bg + "')",
@@ -161,20 +161,8 @@ $(document).ready(function () {
         localStorage.setItem("bgsaved", bgurl)
       }
     });
-    if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgrandom") == '0')) {
-      $('.bg').fadeTo('slow', 0.3, function () {
 
-        $(".bg").css(Object.assign((config && config.styles) ? config.styles.background : {}, {
-          "background-image": localStorage.bgsaved
-        }));
-      }).fadeTo('slow', 1);
-    }
-    if (localStorage.getItem("bgrandom") !== '0') {
-      defaultBG();
-    }
-    if (localStorage.getItem("bgrandom") == null) {
-      localStorage.setItem("bgrandom", "1");
-    }
+
     showPanel();
     $("li .item").click(function (e) {
       const selectedUser = e.target.cloneNode(true);
@@ -262,6 +250,21 @@ $(document).ready(function () {
     /**
      * UI Initialization.
      */
+    if (localStorage.getItem("bgdefault") !== '0') {
+      defaultBG();
+    }
+    if (localStorage.getItem("bgdefault") == null) {
+      localStorage.setItem("bgdefault", "1");
+    }
+    if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgdefault") == '0')) {
+      $('.bg').fadeTo('slow', 0.3, function () {
+        $(".bg").css(Object.assign((config && config.styles) ? config.styles.background : {}, {
+          "background-image": localStorage.bgsaved
+        }));
+      }).fadeTo('slow', 1);
+    } else {
+      defaultBG();
+    }
     // initialize_timer();
     // get_hostname();
     buildUserList();
