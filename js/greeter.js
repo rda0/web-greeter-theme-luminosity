@@ -250,13 +250,13 @@ $(document).ready(function () {
     /**
      * UI Initialization.
      */
-    if (localStorage.getItem("bgdefault") !== '0') {
+    if (localStorage.getItem("bgdefault") !== '0' && (localStorage.getItem("bgsaved") === null)) {
       defaultBG();
     }
-    if (localStorage.getItem("bgdefault") == null) {
+    if (localStorage.getItem("bgdefault") === null && (localStorage.getItem("bgsaved") === null)) {
       localStorage.setItem("bgdefault", "1");
     }
-    if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgdefault") == '0')) {
+    if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgdefault") === '0')) {
       $('.bg').fadeTo('slow', 0.3, function () {
         $(".bg").css(Object.assign((config && config.styles) ? config.styles.background : {}, {
           "background-image": localStorage.bgsaved
