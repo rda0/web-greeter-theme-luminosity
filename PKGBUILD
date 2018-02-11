@@ -3,23 +3,19 @@
 pkgname=lightdm-webkit-theme-luminos
 _pkgname=luminos
 pkgver=0.5.0
-_bgver=0.6
 pkgrel=1
 pkgdesc="Customizable LightDM Webkit Greeter Theme"
 arch=('any')
 url="https://github.com/muhammadsayuti/lightdm-webkit-theme-luminos"
 license=('GPLv2')
 depends=('lightdm' 'lightdm-webkit2-greeter')
-install=theme.install
-source=("${pkgname}-${pkgver}.tar.gz::https://github.com/muhammadsayuti/${pkgname}/archive/${pkgver}.tar.gz"
-        "http://antergos.com/antergos-wallpapers-${_bgver}.zip")
-md5sums=('fd3885f57962eb3a6760b60fab87ed5d'
-            'c996d26914e71897019c33854b0ae634')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/muhammadsayuti/${pkgname}/archive/${pkgver}.tar.gz")
+md5sums=("aae8a3148a17f814bff87ef7eb730ac8")
 
 build()
 {
 	cd ${srcdir}/${pkgname}-${pkgver}
-      sed -i 's%/usr/share/%/usr/share/lightdm-webkit/themes/%g' index.html
+  sed -i 's%/usr/share/%/usr/share/lightdm-webkit/themes/%g' index.html
 }
 
 package()
@@ -29,7 +25,14 @@ package()
 	cd usr/share/lightdm-webkit/themes
 	cp -dpr --no-preserve=ownership ${srcdir}/${pkgname}-${pkgver} ${_pkgname}
 	msg "Removing .git files"
-	cd ${_pkgname}
-	rm -rf .gitignore
-      cp -dpr --no-preserve=ownership "${srcdir}/antergos-wallpapers-${_bgver}" wallpapers
+  cd ${_pkgname}
+  rm -rf .git
+  rm -f .gitignore
+  echo "Removing dev files"
+  rm -rf node_modules
+  rm -rf tasks
+  rm -f package.json
+  rm -f yarn.lock
+  rm -f PKGBUILD
+  rm -f install.sh
 }
