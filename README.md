@@ -29,7 +29,7 @@ user-session=your-session (gnome,cinnamon,xfce...)
 
 # Installation
 
-Can be installed through the [AUR][6].
+Can be installed through the [AUR](https://aur.archlinux.org/packages/lightdm-webkit-theme-luminos/).
 
 To select luminos as default theme just change the `webkit-theme=`  in `/etc/lightdm/lightdm-webkit2-greeeter.conf`
 to `luminos`.
