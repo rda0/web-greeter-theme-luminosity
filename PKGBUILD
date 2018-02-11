@@ -10,7 +10,7 @@ url="https://github.com/muhammadsayuti/lightdm-webkit-theme-luminos"
 license=('GPLv2')
 depends=('lightdm' 'lightdm-webkit2-greeter')
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/muhammadsayuti/${pkgname}/archive/${pkgver}.tar.gz")
-md5sums=("aae8a3148a17f814bff87ef7eb730ac8")
+md5sums=("a311405c0f3ba1e8f4bed844b55fa769")
 
 build()
 {
