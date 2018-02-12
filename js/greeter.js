@@ -114,7 +114,6 @@ $(document).ready(function () {
       users_shown = true;
     }
     if ($('#user-list2 a').length <= 1) $('#user-list2 a').trigger('click');
-
   }
   fetch('config.json').then(async function (res) {
     config = await res.json();
@@ -140,6 +139,13 @@ $(document).ready(function () {
     }
     $('.actionButton').attr('style', style);
     $('.other-account').attr('style', style);
+
+    style = $('.input').attr('style') || '';
+    for (let i in config.styles['inputLine']) {
+      style += '--input-line-' + i.toLowerCase() + ':' + config.styles['inputLine'][i] + ';';
+    }
+    $('.input').attr('style', style);
+
     var $btns = $(".bg-switch .background");
     $btns.click(function (e) {
       e.preventDefault();
@@ -162,20 +168,7 @@ $(document).ready(function () {
       }
     });
 
-
     showPanel();
-    $("li .item").click(function (e) {
-      const selectedUser = e.target.cloneNode(true);
-      selectedUser.removeAttribute('style');
-      $(selectedUser).css(config.styles.selectedUser);
-      $('.selected-user').append(selectedUser);
-
-      $('.content').css({
-        marginLeft: '-450px'
-      });
-      $('#session-list .selected').html(e.target.getAttribute('data-session'))
-      // $('#session-list').removeClass('hidden');
-    });
     $(".other-account").click(function (e) {
       $('.selected-user').html("")
       $('.content').css({
@@ -189,7 +182,6 @@ $(document).ready(function () {
       authPending = false;
     });
     $(".input input").focus(function () {
-
       $(this).parent(".input").each(function () {
         $("label", this).css({
           "line-height": "18px",
@@ -392,8 +384,26 @@ $(document).ready(function () {
     }
     return session;
   }
+  function slideContent(e) {
+    const selectedUser = e.target.cloneNode(true);
+    selectedUser.removeAttribute('style');
+    $(selectedUser).css(config.styles.selectedUser);
+    $('.selected-user').append(selectedUser);
 
+    const content = document.querySelector('.content');
+    const onTransitionEnd = function (e) {
+      $('#pass').focus();
+      content.removeEventListener('transitionend', onTransitionEnd);
+    };
+    content.addEventListener('transitionend', onTransitionEnd);
+
+    $('.content').css({
+      marginLeft: '-450px'
+    });
+    $('#session-list .selected').html(e.target.getAttribute('data-session'));
+  }
   window.authenticate = function (e, username) {
+    slideContent(e);
     if (selectedUser !== null) {
       lightdm.cancel_authentication();
       localStorage.setItem('selUser', null);
