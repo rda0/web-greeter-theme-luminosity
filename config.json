@@ -52,6 +52,9 @@
     "actionButton:hover": {
       "color": "#FFF",
       "background": "#4285f4"
+    },
+    "inputLine": {
+      "background": "red"
     }
   }
 }
