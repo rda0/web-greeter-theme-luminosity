@@ -68,7 +68,7 @@ $(document).ready(function () {
     var accountList = $('.account-list');
     for (var i in lightdm.users) {
       var user = lightdm.users[i];
-      var tux = 'img/logo-user.png';
+      var tux = 'img/icons/user.png';
       var imageSrc = user.image ? user.image : tux;
       var lastSession = localStorage.getItem(user.name);
       if (lastSession == null && lastSession == undefined) {
