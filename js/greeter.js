@@ -30,7 +30,7 @@ var DEBUG = true,
   authPending = null,
   users_shown = null,
   userList, animating = false;
-
+window.config = {};
 
 /**
  * Logs.
@@ -42,15 +42,16 @@ function log(text) {
   }
 }
 function showPanel() {
-  // $("#login").addClass("in");
   $("#bg").addClass("in");
-  $("#container").addClass("in");
+  setTimeout(() => {
+    $("#container").addClass("in");
+  }, 500);
 }
 
 function showLog() {
   $("#logArea").show();
 }
-window.config = {};
+
 
 function defaultBG() {
   localStorage.setItem("bgsaved", 'img/default-bg.jpg');
