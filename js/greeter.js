@@ -120,7 +120,7 @@ $(document).ready(function () {
     config = await res.json();
     $('#container').css(config.styles.panel);
     $('.bg').css(config.styles.background);
-    $('#signin-banner img').attr('src', config.banner);
+    $('#signin-banner img').attr('src', `img/banners/${config.banner}.png`);
     config.backgrounds.forEach(function (background) {
       $('.bgs').append(`
             <a href="#" data-img="${background.image}" class="background clearfix">
