@@ -4,4 +4,4 @@ version=1.0.0
 description=Luminos Theme
 engine=lightdm-webkit2-greeter
 url=index.html
-session=xfce4
+session=ubuntu
