@@ -121,6 +121,7 @@ $(document).ready(function () {
     $('#container').css(config.styles.panel);
     $('.bg').css(config.styles.background);
     $('#signin-banner img').attr('src', `img/banners/${config.banner}.png`);
+    $('#signin-logo-container1 img').attr('src', `img/banners/${config.logo}.png`);
     config.backgrounds.forEach(function (background) {
       $('.bgs').append(`
             <a href="#" data-img="${background.image}" class="background clearfix">
@@ -222,6 +223,15 @@ $(document).ready(function () {
         log("done");
       }, submitPhase1);
     });
+    // Username submit when enter key is pressed
+    $('#user').keydown(function (e) {
+      switch (e.which) {
+        case 13:
+          dphys_username = $('#user').val();;
+          authenticate(event, dphys_username);
+          break;
+      }
+    });
     // Password submit when enter key is pressed
     $('#pass').keydown(function (e) {
       switch (e.which) {
@@ -237,12 +247,11 @@ $(document).ready(function () {
     addActionLink("restart");
   });
 
-
-
   $(window).load(function () {
     /**
      * UI Initialization.
      */
+
     if (localStorage.getItem("bgdefault") === null && (localStorage.getItem("bgsaved") === null)) {
       localStorage.setItem("bgdefault", "1");
     }
@@ -256,7 +265,7 @@ $(document).ready(function () {
       defaultBG();
     }
     // initialize_timer();
-    // get_hostname();
+    get_hostname();
     buildUserList();
     buildSessionList();
   });
@@ -265,6 +274,7 @@ $(document).ready(function () {
     var hostname = lightdm.hostname;
     var hostname_span = document.getElementById('hostname');
     $(hostname_span).append(hostname);
+    $("#hostname-label").text(hostname);
   }
 
 	/**
@@ -414,6 +424,8 @@ $(document).ready(function () {
 
 
     var usrSession = localStorage.getItem(username);
+
+    $("#user-login-name").text(username);
 
     log("usrSession: " + usrSession);
     var usrSessionEl = "[data-session-id=" + usrSession + "]";
