@@ -3,6 +3,11 @@
   "logo": "logo_eth_w400",
   "backgrounds": [
     {
+      "name": "star-cloud-blue-red",
+      "thumb": "img/thumbs/star-cloud-blue-red.jpg",
+      "image": "img/wallpapers/star-cloud-blue-red.jpg"
+    },
+    {
       "name": "hugo-kemmel-289805",
       "thumb": "img/thumbs/hugo-kemmel-289805.jpg",
       "image": "img/wallpapers/hugo-kemmel-289805.jpg"
