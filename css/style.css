@@ -384,7 +384,7 @@ html {
   color: var(--action-button-hover-color);
   background: var(--action-button-hover-background);
 }
-#signin-banner-container1 {
+#signin-banner-container {
   box-sizing:border-box;
   position:relative;
   height: 24px;
@@ -395,20 +395,6 @@ html {
   padding-right: 40px;
   padding-bottom:35px;
 }
-#signin-banner img{
-  max-height: 100%;
-  fill:#FFF;
-}
-#signin-banner-container2 {
-  display: inline-block;
-  position: relative;
-}
-
-html[dir="rtl"] #signin-banner-container2 {
-  left: -50%;
-  right: auto;
-}
-
 #signin-banner {
   display: block;
   border-radius: 4px;
@@ -421,54 +407,30 @@ html[dir="rtl"] #signin-banner-container2 {
   height:31px;
 }
 #signin-banner img{
+  max-height: 100%;
+  fill:#FFF;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
 
 /* add */
-#signin-logo-container1 img {
+#signin-logo-container img {
   max-width: 12rem;
   vertical-align: bottom;
 }
 
 /* add */
-#signin-logo-container1 {
-  /*! box-sizing:border-box; */
-  /*! position:relative; */
-  /* height: 48px; */
-  /*! max-width: 450px; */
-  /*! z-index: 3; */
+#signin-logo-container {
   padding-top: 40px;
   padding-left: 0px;
-  /*! padding-right: 40px; */
   padding-bottom: 40px;
-  /*! display: flex; */
-  /*! align-items: center; */
   width: 100%;
-}
-
-/* add */
-#signin-logo-container2 {
-  display: inline-block;
-  position: relative;
-}
-
-/* add */
-html[dir="rtl"] #signin-logo-container2 {
-  left: -50%;
-  right: auto;
 }
 
 /* add */
 #signin-logo {
   display: inline-block;
-  border-radius: 4px;
-  /* color: #fff; */
-  font-family: "Roboto";
-  font-size: 13px;
-  /*! position: relative; */
-  /* height:31px; */
 }
 
 /* add */
