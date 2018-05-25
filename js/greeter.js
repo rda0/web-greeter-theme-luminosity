@@ -121,7 +121,7 @@ $(document).ready(function () {
     $('#container').css(config.styles.panel);
     $('.bg').css(config.styles.background);
     $('#signin-banner img').attr('src', `img/banners/${config.banner}.png`);
-    $('#signin-logo-container img').attr('src', `img/banners/${config.logo}.png`);
+    $('#signin-logo-container1 img').attr('src', `img/banners/${config.logo}.png`);
     config.backgrounds.forEach(function (background) {
       $('.bgs').append(`
             <a href="#" data-img="${background.image}" class="background clearfix">
