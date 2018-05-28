@@ -1,0 +1,43 @@
+
+@font-face {
+  font-family: 'DINPro';
+  src: url('./font/DINPro.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DINPro';
+  src: url('./DINPro-Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+/*
+@font-face {
+  font-family: 'DINPro';
+  src: url('./font/DINPro-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DINPro';
+  src: url('./font/DINPro-MediumItalic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+*/
+@font-face {
+  font-family: 'DINPro';
+  src: url('./font/DINPro-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DINPro';
+  src: url('./font/DINPro-BoldItalic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face
+{ font-family: abel;
+  src: url('./font/Abel-Regular.ttf') format("truetype");
+}

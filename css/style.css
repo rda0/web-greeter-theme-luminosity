@@ -1,48 +1,3 @@
-
-@font-face {
-  font-family: 'DINPro';
-  src: url('./font/DINPro.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'DINPro';
-  src: url('./DINPro-Italic.otf') format('opentype');
-  font-weight: normal;
-  font-style: italic;
-}
-
-/*
-@font-face {
-  font-family: 'DINPro';
-  src: url('./font/DINPro-Medium.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'DINPro';
-  src: url('./font/DINPro-MediumItalic.otf') format('opentype');
-  font-weight: normal;
-  font-style: italic;
-}
-*/
-@font-face {
-  font-family: 'DINPro';
-  src: url('./font/DINPro-Bold.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'DINPro';
-  src: url('./font/DINPro-BoldItalic.otf') format('opentype');
-  font-weight: bold;
-  font-style: italic;
-}
-@font-face
-{ font-family: abel;
-  src: url('./font/Abel-Regular.ttf') format("truetype");
-}
-
 body,
 html {
   display: block;
@@ -129,8 +84,6 @@ label {
 }
 
 /* add */
-#container .content .content-header {
-}
 #container .content .content-header h1 {
   text-indent: -1px;
   font-size: 25px;
@@ -142,119 +95,6 @@ label {
 /* add */
 #container .content {
   position: relative;
-}
-#container .content .password-area .selected-user {
-  display: block;
-  text-align: -webkit-match-parent;
-}
-#container .content .password-area .content-footer {
-  display: block;
-  position: relative;
-  bottom: 0;
-  text-align: -webkit-match-parent;
-  width: 100%;
-  box-sizing: border-box;
-}
-#container .content .password-area .content-footer .other-account {
-  box-sizing: border-box;
-  /* add */
-  padding-left: 60px;
-}
-
-#container .content .password-area .content-footer .other-account p {
-  padding: 16px 0;
-}
-#container .content .password-area .selected-user > .item,
-#container .content .password-area .content-footer > .other-account {
-  display: block;
-  position: relative;
-  cursor: pointer;
-  -webkit-transition: background 0.2s;
-  transition: background 0.2s;
-  /* color:#000; */
-}
-#container .content .password-area .selected-user > .item > *,
-#container .content .password-area .content-footer > .other-account > * {
-  pointer-events: none;
-}
-#container .content .password-area .selected-user > .item .pic,
-#container .content .password-area .content-footer > .other-account .pic {
-  float: left;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  height: 36px;
-  margin: 0;
-  overflow: hidden;
-  width: 36px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-#container .content .password-area .selected-user > .item .pic img,
-#container .content .password-area .content-footer > .other-account .pic img {
-  max-height: 100%;
-  max-width: 100%;
-}
-#container .content .password-area .selected-user > .item .info,
-#container .content .password-area .content-footer > .other-account .info {
-  margin-left: 60px;
-  padding: 0;
-}
-#container .content .password-area .selected-user > .item .info p,
-#container .content .password-area .content-footer > .other-account .info p {
-  margin: 0;
-}
-#container .content .account-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  /* remove max-height: calc(500px - 71px); */
-  /* add */
-  max-height: calc(300px - 71px);
-  overflow-y: auto;
-}
-#container .content .account-list .account {
-  display: list-item;
-  text-align: -webkit-match-parent;
-}
-#container .content .account-list .account .item {
-  display: block;
-  position: relative;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  cursor: pointer;
-  -webkit-transition: background 0.2s;
-  transition: background 0.2s;
-  /* color:#000; */
-}
-#container .content .account-list .account .item > * {
-  pointer-events: none;
-}
-#container .content .account-list .account .item:hover {
-  background: #eeeeee;
-}
-#container .content .account-list .account .item .pic {
-  float: left;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  height: 36px;
-  margin: 0;
-  overflow: hidden;
-  width: 36px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-#container .content .account-list .account .item .pic img {
-  max-height: 100%;
-  max-width: 100%;
-}
-#container .content .account-list .account .item .info {
-  margin-left: 60px;
-  padding: 0;
-}
-#container .content .account-list .account .item .info p {
-  margin: 0;
 }
 #panel {
   display: flex;
