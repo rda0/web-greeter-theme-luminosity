@@ -472,9 +472,6 @@ label {
   min-height: 50px;
   min-width: 48px;
   overflow: visible;
-  /* remove margin-top: 20px; */
-  /* add */
-  margin-top: 60px;
   padding-left: 40px;
   padding-right: 40px;
 }
@@ -483,12 +480,12 @@ label {
   -webkit-transition: width 200ms ease-in 200ms, padding 200ms ease-out 200ms, border-radius 200ms ease-in;
   transition: width 200ms ease-in 200ms, padding 200ms ease-out 200ms, border-radius 200ms ease-in;
   position: relative;
-  
   width: 100%;
   height: 50px;
   margin:0 auto;
-  color: rgba(255, 255, 255, 0.8);
-  background:  #4285f4;
+  background: rgba(0,0,0,0);
+  -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
   /* add */
   font-size: 20px;
   border-radius: 30px;
