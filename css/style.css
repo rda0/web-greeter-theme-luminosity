@@ -96,7 +96,7 @@ label {
   float: left;
   display: flex;
   flex-direction: column;
-  flex:1 1 auto;
+  flex: 1 1 auto;
 }
 .content .content-header {
   padding-left: 40px;
