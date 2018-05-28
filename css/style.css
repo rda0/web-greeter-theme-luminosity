@@ -63,7 +63,7 @@ p {
 }
 label {
   margin: 0;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 #container {
   display: block;
@@ -92,8 +92,8 @@ label {
   transition: margin 0.25s;
   width: calc(100% * 2);
 }
-#container .content .account-picker,
-#container .content .current-user-login {
+#container .content .username-area,
+#container .content .password-area {
   position: relative;
   /* remove min-height: 500px; */
   box-sizing: border-box;
@@ -138,16 +138,16 @@ label {
   line-height: 32px;
   margin: 0;
 }
-/* remove #container .content .current-user-login { */
+/* remove #container .content .password-area { */
 /* add */
 #container .content {
   position: relative;
 }
-#container .content .current-user-login .selected-user {
+#container .content .password-area .selected-user {
   display: block;
   text-align: -webkit-match-parent;
 }
-#container .content .current-user-login .content-footer {
+#container .content .password-area .content-footer {
   display: block;
   position: relative;
   bottom: 0;
@@ -155,17 +155,17 @@ label {
   width: 100%;
   box-sizing: border-box;
 }
-#container .content .current-user-login .content-footer .other-account {
+#container .content .password-area .content-footer .other-account {
   box-sizing: border-box;
   /* add */
   padding-left: 60px;
 }
 
-#container .content .current-user-login .content-footer .other-account p {
+#container .content .password-area .content-footer .other-account p {
   padding: 16px 0;
 }
-#container .content .current-user-login .selected-user > .item,
-#container .content .current-user-login .content-footer > .other-account {
+#container .content .password-area .selected-user > .item,
+#container .content .password-area .content-footer > .other-account {
   display: block;
   position: relative;
   cursor: pointer;
@@ -173,12 +173,12 @@ label {
   transition: background 0.2s;
   /* color:#000; */
 }
-#container .content .current-user-login .selected-user > .item > *,
-#container .content .current-user-login .content-footer > .other-account > * {
+#container .content .password-area .selected-user > .item > *,
+#container .content .password-area .content-footer > .other-account > * {
   pointer-events: none;
 }
-#container .content .current-user-login .selected-user > .item .pic,
-#container .content .current-user-login .content-footer > .other-account .pic {
+#container .content .password-area .selected-user > .item .pic,
+#container .content .password-area .content-footer > .other-account .pic {
   float: left;
   -webkit-border-radius: 50%;
   border-radius: 50%;
@@ -190,18 +190,18 @@ label {
   top: 50%;
   transform: translateY(-50%);
 }
-#container .content .current-user-login .selected-user > .item .pic img,
-#container .content .current-user-login .content-footer > .other-account .pic img {
+#container .content .password-area .selected-user > .item .pic img,
+#container .content .password-area .content-footer > .other-account .pic img {
   max-height: 100%;
   max-width: 100%;
 }
-#container .content .current-user-login .selected-user > .item .info,
-#container .content .current-user-login .content-footer > .other-account .info {
+#container .content .password-area .selected-user > .item .info,
+#container .content .password-area .content-footer > .other-account .info {
   margin-left: 60px;
   padding: 0;
 }
-#container .content .current-user-login .selected-user > .item .info p,
-#container .content .current-user-login .content-footer > .other-account .info p {
+#container .content .password-area .selected-user > .item .info p,
+#container .content .password-area .content-footer > .other-account .info p {
   margin: 0;
 }
 #container .content .account-list {
@@ -278,7 +278,7 @@ label {
   width: 100%;
 }
 
-.account-picker.flying-pods #account-picker {
+.username-area.flying-pods #username-area {
   transition: width 180ms ease, height 180ms ease;
 }
 
@@ -403,7 +403,7 @@ label {
 .info-container {
 }
 .info-block {
-  opacity: 0.6;
+  opacity: 0.5;
 }
 .info-left {
   width: 40%;
