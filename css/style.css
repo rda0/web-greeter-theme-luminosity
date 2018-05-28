@@ -64,44 +64,6 @@ label {
   z-index: 3;
   overflow: hidden;
 }
-#container .content {
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-  transition: margin 0.25s;
-  width: calc(100% * 2);
-}
-#container .content .username-area,
-#container .content .password-area {
-  position: relative;
-  /* remove min-height: 500px; */
-  box-sizing: border-box;
-  width: 50%;
-  float: left;
-  display: flex;
-  flex-direction: column;
-  flex:1 1 auto;
-}
-#container .content .content-header {
-  padding-left: 40px;
-  padding-right: 40px;
-}
-#container .content .login {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-#container .content .content-footer {
-  box-sizing: border-box;
-  padding-left: 40px;
-  padding-right: 40px;
-}
-#container .content .content-header h1 {
-  text-indent: -1px;
-  font-size: 25px;
-  font-weight: bold;
-  line-height: 32px;
-  margin: 0;
-}
 
 
 /* panel */
@@ -113,6 +75,48 @@ label {
 
 .username-area.flying-pods #username-area {
   transition: width 180ms ease, height 180ms ease;
+}
+
+
+/* content */
+
+.content {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  transition: margin 0.25s;
+  width: calc(100% * 2);
+}
+.content .username-area,
+.content .password-area {
+  position: relative;
+  /* remove min-height: 500px; */
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  flex:1 1 auto;
+}
+.content .content-header {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.content .login {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.content .content-footer {
+  box-sizing: border-box;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.content .content-header h1 {
+  text-indent: -1px;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 32px;
+  margin: 0;
 }
 
 
@@ -142,7 +146,7 @@ label {
 
 /* banner */
 
-#signin-banner-container {
+#banner-container {
   box-sizing:border-box;
   position:relative;
   height: 100%;
@@ -153,29 +157,29 @@ label {
   padding-right: 40px;
   padding-bottom: 40px;
 }
-#signin-banner {
+#banner {
   display: block;
   height: 31px;
 }
-#signin-banner img{
+#banner img{
   max-height: 100%;
 }
 
 
 /* logo */
 
-#signin-logo-container {
+#logo-container {
   box-sizing:border-box;
   position:relative;
   z-index: 3;
   padding-top: 40px;
   padding-bottom: 40px;
 }
-#signin-logo {
+#logo {
   display: inline-block;
   width: 146px;
 }
-#signin-logo img{
+#logo img{
   width: 100%;
 }
 
