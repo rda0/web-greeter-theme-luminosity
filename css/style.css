@@ -59,28 +59,18 @@ label {
   flex:1 1 auto;
 }
 
-/* add */
-#identifierLink {
-  margin-top: 40px;
-}
-
-#container .content .content-header,
-#container .content .item,
-#container .content .other-account {
+#container .content .content-header {
   padding-left: 40px;
   padding-right: 40px;
 }
-.content .login {
+#container .content .login {
   padding-top: 40px;
   padding-bottom: 40px;
 }
 #container .content .content-footer {
   box-sizing: border-box;
-  /* add */
   padding-left: 40px;
-  /* add */
   padding-right: 40px;
-  /* add */
 }
 
 /* add */
