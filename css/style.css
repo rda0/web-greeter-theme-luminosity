@@ -1,9 +1,9 @@
+/* global settings */
+
 body,
 html {
   display: block;
   min-height: 100%;
-  /* remove font-family: roboto, arial, sans-serif; */
-  /* add */
   font-family: "DINPro", "Dejavu Sans", sans-serif;
   font-size: 16px;
   letter-spacing: normal;
@@ -20,14 +20,12 @@ label {
   margin: 0;
   opacity: 0.5;
 }
-#container {
-  display: block;
-  z-index: 3;
-  overflow: hidden;
-}
+
+
+/* background switcher */
+
 #bg-switch-toggle {
   z-index:2;
-  /*background-color: transparent;*/
 }
 #bg-switch-close {
   pointer-events: all;
@@ -38,56 +36,6 @@ label {
 }
 .bgs{
   display:flex;
-  flex-direction: column;
-}
-#container .content {
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-  transition: margin 0.25s;
-  width: calc(100% * 2);
-}
-#container .content .username-area,
-#container .content .password-area {
-  position: relative;
-  /* remove min-height: 500px; */
-  box-sizing: border-box;
-  width: 50%;
-  float: left;
-  display: flex;
-  flex-direction: column;
-  flex:1 1 auto;
-}
-
-#container .content .content-header {
-  padding-left: 40px;
-  padding-right: 40px;
-}
-#container .content .login {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-#container .content .content-footer {
-  box-sizing: border-box;
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
-/* add */
-#container .content .content-header h1 {
-  text-indent: -1px;
-  font-size: 25px;
-  font-weight: bold;
-  line-height: 32px;
-  margin: 0;
-}
-/* remove #container .content .password-area { */
-/* add */
-#container .content {
-  position: relative;
-}
-#panel {
-  display: flex;
   flex-direction: column;
 }
 .bg {
@@ -108,127 +56,67 @@ label {
   width: 100%;
 }
 
+
+/* container */
+
+#container {
+  display: block;
+  z-index: 3;
+  overflow: hidden;
+}
+#container .content {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  transition: margin 0.25s;
+  width: calc(100% * 2);
+}
+#container .content .username-area,
+#container .content .password-area {
+  position: relative;
+  /* remove min-height: 500px; */
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  flex:1 1 auto;
+}
+#container .content .content-header {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+#container .content .login {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+#container .content .content-footer {
+  box-sizing: border-box;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+#container .content .content-header h1 {
+  text-indent: -1px;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 32px;
+  margin: 0;
+}
+
+
+/* panel */
+
+#panel {
+  display: flex;
+  flex-direction: column;
+}
+
 .username-area.flying-pods #username-area {
   transition: width 180ms ease, height 180ms ease;
 }
 
-.input,
-.input label,
-.input input,
-.input .spin,
-.button,
-.button button .button.login button i.fa,
-.material-button .shape:before,
-.material-button .shape:after,
-.button.login button {
-  transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  -webkit-transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  -ms-transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-.input,
-.input label,
-.input input,
-.input .spin,
-.button,
-.button button {
-  width: 100%;
-  box-sizing: border-box;
-  outline: none;
-}
-
-.input,
-.input label {
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
-.input,
-.button {
-  height: 70px;
-}
-
-.input,
-.input input,
-.button,
-.button button {
-  position: relative;
-}
-
-.input input {
-  height: 60px;
-  top: 10px;
-  border: none;
-  background: transparent;
-}
-
-.input input,
-.input label,
-.button button {
-  /* remove font-family: "Roboto", sans-serif; */
-  /* remove add font-family: "Dejavu Sans", sans-serif; */
-  font-size: 20px;
-  /* color: rgba(0, 0, 0, 0.8); */
-  /* remove font-weight: 300; */
-  /* add */
-  font-weight: normal;
-}
-
-.input:before,
-.input .spin {
-  box-sizing: border-box;
-  margin-left: 40px;
-  margin-right: 40px;
-  width: calc(100% - 80px);
-  height: 1px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.input:before {
-  content: "";
-  background: var(--input-line-background,rgba(0, 0, 0, 0.1));
-  z-index: 3;
-}
-
-.input .spin {
-  background: #4285f4;
-  z-index: 4;
-  width: 0;
-}
-
-.input label {
-  position: absolute;
-  top: 10px;
-  left: 0;
-  z-index: 2;
-  cursor: pointer;
-  line-height: 60px;
-}
-
-.wallpaperButton,
-.actionButton,
-.other-account {
-  color: var(--action-button-color);
-  background: var(--action-button-background);
-}
-.wallpaperButton:hover,
-.actionButton:hover,
-.other-account:hover{
-  color: var(--action-button-hover-color);
-  background: var(--action-button-hover-background);
-}
-.btn-primary:active,
-.wallpaperButton:active {
-  background-image: none;
-  background-color: rgba(255,255,255,0.4)
-}
-.btn-primary:active:hover,
-.wallpaperButton:active:hover {
-  background-image: none;
-  background-color: rgba(255,255,255,0.4)
-}
+/* info container */
 
 .info-container {
 }
@@ -251,6 +139,9 @@ label {
   clear: both;
 }
 
+
+/* banner */
+
 #signin-banner-container {
   box-sizing:border-box;
   position:relative;
@@ -270,6 +161,9 @@ label {
   max-height: 100%;
 }
 
+
+/* logo */
+
 #signin-logo-container {
   box-sizing:border-box;
   position:relative;
@@ -285,6 +179,9 @@ label {
   width: 100%;
 }
 
+
+/* button style (actionButton, wallpaperButton) */
+
 #actionsArea,
 #backArea {
   display: block;
@@ -295,6 +192,112 @@ label {
 #backArea .btn {
   padding: 4px 14px;
 }
+.wallpaperButton,
+.actionButton {
+  color: var(--action-button-color);
+  background: var(--action-button-background);
+}
+.wallpaperButton:hover,
+.actionButton:hover {
+  color: var(--action-button-hover-color);
+  background: var(--action-button-hover-background);
+}
+.btn-primary:active,
+.wallpaperButton:active {
+  background-image: none;
+  background-color: rgba(255,255,255,0.4)
+}
+.btn-primary:active:hover,
+.wallpaperButton:active:hover {
+  background-image: none;
+  background-color: rgba(255,255,255,0.4)
+}
+
+
+/* input field style */
+
+.input,
+.input label,
+.input input,
+.input .spin,
+.button,
+.button button .button.login button i.fa,
+.material-button .shape:before,
+.material-button .shape:after,
+.button.login button {
+  transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  -ms-transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.input,
+.input label,
+.input input,
+.input .spin,
+.button,
+.button button {
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+.input,
+.input label {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.input,
+.button {
+  height: 70px;
+}
+.input,
+.input input,
+.button,
+.button button {
+  position: relative;
+}
+.input input {
+  height: 60px;
+  top: 10px;
+  border: none;
+  background: transparent;
+}
+.input input,
+.input label,
+.button button {
+  font-size: 20px;
+  font-weight: normal;
+}
+.input:before,
+.input .spin {
+  box-sizing: border-box;
+  margin-left: 40px;
+  margin-right: 40px;
+  width: calc(100% - 80px);
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.input:before {
+  content: "";
+  background: var(--input-line-background,rgba(0, 0, 0, 0.1));
+  z-index: 3;
+}
+.input .spin {
+  background: #4285f4;
+  z-index: 4;
+  width: 0;
+}
+.input label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  line-height: 60px;
+}
+
+
+/* submit button style */
 
 .morpher {
   box-sizing: border-box;
