@@ -453,12 +453,14 @@ label {
   width: 100%;
 }
 
-#actionsArea {
+#actionsArea,
+#backArea {
   display: block;
   position: relative;
   transform: translateY(-3px);
 }
-#actionsArea .btn {
+#actionsArea .btn,
+#backArea .btn {
   padding: 4px 14px;
 }
 

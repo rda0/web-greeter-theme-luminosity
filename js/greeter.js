@@ -146,7 +146,7 @@ $(document).ready(function () {
     });
 
     showPanel();
-    $(".other-account").click(function (e) {
+    $(".backButton").click(function (e) {
       $('.selected-user').html("")
       $('.content').css({
         marginLeft: '0px'
