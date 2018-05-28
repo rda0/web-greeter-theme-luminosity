@@ -1,40 +1,12 @@
 <!DOCTYPE html>
-<!--
-  ~ Copyright © 2015 Antergos
-  ~
-  ~ index.html
-  ~
-  ~ This file is part of lightdm-webkit-theme-antergos
-  ~
-  ~ lightdm-webkit-theme-antergos is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License,
-  ~ or any later version.
-  ~
-  ~ lightdm-webkit-theme-antergos is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ The following additional terms are in effect as per Section 7 of this license:
-  ~
-  ~ The preservation of all legal notices and author attributions in
-  ~ the material or in the Appropriate Legal Notices displayed
-  ~ by works containing it is required.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="The Antergos Default Greeter Theme">
   <meta name="author" content="Dustin Falgout">
 
-  <title>Manjaro LightDM Webkit Greeter Theme</title>
+  <title>DPHYS LightDM Webkit Greeter Theme</title>
 
   <!--For testing changes made to theme in any web browser-->
   <script type="text/javascript" src="js/mock.js"></script>
@@ -50,18 +22,13 @@
   <script src="js/jquery-2.1.4.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/greeter.js"></script>
-
   <script type="text/javascript">
-
   </script>
-
 </head>
 
 <body>
-
-  <!-- removed
   <!-- BG Switcher -->
-  <a id="bg-switch-toggle" href="#" class="btn btn-primary btn-lg toggle close_wallpapers">
+  <a id="bg-switch-toggle" href="#" class="btn btn-primary btn-lg toggle close_wallpapers actionButton">
     <i class="fa fa-bars"></i>
   </a>
 
@@ -77,7 +44,7 @@
         <h3>Background Options</h3>
 
         <div class="bgs">
-          <a href="#" data-img="default" class="clearfix">
+          <a href="#" data-img="default" class="background clearfix">
             <div class="default">
               <span>Default</span>
             </div>
@@ -87,12 +54,11 @@
     </div>
   </div>
   <!-- /BG Switcher Sidebar -->
-  -->
   <div id="container" class="fade">
     <div id="panel">
       <div id="signin-banner-container">
         <div id="signin-banner">
-          <img src="" alt="Manjaro" />
+          <img src="" alt="Banner" />
           <!-- removed
           <div id="session-list" class="btn-group pull-right hidden">
             <button type="button" class="btn btn-default selected" style="height:35px"></button>
@@ -110,9 +76,9 @@
 
         <div class="account-picker">
           <div class="content-header">
-            <div>
+            <div class="areaTitle">
               <h1 class="sfYUmb pbqoM" data-a11y-title-piece="" id="headingText" jsname="z6sL2b">Ubuntu 18.04 Login</h1>
-              <p class="FgbZLd" data-a11y-title-piece="" id="headingSubtext">Authenticate using DPHYS Account</p>
+              <p class="FgbZLd" data-a11y-title-piece="" id="headingSubtext">Authenticate using your DPHYS Account</p>
             </div>
           </div>
 
@@ -135,30 +101,34 @@
             <div id="actionsArea" class="btn-group pull-right"></div>
             -->
 
-            <div id="info-container">
-              <div id="info-block">
-                <div id="info-left">
+            <div class="info-container">
+              <div class="info-block">
+                <div class="info-left">
                   <p>
                     Hostname<br/>
                     Authorized Users<br/>
                     Managed by
                   </p>
                 </div>
-                <div id="info-right">
+                <div class="info-right">
                   <p>
                     <span id="hostname-label"></span><br/>
                     IPA, Student<br/>
                     ISG DPHYS
                   </p>
                 </div>
-                <div id="info-clear"></div>
+                <div class="info-clear"></div>
               </div>
 
-              <div id="info-block">
+              <div class="info-spacer"></div>
+
+              <div class="info-block">
+                <!--
                 <p>
                   IT support resources and helpdesk contact:
                 </p>
-                <div id="info-left">
+                -->
+                <div class="info-left">
                   <p>
                     Documentation<br/>
                     Announcements<br/>
@@ -167,22 +137,24 @@
                     Tel
                   </p>
                 </div>
-                <div id="info-right">
+                <div class="info-right">
                   <p>
-                    <a href="https://readme.phys.ethz.ch">https://readme.phys.ethz.ch</a><br/>
-                    https://nic.phys.ethz.ch<br/>
-                    irc://irc.phys.ethz.ch/#isgphys<br/>
+                    readme.phys.ethz.ch<br/>
+                    nic.phys.ethz.ch<br/>
+                    irc.phys.ethz.ch/#isgphys<br/>
                     isg@phys.ethz.ch<br/>
-                    3 26 68
+                    +41 44 633 26 68
                   </p>
                 </div>
-                <div id="info-clear"></div>
+                <div class="info-clear"></div>
               </div>
             </div>
 
             <div id="signin-logo-container">
-                <img src="" alt="Manjaro" />
-                <div id="actionsArea" class="btn-group pull-right"></div>
+              <div id="signin-logo">
+                <img src="" alt="Logo" />
+              </div>
+              <div id="actionsArea" class="btn-group pull-right"></div>
             </div>
           </div>
         </div>

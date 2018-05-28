@@ -1,30 +1,3 @@
-/*
- * Copyright © 2015 Antergos
- *
- * greeter.js
- *
- * This file is part of lightdm-webkit-theme-antergos
- *
- * lightdm-webkit-theme-antergos is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License,
- * or any later version.
- *
- * lightdm-webkit-theme-antergos is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * The following additional terms are in effect as per Section 7 of this license:
- *
- * The preservation of all legal notices and author attributions in
- * the material or in the Appropriate Legal Notices displayed
- * by works containing it is required.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 var DEBUG = true,
   selectedUser = null,
   authPending = null,
@@ -133,12 +106,14 @@ $(document).ready(function () {
     for (let i in config.styles['actionButton']) {
       style += '--action-button-' + i.toLowerCase() + ':' + config.styles['actionButton'][i] + ';';
     }
+    $('.wallpaperButton').attr('style', style);
     $('.actionButton').attr('style', style);
     $('.other-account').attr('style', style);
     style = $('.actionButton').attr('style') || '';
     for (let i in config.styles['actionButton:hover']) {
       style += '--action-button-hover-' + i.toLowerCase() + ':' + config.styles['actionButton:hover'][i] + ';';
     }
+    $('.wallpaperButton').attr('style', $('.wallpaperButton').attr('style') + style);
     $('.actionButton').attr('style', style);
     $('.other-account').attr('style', style);
 
@@ -203,7 +178,7 @@ $(document).ready(function () {
         $(this).parent(".input").each(function () {
           $("label", this).css({
             "line-height": "60px",
-            "font-size": "24px",
+            //"font-size": "24px",
             "font-weight": "300",
             "top": "10px"
           })
