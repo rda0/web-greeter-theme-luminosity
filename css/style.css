@@ -480,18 +480,21 @@ label {
   -webkit-transition: width 200ms ease-in 200ms, padding 200ms ease-out 200ms, border-radius 200ms ease-in;
   transition: width 200ms ease-in 200ms, padding 200ms ease-out 200ms, border-radius 200ms ease-in;
   position: relative;
-  width: 100%;
+  width: 80%;
   height: 50px;
   margin:0 auto;
   background: rgba(0,0,0,0);
-  -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
-  box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+  -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   /* add */
   font-size: 20px;
   border-radius: 30px;
   cursor: pointer;
   overflow: hidden;
   border:none;
+}
+.login__submit:hover {
+  background: rgba(255,255,255,0.2)
 }
 
 .login__submit:after {
