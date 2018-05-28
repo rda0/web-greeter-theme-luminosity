@@ -63,6 +63,7 @@ p {
 }
 label {
   margin: 0;
+  opacity: 0.3;
 }
 #container {
   display: block;
@@ -402,6 +403,7 @@ label {
 .info-container {
 }
 .info-block {
+  opacity: 0.6;
 }
 .info-left {
   width: 40%;
