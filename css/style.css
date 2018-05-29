@@ -210,14 +210,14 @@ label {
 #actionsArea,
 #backArea {
   position: relative;
-  transform: translateY(-3px);
+  transform: translateY(-1px);
 }
 #backArea {
   display: none;
 }
 #actionsArea .btn,
 #backArea .btn {
-  padding: 4px 14px;
+  padding: 2px 12px;
 }
 .btn-primary,
 .wallpaperButton,
