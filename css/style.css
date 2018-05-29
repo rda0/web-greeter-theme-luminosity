@@ -8,10 +8,10 @@ html {
   font-size: 16px;
   letter-spacing: normal;
   line-height: normal;
-  overflow:hidden;
+  overflow: hidden;
 }
 [hidden]{
-  display:none !important;
+  display: none !important;
 }
 p {
   margin: 0;
@@ -22,22 +22,8 @@ label {
 }
 
 
-/* background switcher */
+/* background */
 
-#bg-switch-toggle {
-  z-index:2;
-}
-#bg-switch-close {
-  pointer-events: all;
-  cursor: pointer;
-}
-.switch-container{
-  pointer-events: none;
-}
-.bgs{
-  display:flex;
-  flex-direction: column;
-}
 .bg {
   background: #fff;
   bottom: 0;
@@ -54,6 +40,25 @@ label {
   height: 100%;
   position: relative;
   width: 100%;
+}
+.bgs {
+  display:flex;
+  flex-direction: column;
+}
+#bg-switch-toggle {
+  z-index:2;
+}
+#bg-switch-close {
+  pointer-events: all;
+  cursor: pointer;
+}
+.switch-container {
+  pointer-events: none;
+}
+.bg-switch h3 {
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
 }
 
 
