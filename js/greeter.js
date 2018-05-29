@@ -412,7 +412,7 @@ $(document).ready(function () {
     $('.content').css({
       marginLeft: '-450px'
     });
-    $('#backArea').fadeIn(500, function(){$('#actionsArea').fadeOut(500);});
+    $('#actionsArea').fadeOut(500, function(){$('#backArea').fadeIn(500);});
     $('#session-list .selected').html(e.target.getAttribute('data-session'));
   }
   window.authenticate = function (e, username) {
