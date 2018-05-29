@@ -69,6 +69,14 @@ label {
   z-index: 3;
   overflow: hidden;
 }
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity .8 linear;
+  transition: opacity .8 linear;
+}
+.fade .in {
+  opacity: 1;
+}
 
 
 /* panel */
