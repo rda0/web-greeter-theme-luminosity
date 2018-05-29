@@ -71,8 +71,8 @@ label {
 }
 .fade {
   opacity: 0;
-  -webkit-transition: opacity .8s linear;
-  transition: opacity .8s linear;
+  -webkit-transition: opacity .5s linear;
+  transition: opacity .5s linear;
 }
 .fade.in {
   opacity: 1;
