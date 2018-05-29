@@ -214,13 +214,11 @@ label {
   padding: 4px 14px;
 }
 .wallpaperButton,
-.login__submit,
 .actionButton {
   color: var(--action-button-color);
   background: var(--action-button-background);
 }
 .wallpaperButton:hover,
-.login__submit:hover,
 .actionButton:hover {
   color: var(--action-button-hover-color);
   background: var(--action-button-hover-background);
@@ -356,7 +354,8 @@ label {
   border:none;
 }
 .login__submit:hover {
-  background: rgba(255,255,255,0.2)
+  background: rgba(255,255,255,0.2);
+  transition: background .4s;
 }
 
 .login__submit:after {
