@@ -18,7 +18,7 @@ function showPanel() {
   $("#bg").addClass("in");
   setTimeout(() => {
     $("#container").addClass("in");
-  }, 500);
+  }, 1500);
 }
 
 function showLog() {
