@@ -71,10 +71,10 @@ label {
 }
 .fade {
   opacity: 0;
-  -webkit-transition: opacity .8 linear;
-  transition: opacity .8 linear;
+  -webkit-transition: opacity .8s linear;
+  transition: opacity .8s linear;
 }
-.fade .in {
+.fade.in {
   opacity: 1;
 }
 
