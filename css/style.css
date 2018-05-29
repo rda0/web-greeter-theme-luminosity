@@ -240,12 +240,14 @@ label {
 .btn-primary:active,
 .wallpaperButton:active,
 .actionButton:active {
+  background: none;
   background-image: none;
   background-color: none;
 }
 .btn-primary:active:hover,
 .wallpaperButton:active:hover,
 .actionButton:active:hover {
+  background: none;
   background-image: none;
   background-color: none;
 }
