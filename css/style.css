@@ -203,7 +203,6 @@ label {
 
 #actionsArea,
 #backArea {
-  display: block;
   position: relative;
   transform: translateY(-3px);
 }
