@@ -410,6 +410,7 @@ $(document).ready(function () {
     $('.content').css({
       marginLeft: '-450px'
     });
+    $('.backButton').hide();
     $('#session-list .selected').html(e.target.getAttribute('data-session'));
   }
   window.authenticate = function (e, username) {
