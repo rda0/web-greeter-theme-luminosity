@@ -17,7 +17,7 @@ function log(text) {
 function showPanel() {
   $("#bg").addClass("in");
   setTimeout(() => {
-    $("#container").addClass("in");
+    $("#panel").addClass("in");
   }, 1000);
 }
 
@@ -91,7 +91,7 @@ $(document).ready(function () {
   }
   fetch('config.json').then(async function (res) {
     config = await res.json();
-    $('#container').css(config.styles.panel);
+    $('#panel').css(config.styles.panel);
     $('.bg').css(config.styles.background);
     $('#banner img').attr('src', `img/banners/${config.banner}.png`);
     $('#logo img').attr('src', `img/banners/${config.logo}.png`);
