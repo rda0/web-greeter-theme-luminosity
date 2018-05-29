@@ -379,8 +379,8 @@ label {
 }
 
 .login__submit.processing {
-  -webkit-transition: width 200ms ease-in, padding 200ms ease-out, border-radius 200ms ease-in 200ms;
-  transition: width 200ms ease-in, padding 200ms ease-out, border-radius 200ms ease-in 200ms;
+  -webkit-transition: width 200ms ease-in, padding 200ms ease-out, border-radius 200ms ease-in 200ms, font-size 200ms ease-in;
+  transition: width 200ms ease-in, padding 200ms ease-out, border-radius 200ms ease-in 200ms, font-size 200ms ease-in;
   width: 50px;
   border-radius: 50%;
   font-size: 0;
