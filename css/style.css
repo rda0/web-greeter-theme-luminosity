@@ -350,10 +350,8 @@ label {
   border-radius: 30px;
   cursor: pointer;
   overflow: hidden;
-  border:none;
-  opacity: 1;
-  -webkit-transition: opacity 0.1s 0.4s;
-  transition: opacity 0.1s 0.4s;
+  border: none;
+  text-align: center;
   /* transition: background .4s; */
 }
 .login__submit:hover {
