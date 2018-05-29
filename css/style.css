@@ -374,6 +374,7 @@ label {
   -webkit-transition: opacity 0.1s 0.4s;
   transition: opacity 0.1s 0.4s;
   opacity: 0;
+  overflow: hidden;
 }
 
 .login__submit.processing {
