@@ -346,17 +346,16 @@ label {
   background: rgba(0,0,0,0);
   -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  /* add */
   font-size: 20px;
   border-radius: 30px;
   cursor: pointer;
   overflow: hidden;
   border:none;
-  transition: background .4s;
+  /* transition: background .4s; */
 }
 .login__submit:hover {
   background: rgba(255,255,255,0.2);
-  transition: background .4s;
+  /* transition: background .4s; */
 }
 
 .login__submit:after {
