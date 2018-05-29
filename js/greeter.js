@@ -62,11 +62,11 @@ $(document).ready(function () {
         '</li>';
       $(accountList).append(item);
     }
-    $('.account-list .item').hover(function () {
+    /* $('.account-list .item').hover(function () {
       $(this).css(config.styles['accountListItem:hover'])
     }, function () {
       $(this).css(config.styles['accountListItem'])
-    })
+    }) */
   }
 
   function buildSessionList() {
@@ -115,13 +115,13 @@ $(document).ready(function () {
     }
     $('.wallpaperButton').attr('style', $('.wallpaperButton').attr('style') + style);
     $('.actionButton').attr('style', style);
-    $('.other-account').attr('style', style); */
+    $('.other-account').attr('style', style);
 
     let style = $('.input').attr('style') || '';
     for (let i in config.styles['inputLine']) {
       style += '--input-line-' + i.toLowerCase() + ':' + config.styles['inputLine'][i] + ';';
     }
-    $('.input').attr('style', style);
+    $('.input').attr('style', style); */
 
     var $btns = $(".bg-switch .background");
     $btns.click(function (e) {
@@ -352,7 +352,7 @@ $(document).ready(function () {
         id2 = "refresh"
       }
       $("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id + ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label + '" data-container="body" onclick="handleAction(\'' + id + '\')"><i class="fa fa-' + id2 + '"></i></button>');
-      if (config && config.styles) {
+      /* if (config && config.styles) {
         let style = $('.actionButton').attr('style') || '';
         for (let i in config.styles['actionButton']) {
           style += '--action-button-' + i.toLowerCase() + ':' + config.styles['actionButton'][i] + ';';
@@ -363,7 +363,7 @@ $(document).ready(function () {
           style += '--action-button-hover-' + i.toLowerCase() + ':' + config.styles['actionButton:hover'][i] + ';';
         }
         $('.actionButton').attr('style', style);
-      }
+      } */
     }
   }
 
@@ -399,8 +399,8 @@ $(document).ready(function () {
   }
   function slideContent(e) {
     const selectedUser = e.target.cloneNode(true);
-    selectedUser.removeAttribute('style');
-    $(selectedUser).css(config.styles.selectedUser);
+    /* selectedUser.removeAttribute('style');
+    $(selectedUser).css(config.styles.selectedUser); */
     $('.selected-user').append(selectedUser);
 
     const content = document.querySelector('.content');
