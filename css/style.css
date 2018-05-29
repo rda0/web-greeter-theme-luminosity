@@ -62,9 +62,12 @@ label {
 }
 
 
-/* container */
+/* panel */
 
-#container {
+#panel {
+  display: block;
+  z-index: 3;
+  overflow: hidden;
 }
 .fade {
   opacity: 0;
@@ -74,16 +77,6 @@ label {
 .fade.in {
   opacity: 1;
 }
-
-
-/* panel */
-
-#panel {
-  display: block;
-  z-index: 3;
-  overflow: hidden;
-}
-
 .username-area.flying-pods #username-area {
   transition: width 180ms ease, height 180ms ease;
 }
@@ -356,9 +349,11 @@ label {
   width: 80%;
   height: 50px;
   margin:0 auto;
-  background: rgba(0,0,0,0.1);
-  -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-  box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0);
+  /* -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.5); */
+  -webkit-box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0,0,0,0.15) inset;
+  box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0,0,0,0.15) inset;
   font-size: 20px;
   border-radius: 30px;
   cursor: pointer;
