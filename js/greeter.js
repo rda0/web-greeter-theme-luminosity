@@ -151,8 +151,8 @@ $(document).ready(function () {
       $('.content').css({
         marginLeft: '0px'
       });
-      $('#backArea').fadeOut(125);
-      $('#actionsArea').fadeIn(125);
+      $('#backArea').fadeOut(500);
+      $('#actionsArea').fadeIn(500);
       $('#session-list .selected').html('')
       $('#session-list').addClass('hidden');
       lightdm.cancel_authentication();
@@ -412,8 +412,7 @@ $(document).ready(function () {
     $('.content').css({
       marginLeft: '-450px'
     });
-    $('#backArea').fadeIn(125);
-    $('#actionsArea').fadeOut(125);
+    $('#backArea').fadeIn(500, function(){$('#actionsArea').fadeOut(500);});
     $('#session-list .selected').html(e.target.getAttribute('data-session'));
   }
   window.authenticate = function (e, username) {
