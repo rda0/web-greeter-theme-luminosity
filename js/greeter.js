@@ -151,6 +151,8 @@ $(document).ready(function () {
       $('.content').css({
         marginLeft: '0px'
       });
+      $('.backButton').hide();
+      $('.actionsArea').show();
       $('#session-list .selected').html('')
       $('#session-list').addClass('hidden');
       lightdm.cancel_authentication();
@@ -410,7 +412,8 @@ $(document).ready(function () {
     $('.content').css({
       marginLeft: '-450px'
     });
-    $('.backButton').hide();
+    $('.backButton').show();
+    $('.actionsArea').hide();
     $('#session-list .selected').html(e.target.getAttribute('data-session'));
   }
   window.authenticate = function (e, username) {
