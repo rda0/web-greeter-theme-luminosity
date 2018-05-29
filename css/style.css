@@ -203,9 +203,12 @@ label {
 
 #actionsArea,
 #backArea {
-  display: none;
+  display: block;
   position: relative;
   transform: translateY(-3px);
+}
+#backArea {
+  display: none;
 }
 #actionsArea .btn,
 #backArea .btn {
