@@ -372,8 +372,8 @@ label {
   border-radius: 50%;
   border-left: none;
   border-bottom: none;
-  -webkit-transition: opacity 0.1s 0.4s;
-  transition: opacity 0.1s 0.4s;
+  -webkit-transition: opacity 0.01s 0.4s;
+  transition: opacity 0.01s 0.4s;
   opacity: 0;
   overflow: hidden;
 }
