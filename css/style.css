@@ -343,9 +343,9 @@ label {
   width: 80%;
   height: 50px;
   margin:0 auto;
-  background: rgba(0,0,0,0);
-  -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.1);
+  -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
   font-size: 20px;
   border-radius: 30px;
   cursor: pointer;
