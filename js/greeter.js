@@ -102,7 +102,7 @@ $(document).ready(function () {
             </a>
           `);
     });
-    let style = $('.actionButton').attr('style') || '';
+    /* let style = $('.actionButton').attr('style') || '';
     for (let i in config.styles['actionButton']) {
       style += '--action-button-' + i.toLowerCase() + ':' + config.styles['actionButton'][i] + ';';
     }
@@ -115,9 +115,9 @@ $(document).ready(function () {
     }
     $('.wallpaperButton').attr('style', $('.wallpaperButton').attr('style') + style);
     $('.actionButton').attr('style', style);
-    $('.other-account').attr('style', style);
+    $('.other-account').attr('style', style); */
 
-    style = $('.input').attr('style') || '';
+    let style = $('.input').attr('style') || '';
     for (let i in config.styles['inputLine']) {
       style += '--input-line-' + i.toLowerCase() + ':' + config.styles['inputLine'][i] + ';';
     }

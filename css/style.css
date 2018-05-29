@@ -219,27 +219,33 @@ label {
 #backArea .btn {
   padding: 4px 14px;
 }
+.btn-primary,
 .wallpaperButton,
 .actionButton {
-  color: var(--action-button-color);
-  background: var(--action-button-background);
+  color: #fff;
+  background: none;
+  /* color: var(--action-button-color);
+  background: var(--action-button-background); */
   box-shadow: 1px 1px 2px -1px rgba(255, 255, 255, 0.06) inset, 5px 5px 10px -5px rgba(255, 255, 255, 0.03) inset, 1px 1px 4px rgba(0,0,0,0.4);
 }
+.btn-primary:hover,
 .wallpaperButton:hover,
 .actionButton:hover {
-  color: var(--action-button-hover-color);
-  background: var(--action-button-hover-background);
+  /* color: var(--action-button-hover-color);
+  background: var(--action-button-hover-background); */
   box-shadow: 1px 1px 2px -1px rgba(255, 255, 255, 0.06) inset, 5px 5px 10px -5px rgba(255, 255, 255, 0.1) inset, 1px 1px 4px rgba(0,0,0,0.4);
 }
 .btn-primary:active,
-.wallpaperButton:active {
+.wallpaperButton:active,
+.actionButton:active {
   background-image: none;
-  background-color: rgba(255,255,255,0.4)
+  background-color: none;
 }
 .btn-primary:active:hover,
-.wallpaperButton:active:hover {
+.wallpaperButton:active:hover,
+.actionButton:active:hover {
   background-image: none;
-  background-color: rgba(255,255,255,0.4)
+  background-color: none;
 }
 
 
