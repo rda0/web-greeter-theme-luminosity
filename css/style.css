@@ -337,8 +337,8 @@ label {
 }
 
 .login__submit {
-  -webkit-transition: width 200ms ease-in 200ms, padding 200ms ease-out 200ms, border-radius 200ms ease-in, font-size 200ms ease-in, background 400ms;
-  transition: width 200ms ease-in 200ms, padding 200ms ease-out 200ms, border-radius 200ms ease-in, font-size 200ms ease-in, background 400ms;
+  -webkit-transition: width 200ms ease-in 200ms, padding 200ms ease-out 200ms, border-radius 200ms ease-in, font-size 200ms ease-out, background 400ms;
+  transition: width 200ms ease-in 200ms, padding 200ms ease-out 200ms, border-radius 200ms ease-in, font-size 200ms ease-out, background 400ms;
   position: relative;
   width: 80%;
   height: 50px;
