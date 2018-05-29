@@ -412,7 +412,7 @@ $(document).ready(function () {
     $('.content').css({
       marginLeft: '-450px'
     });
-    $('#backArea').fadeIn(125)();
+    $('#backArea').fadeIn(125);
     $('#actionsArea').fadeOut(125);
     $('#session-list .selected').html(e.target.getAttribute('data-session'));
   }
