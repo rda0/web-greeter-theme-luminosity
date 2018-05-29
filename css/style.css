@@ -201,7 +201,7 @@ label {
 
 /* button style (actionButton, wallpaperButton) */
 
-#actionsArea,
+#bctionsArea,
 #backArea {
   position: relative;
   transform: translateY(-3px);
@@ -209,7 +209,7 @@ label {
 #backArea {
   display: none;
 }
-#actionsArea .btn,
+#bctionsArea .btn,
 #backArea .btn {
   padding: 4px 14px;
 }
