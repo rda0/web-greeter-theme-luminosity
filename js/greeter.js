@@ -152,7 +152,7 @@ $(document).ready(function () {
         marginLeft: '0px'
       });
       $('#backArea').fadeOut(500);
-      $('#bctionsArea').fadeIn(500);
+      $('#actionsArea').fadeIn(500);
       $('#session-list .selected').html('')
       $('#session-list').addClass('hidden');
       lightdm.cancel_authentication();
@@ -350,7 +350,7 @@ $(document).ready(function () {
       if (id == "restart") {
         id2 = "refresh"
       }
-      $("#bctionsArea").append('\n<button type="button" class="btn btn-default ' + id + ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label + '" data-container="body" onclick="handleAction(\'' + id + '\')"><i class="fa fa-' + id2 + '"></i></button>');
+      $("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id + ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label + '" data-container="body" onclick="handleAction(\'' + id + '\')"><i class="fa fa-' + id2 + '"></i></button>');
       if (config && config.styles) {
         let style = $('.actionButton').attr('style') || '';
         for (let i in config.styles['actionButton']) {
@@ -412,7 +412,7 @@ $(document).ready(function () {
     $('.content').css({
       marginLeft: '-450px'
     });
-    $('#bctionsArea').fadeOut(2000);
+    $('#actionsArea').fadeOut(2000);
     //, function(){$('#backArea').fadeIn(2000);}
     $('#session-list .selected').html(e.target.getAttribute('data-session'));
   }
