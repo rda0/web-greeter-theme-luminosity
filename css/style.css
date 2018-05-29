@@ -60,21 +60,46 @@ label {
 /* container */
 
 #container {
-  display: block;
-  z-index: 3;
-  overflow: hidden;
 }
 
 
 /* panel */
 
 #panel {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  z-index: 3;
+  overflow: hidden;
 }
 
 .username-area.flying-pods #username-area {
   transition: width 180ms ease, height 180ms ease;
+}
+
+
+/* header */
+
+#header {
+  box-sizing: border-box;
+  position: relative;
+  height: 100%;
+  padding-top: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+}
+
+
+/* footer */
+
+#footer {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  padding-top: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
 }
 
 
@@ -146,17 +171,6 @@ label {
 
 /* banner */
 
-#banner-container {
-  box-sizing:border-box;
-  position:relative;
-  height: 100%;
-  max-width: 450px;
-  z-index: 3;
-  padding-top: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 40px;
-}
 #banner {
   display: block;
   height: 31px;
@@ -169,8 +183,8 @@ label {
 /* logo */
 
 #logo-container {
-  box-sizing:border-box;
-  position:relative;
+  box-sizing: border-box;
+  position: relative;
   z-index: 3;
   padding-top: 40px;
   padding-bottom: 40px;
