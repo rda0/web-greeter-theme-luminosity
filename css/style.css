@@ -363,7 +363,7 @@ label {
   text-shadow: 0px -1px #333;
 }
 .login__submit:hover {
-  box-shadow: 0 0 8px 0 rgba(255,255,255,0.2);
+  box-shadow: 0 0 20px 0 rgba(255,255,255,0.2) inset;
   /*background: rgba(255,255,255,0.2);*/
 }
 
