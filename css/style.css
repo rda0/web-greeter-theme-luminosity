@@ -60,15 +60,15 @@ label {
 /* container */
 
 #container {
+  display: block;
+  z-index: 3;
+  overflow: hidden;
 }
 
 
 /* panel */
 
 #panel {
-  display: block;
-  z-index: 3;
-  overflow: hidden;
 }
 
 .username-area.flying-pods #username-area {
