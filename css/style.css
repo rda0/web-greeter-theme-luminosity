@@ -111,7 +111,6 @@ btn:focus {
 }
 p {
   margin: 0;
-  -webkit-font-smoothing: antialiased;
 }
 label {
   margin: 0;
