@@ -148,6 +148,7 @@ label {
 }
 #bg-switch-wrapper {
   margin-right: -250px;
+  top: 0;
   right: 0;
   width: 250px;
   background: rgba(0, 0, 0, 0.5);
@@ -171,21 +172,17 @@ label {
   margin: 0;
   padding: 0;
 }
+.switch-container {
+  pointer-events: none;
+  width: 100%;
+  height: 40px;
+}
 #bg-switch-close {
   pointer-events: all;
   cursor: pointer;
 }
-.switch-container {
-  pointer-events: none;
-}
 .bg-switch {
-  position: relative;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   width: 250px;
-  margin: 80px auto auto;
   color: #F5F5F5;
 }
 .bg-switch h3 {
@@ -193,25 +190,17 @@ label {
   text-align: center;
   font-weight: 500;
 }
-.bg-switch .bgs a{
-  justify-content: center;
-}
-.bg-switch .bgs .bg {
+.bg-switch .bgs {
   text-align: center;
-  text-decoration: none;
 }
-.bg-switch .bgs .bg.active img {
-  border-color: #3D73C5;
-}
-.bg-switch .bgs .bg img {
-  width: 145px;
-  height: 95px;
-  border: 2px solid #FFFFFF;
-  margin-bottom: 10px;
+.bg-switch .bgs img {
+  width: 100px;
+  height: 56px;
+  margin: 5px;
   cursor: pointer;
 }
-.bg-switch .bgs .background {
-  margin-top: 4px;
+.bg-switch .bgs .bg-default {
+  margin-bottom: 10px;
 }
 
 

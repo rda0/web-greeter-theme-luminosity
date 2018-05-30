@@ -98,7 +98,7 @@ $(document).ready(function () {
     $('#logo img').attr('src', `img/banners/${config.logo}.png`);
     config.backgrounds.forEach(function (background) {
       $('.bgs').append(`
-            <a href="#" data-img="${background.image}" class="background clearfix">
+            <a href="#" data-img="${background.image}" class="background">
               <img src="${background.thumb}" /> 
             </a>
           `);
