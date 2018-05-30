@@ -83,6 +83,7 @@ a {
 
 /* Background Switcher */
 
+/*
 .bg-switch {
 	position: relative;
 	top: 0;
@@ -115,6 +116,7 @@ a {
 	margin-bottom: 10px;
 	cursor: pointer;
 }
+*/
 
 .hovered {
 	text-decoration: none;
@@ -137,6 +139,7 @@ a {
 }
 */
 
+/*
 #bg-switch-wrapper {
 	margin-right: -250px;
 	right: 0;
@@ -177,7 +180,7 @@ a {
 
 .toggle {
 	margin: 5px 5px 0 0;
-}
+} */
 
 /* Full Page Image Header Area */
 

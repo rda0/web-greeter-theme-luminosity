@@ -1,3 +1,94 @@
+/* bootstrap */
+
+* {
+  box-sizing: border-box;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+::before, ::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.btn-group > .btn:first-child {
+  margin-left: 0;
+}
+.btn-group > .btn, .btn-group-vertical > .btn {
+  position: relative;
+  float: left;
+}
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+  border-radius: 0;
+}
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+  margin-left: 0;
+}
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+  margin-left: -1px;
+}
+.btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.btn {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 1.846;
+  border-radius: 3px;
+  -moz-user-select: none;
+  border: none;
+  transition: all .1s;
+}
+.btn-default {
+  -webkit-background-size: 200% 200%;
+  background-size: 200%;
+  background-position: 50%;
+}
+.btn-default {
+  color: #444;
+  background-color: #FFF;
+  border-color: transparent;
+}
+.btn-lg, .btn-group-lg > .btn {
+  font-size: 17px;
+  line-height: 1.3333333;
+}
+.btn-primary {
+  color: #FFF;
+}
+input, button {
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: .1px;
+}
+input, button, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+button, select {
+  text-transform: none;
+}
+button {
+  overflow: visible;
+}
+button, input, optgroup, select, textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+
 /* global settings */
 
 body,
@@ -9,6 +100,11 @@ html {
   letter-spacing: normal;
   line-height: normal;
   overflow: hidden;
+}
+*:focus,
+a:focus,
+btn:focus {
+  outline: none;
 }
 [hidden]{
   display: none !important;
@@ -41,12 +137,39 @@ label {
   position: relative;
   width: 100%;
 }
-.bgs {
-  display:flex;
-  flex-direction: column;
-}
 #bg-switch-toggle {
-  z-index:2;
+  top: 0;
+  right: -2px;
+  position: fixed;
+  z-index: 2;
+}
+.toggle {
+  margin: 5px 5px 0 0;
+}
+#bg-switch-wrapper {
+  margin-right: -250px;
+  right: 0;
+  width: 250px;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.4s ease 0s;
+}
+#bg-switch-wrapper.active {
+  right: 250px;
+  width: 250px;
+  transition: all 0.4s ease 0s;
+  overflow-x: hidden;
+}
+.bg-switch-container {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 #bg-switch-close {
   pointer-events: all;
@@ -55,10 +178,36 @@ label {
 .switch-container {
   pointer-events: none;
 }
+.bg-switch {
+  position: relative;
+  width: 250px;
+  margin: 80px auto auto;
+  color: #F5F5F5;
+}
 .bg-switch h3 {
   font-size: 16px;
   text-align: center;
   font-weight: 500;
+}
+.bg-switch .bgs a{
+  justify-content: center;
+}
+.bg-switch .bgs .bg {
+  text-align: center;
+  text-decoration: none;
+}
+.bg-switch .bgs .bg.active img {
+  border-color: #3D73C5;
+}
+.bg-switch .bgs .bg img {
+  width: 145px;
+  height: 95px;
+  border: 2px solid #FFFFFF;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.bg-switch .bgs .background {
+  margin-top: 4px;
 }
 
 
