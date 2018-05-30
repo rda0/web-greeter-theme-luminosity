@@ -440,7 +440,7 @@ $(document).ready(function () {
     log("usrSessionName: " + usrSessionName);
     $('.selected').html(usrSessionName);
     $('.selected').attr('data-session-id', usrSession);
-    $('#session-list').removeClass('hidden');
+    //$('#session-list').removeClass('hidden');
     $('#session-list').show();
     $('#passwordArea').show();
     $('.dropdown-toggle').dropdown();

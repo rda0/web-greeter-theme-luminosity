@@ -9,7 +9,7 @@
   <!--For testing changes made to theme in any web browser-->
   <script type="text/javascript" src="js/mock.js"></script>
   <!-- Bootstrap Core CSS -->
-  <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" /> -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />
   <!-- Custom CSS here -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap/theme.css">
   <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
@@ -166,6 +166,13 @@
             <input type="password" name="pass" id="pass">
             <span class="spin"></span>
           </div>
+        </div>
+        <div id="session-list" class="btn-group">
+          <button type="button" class="btn btn-default selected" style="height:35px"></button>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <span class="fa fa-caret-down"></span>
+          </button>
+          <ul id="sessions" class="dropdown-menu"></ul>
         </div>
         <div class="morpher">
           <button type="button" class="login__submit">Authenticate</button>
