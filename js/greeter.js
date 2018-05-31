@@ -258,6 +258,27 @@ function slideToUsernameArea(e) {
   });
 }
 
+function buildSessionList() {
+  var buttonGroup = $('#sessions');
+  for (var i in lightdm.sessions) {
+    let session = lightdm.sessions[i];
+    let className = session.name.replace(/ /g, '');
+    let button = '\n<li><a href="#" data-session-id="' +
+        session.key + '" onclick="sessionToggle(this)" class="' +
+        className + '">' + session.name + '</a></li>';
+
+    $(buttonGroup).append(button);
+  }
+  //$('.dropdown-toggle').dropdown();
+}
+
+function getHostname() {
+  var hostname = lightdm.hostname;
+  var hostname_span = document.getElementById('hostname');
+  $(hostname_span).append(hostname);
+  $("#hostname-label").text(hostname);
+}
+
 /**
  * Logs.
  */
@@ -322,28 +343,6 @@ function getLastUserSession(username) {
   return lastSession;
 }
 
-function buildSessionList() {
-  // Build Session List
-  var btnGrp = $('#sessions');
-  for (var i in lightdm.sessions) {
-    var session = lightdm.sessions[i];
-    var theClass = session.name.replace(/ /g, '');
-    var button = '\n<li><a href="#" data-session-id="' +
-        session.key + '" onclick="sessionToggle(this)" class="' +
-        theClass + '">' + session.name + '</a></li>';
-
-    $(btnGrp).append(button);
-  }
-  $('.dropdown-toggle').dropdown();
-}
-
-function getHostname() {
-  var hostname = lightdm.hostname;
-  var hostname_span = document.getElementById('hostname');
-  $(hostname_span).append(hostname);
-  $("#hostname-label").text(hostname);
-}
-
 /**
  * Actions management.
  */
@@ -366,10 +365,6 @@ function addActionLink(id) {
     }
     $("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id + ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label + '" data-container="body" onclick="handleAction(\'' + id + '\')"><i class="fa fa-' + id2 + '"></i></button>');
   }
-}
-
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 /*
