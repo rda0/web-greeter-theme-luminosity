@@ -228,11 +228,13 @@ window.handleAction = function (id) {
 };
 
 function slideToPasswordArea(e) {
+  log('slideToPasswordArea()');
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
     document.body.removeEventListener('keydown', inputUser);
     document.body.addEventListener('keydown', inputPass);
     content.removeEventListener('transitionend', onTransitionEnd);
+    log('onTransitionEnd()');
   };
   content.addEventListener('transitionend', onTransitionEnd);
 
@@ -242,8 +244,6 @@ function slideToPasswordArea(e) {
   $('#actionsArea').fadeOut(250, function() {
     $('#backArea').fadeIn(250);
   });
-
-  // $('#session-list .selected').html(e.target.getAttribute('data-session'));
 }
 
 function slideToUsernameArea(e) {
