@@ -65,6 +65,29 @@ $(document).ready(function () {
     addActionLink("restart");
   });
 
+  $(window).load(function () {
+    /*
+     * UI Initialization.
+     */
+
+    if (localStorage.getItem("bgdefault") === null && (localStorage.getItem("bgsaved") === null)) {
+      localStorage.setItem("bgdefault", "1");
+    }
+
+    if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgdefault") === '0')) {
+      $('.bg').fadeTo('slow', 0.3, function () {
+        $(".bg").css(Object.assign((config && config.styles) ? config.styles.background : {}, {
+          "background-image": localStorage.bgsaved
+        }));
+      }).fadeTo('slow', 1);
+    } else {
+      defaultBG();
+    }
+
+    getHostname();
+    buildSessionList();
+  });
+
   // Set tabindex = -1 on all alements
   $('*').each(function () {
     $(this).attr('tabindex', -1);
@@ -157,30 +180,6 @@ $(document).ready(function () {
     $(this).hide();
     $("#bg-switch-toggle").show();
   });
-
-  $(window).load(function () {
-    /**
-     * UI Initialization.
-     */
-
-    if (localStorage.getItem("bgdefault") === null && (localStorage.getItem("bgsaved") === null)) {
-      localStorage.setItem("bgdefault", "1");
-    }
-
-    if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgdefault") === '0')) {
-      $('.bg').fadeTo('slow', 0.3, function () {
-        $(".bg").css(Object.assign((config && config.styles) ? config.styles.background : {}, {
-          "background-image": localStorage.bgsaved
-        }));
-      }).fadeTo('slow', 1);
-    } else {
-      defaultBG();
-    }
-
-    getHostname();
-    buildSessionList();
-  });
-
 });
 
 /*
@@ -219,10 +218,10 @@ window.submitPassword = function (password) {
   lightdm.provide_secret(password);
 };
 
-window.sessionToggle = function (el) {
+window.sessionToggle = function (element) {
   log('sessionToggle');
-  let selText = $(el).text();
-  let selID = $(el).attr('data-session-id');
+  let selText = $(element).text();
+  let selID = $(element).attr('data-session-id');
   let username = $('#user').val();
   $(el).parents('.btn-group').find('.selected').attr('data-session-id', selID);
   $(el).parents('.btn-group').find('.selected').html(selText);
@@ -267,7 +266,7 @@ function slideToUsernameArea(e) {
 
 function buildSessionList() {
   let buttonGroup = $('#sessions');
-  for (var i in lightdm.sessions) {
+  for (let i in lightdm.sessions) {
     let session = lightdm.sessions[i];
     let className = session.name.replace(/ /g, '');
     let button = '\n<li><a href="#" data-session-id="' +
