@@ -191,7 +191,7 @@ $(document).ready(function () {
       }, submitPhase1);
     });
 
-    document.body.addEventListener('keydown', inputUser(e));
+    document.body.addEventListener('keydown', inputUser);
 
     // Username submit when enter key is pressed
     $('#user').keydown(function (e) {
