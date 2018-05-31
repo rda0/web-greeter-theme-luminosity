@@ -70,7 +70,7 @@ $(document).ready(function () {
       authPending = false;
     });
 
-    $(".input input").focus(function () {
+/*    $(".input input").focus(function () {
       $(this).parent(".input").each(function () {
         $("label", this).css({
           "line-height": "18px",
@@ -96,7 +96,7 @@ $(document).ready(function () {
           })
         });
       }
-    });
+    }); */
 
     $('.login__submit').click(function (e) {
       e.preventDefault();
