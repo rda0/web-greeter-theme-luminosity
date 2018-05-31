@@ -527,7 +527,7 @@ label {
 }
 #logWrap {
   position: absolute;
-  display: block;
+  display: hidden;
   z-index: 2;
   overflow: auto;
   color: #FFFFFF;
