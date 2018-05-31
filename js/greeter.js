@@ -76,9 +76,8 @@ $(document).ready(function () {
   $(".input input").focus(function () {
     $(this).parent(".input").each(function () {
       $("label", this).css({
-        "line-height": "18px",
-        "font-size": "18px",
-        "font-weight": "100",
+        "line-height": "16px",
+        "font-size": "16px",
         "top": "0px"
       })
       $(".spin", this).css({
@@ -93,7 +92,7 @@ $(document).ready(function () {
       $(this).parent(".input").each(function () {
         $("label", this).css({
           "line-height": "60px",
-          "font-weight": "300",
+          "font-size": "20px",
           "top": "10px"
         })
       });
@@ -351,7 +350,7 @@ function getLastUserSession(username) {
   return lastSession;
 }
 
-/**
+/*
  * Actions management.
  */
 
@@ -371,7 +370,10 @@ function addActionLink(id) {
     if (id == "restart") {
       id2 = "refresh"
     }
-    $("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id + ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label + '" data-container="body" onclick="handleAction(\'' + id + '\')"><i class="fa fa-' + id2 + '"></i></button>');
+    $("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id +
+        ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label +
+        '" data-container="body" onclick="handleAction(\'' + id +
+        '\')"><i class="fa fa-' + id2 + '"></i></button>');
   }
 }
 
