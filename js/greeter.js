@@ -292,8 +292,8 @@ function inputPass(e) {
       $('#pass').val('');
       $('#user').val('');
       $('#user').focus();
-      $('.backButton').trigger('click');
       document.body.focus();
+      $('.backButton').trigger('click');
       break;
     default:
       if (!$('#pass').is(':focus')) {
