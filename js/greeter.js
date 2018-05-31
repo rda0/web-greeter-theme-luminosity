@@ -35,7 +35,7 @@ function defaultBG() {
   }).fadeTo('slow', 1);
 }
  
-function inputUser(e) {
+function inputUser() {
   $('#user').focus();
 }
 
