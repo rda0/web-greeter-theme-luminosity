@@ -412,6 +412,7 @@ $(document).ready(function () {
       document.body.addEventListener('keydown', function (e) {
         if (document.activeElement !== $('#pass')) {
           $('#pass').focus();
+          log("set focus on #pass")
         }
       });
       /* $('#pass').focus(); */
