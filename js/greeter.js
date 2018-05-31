@@ -191,7 +191,6 @@ window.authenticate = function (e, username) {
   log('userSessionName: ' + userSessionName);
   $('#session-list .selected').html(userSessionName);
   $('#session-list .selected').attr('data-session-id', userSession);
-  // $('.dropdown-toggle').dropdown();
   authPending = true;
   log('call: lightdm.start_authentication(' + username + ')');
   lightdm.start_authentication(username);
@@ -200,8 +199,8 @@ window.authenticate = function (e, username) {
 window.cancelAuthentication = function (e) {
   log("authentication cancelled for " + $('#user').val());
   slideToUsernameArea();
-  $('#pass').html('');
-  $('#user').html('');
+  $('#pass').val('');
+  $('#user').val('');
   $('#session-list .selected').html('')
   log("call: lightdm.cancel_authentication()");
   lightdm.cancel_authentication();
@@ -209,7 +208,7 @@ window.cancelAuthentication = function (e) {
 };
 
 window.submitPassword = function (password) {
-  log("call: lightdm.provide_secret(password)");
+  log("call: lightdm.provide_secret(password)")
   lightdm.provide_secret(password);
 };
 
@@ -244,7 +243,7 @@ function slideToPasswordArea(e) {
     $('#backArea').fadeIn(250);
   });
 
-  $('#session-list .selected').html(e.target.getAttribute('data-session'));
+  // $('#session-list .selected').html(e.target.getAttribute('data-session'));
 }
 
 function slideToUsernameArea(e) {
