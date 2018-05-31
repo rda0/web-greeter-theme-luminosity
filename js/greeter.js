@@ -389,6 +389,7 @@ $(document).ready(function () {
         log('XXX active: ' + document.activeElement);
         log('XXX' + $('#pass').innerhtml);
         log('XXX' + $('#pass').is(':focus'));
+        log('XXX' + $(':focus').html());
         if (!$('#pass').is(':focus')) {
           $('#pass').focus();
           log("set focus on #pass")
