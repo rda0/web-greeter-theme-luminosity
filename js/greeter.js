@@ -192,7 +192,7 @@ window.authenticate = function (e, username) {
   $("#user-login-name").text(username);
   let userSession = getLastUserSession(username);
   log('userSession: ' + userSession);
-  let userSessionEl = "[data-session-id=" + userSession + "]";
+  let userSessionEl = "#sessions [data-session-id=" + userSession + "]";
   let userSessionName = $(userSessionEl).html();
   log('userSessionName: ' + userSessionName);
   $('#session-list .selected').html(userSessionName);
@@ -275,7 +275,6 @@ function buildSessionList() {
 
     $(buttonGroup).append(button);
   }
-  //$('.dropdown-toggle').dropdown();
 }
 
 function getHostname() {
@@ -285,7 +284,7 @@ function getHostname() {
   $("#hostname-label").text(hostname);
 }
 
-/**
+/*
  * Logs.
  */
 
