@@ -386,10 +386,10 @@ $(document).ready(function () {
     const content = document.querySelector('.content');
     const onTransitionEnd = function (e) {
       document.body.addEventListener('keydown', function (e) {
-        log('XXX active: ' + document.activeElement);
-        log('XXX' + ($('#pass') == document.activeElement));
-        log('XXX' + $('#pass').is(':focus'));
-        log('XXX' + $(':focus').html());
+        log('active: ' + document.activeElement);
+        log('active.id: ' + document.activeElement.id);
+        log('#pass is active:' + ($('#pass') == document.activeElement));
+        log('#pass is focus:' + $('#pass').is(':focus'));
         if (!$('#pass').is(':focus')) {
           $('#pass').focus();
           log("set focus on #pass")
