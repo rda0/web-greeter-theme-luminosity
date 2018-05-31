@@ -387,7 +387,7 @@ $(document).ready(function () {
     const onTransitionEnd = function (e) {
       document.body.addEventListener('keydown', function (e) {
         log('XXX active: ' + document.activeElement);
-        log('XXX' + $('#pass'));
+        log('XXX' + $('#pass').innerhtml);
         log('XXX' + $('#pass').is(':focus'));
         if (!$('#pass').is(':focus')) {
           $('#pass').focus();
