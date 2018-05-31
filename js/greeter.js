@@ -1,8 +1,8 @@
-var DEBUG = true,
-  selectedUser = null,
-  authPending = null,
-  users_shown = null,
-  userList, animating = false;
+let DEBUG = true;
+let selectedUser = null;
+let authPending = null;
+let users_shown = null;
+let userList, animating = false;
 window.config = {};
 
 /**
@@ -39,6 +39,7 @@ $(document).ready(function () {
   function buildUserList() {
     // User list building
     var accountList = $('.account-list');
+
     for (var i in lightdm.users) {
       var user = lightdm.users[i];
       var tux = 'img/icons/user.png';
@@ -103,26 +104,6 @@ $(document).ready(function () {
             </a>
           `);
     });
-    /* let style = $('.actionButton').attr('style') || '';
-    for (let i in config.styles['actionButton']) {
-      style += '--action-button-' + i.toLowerCase() + ':' + config.styles['actionButton'][i] + ';';
-    }
-    $('.wallpaperButton').attr('style', style);
-    $('.actionButton').attr('style', style);
-    $('.other-account').attr('style', style);
-    style = $('.actionButton').attr('style') || '';
-    for (let i in config.styles['actionButton:hover']) {
-      style += '--action-button-hover-' + i.toLowerCase() + ':' + config.styles['actionButton:hover'][i] + ';';
-    }
-    $('.wallpaperButton').attr('style', $('.wallpaperButton').attr('style') + style);
-    $('.actionButton').attr('style', style);
-    $('.other-account').attr('style', style);
-
-    let style = $('.input').attr('style') || '';
-    for (let i in config.styles['inputLine']) {
-      style += '--input-line-' + i.toLowerCase() + ':' + config.styles['inputLine'][i] + ';';
-    }
-    $('.input').attr('style', style); */
 
     var $btns = $(".bg-switch .background");
     $btns.click(function (e) {
@@ -147,6 +128,7 @@ $(document).ready(function () {
     });
 
     showPanel();
+
     $(".backButton").click(function (e) {
       $('.selected-user').html("")
       $('.content').css({
@@ -162,6 +144,7 @@ $(document).ready(function () {
       selectedUser = null;
       authPending = false;
     });
+
     $(".input input").focus(function () {
       $(this).parent(".input").each(function () {
         $("label", this).css({
@@ -189,6 +172,7 @@ $(document).ready(function () {
         });
       }
     });
+
     $('.login__submit').click(function (e) {
       e.preventDefault();
       var submitPhase1 = 3000;
@@ -202,9 +186,11 @@ $(document).ready(function () {
         log("done");
       }, submitPhase1);
     });
+
     document.body.addEventListener('keydown', function (e) {
       $('#user').focus();
     });
+
     // Username submit when enter key is pressed
     $('#user').keydown(function (e) {
       switch (e.which) {
@@ -214,6 +200,7 @@ $(document).ready(function () {
           break;
       }
     });
+
     // Password submit when enter key is pressed
     $('#pass').keydown(function (e) {
       switch (e.which) {
@@ -222,6 +209,7 @@ $(document).ready(function () {
           break;
       }
     });
+
     // Action buttons
     addActionLink("shutdown");
     addActionLink("hibernate");
@@ -235,6 +223,7 @@ $(document).ready(function () {
     $(this).hide();
     $("#bg-switch-toggle").show();
   });
+
   $("#bg-switch-toggle").click(function (e) {
     e.preventDefault();
     $("#bg-switch-wrapper").toggleClass("active");
@@ -261,6 +250,7 @@ $(document).ready(function () {
     if (localStorage.getItem("bgdefault") === null && (localStorage.getItem("bgsaved") === null)) {
       localStorage.setItem("bgdefault", "1");
     }
+
     if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgdefault") === '0')) {
       $('.bg').fadeTo('slow', 0.3, function () {
         $(".bg").css(Object.assign((config && config.styles) ? config.styles.background : {}, {
@@ -270,6 +260,7 @@ $(document).ready(function () {
     } else {
       defaultBG();
     }
+
     // initialize_timer();
     get_hostname();
     buildUserList();
@@ -285,8 +276,6 @@ $(document).ready(function () {
 
 	/**
 	 * Actions management.
-	 *
-	 *
 	 */
 
   function update_time() {
@@ -356,18 +345,6 @@ $(document).ready(function () {
         id2 = "refresh"
       }
       $("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id + ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label + '" data-container="body" onclick="handleAction(\'' + id + '\')"><i class="fa fa-' + id2 + '"></i></button>');
-      /* if (config && config.styles) {
-        let style = $('.actionButton').attr('style') || '';
-        for (let i in config.styles['actionButton']) {
-          style += '--action-button-' + i.toLowerCase() + ':' + config.styles['actionButton'][i] + ';';
-        }
-        $('.actionButton').attr('style', style);
-        style = $('.actionButton').attr('style') || '';
-        for (let i in config.styles['actionButton:hover']) {
-          style += '--action-button-hover-' + i.toLowerCase() + ':' + config.styles['actionButton:hover'][i] + ';';
-        }
-        $('.actionButton').attr('style', style);
-      } */
     }
   }
 
@@ -401,10 +378,9 @@ $(document).ready(function () {
     }
     return session;
   }
+
   function slideContent(e) {
     const selectedUser = e.target.cloneNode(true);
-    /* selectedUser.removeAttribute('style');
-    $(selectedUser).css(config.styles.selectedUser); */
     $('.selected-user').append(selectedUser);
 
     const content = document.querySelector('.content');
@@ -415,7 +391,6 @@ $(document).ready(function () {
           log("set focus on #pass")
         }
       });
-      /* $('#pass').focus(); */
       content.removeEventListener('transitionend', onTransitionEnd);
     };
     content.addEventListener('transitionend', onTransitionEnd);
@@ -424,11 +399,11 @@ $(document).ready(function () {
       marginLeft: '-450px'
     });
     $('#actionsArea').fadeOut(250, function() {
-      //$('#actionsArea').hide();
       $('#backArea').fadeIn(250);
     });
     $('#session-list .selected').html(e.target.getAttribute('data-session'));
   }
+
   window.authenticate = function (e, username) {
     slideContent(e);
     if (selectedUser !== null) {
@@ -437,7 +412,6 @@ $(document).ready(function () {
       log("authentication cancelled for " + selectedUser);
     }
     localStorage.setItem('selUser', username);
-
 
     var usrSession = localStorage.getItem(username);
 
