@@ -55,76 +55,8 @@ $(document).ready(function () {
 
     showPanel();
 
-    $(".backButton").click(function (e) {
-      cancelAuthentication(event);
-    });
-
-    $(".input input").focus(function () {
-      $(this).parent(".input").each(function () {
-        $("label", this).css({
-          "line-height": "18px",
-          "font-size": "18px",
-          "font-weight": "100",
-          "top": "0px"
-        })
-        $(".spin", this).css({
-          "width": "calc(100% - 80px)"
-        })
-      });
-    }).blur(function () {
-      $(".spin").css({
-        "width": "0px"
-      })
-      if ($(this).val() == "") {
-        $(this).parent(".input").each(function () {
-          $("label", this).css({
-            "line-height": "60px",
-            "font-weight": "300",
-            "top": "10px"
-          })
-        });
-      }
-    });
-
-    $('.login__submit').click(function (e) {
-      e.preventDefault();
-      let submitTimeout = 3000;
-      let submitButton = e.target;
-      if (animating) return;
-      animating = true;
-      $(this).addClass("processing");
-      setTimeout(() => {
-        submitPassword($('#pass').val());
-        log("done");
-      }, submitTimeout);
-    });
-
     // Focus user input field on keydown
     document.body.addEventListener('keydown', inputUser);
-
-    // Username submit when enter key is pressed
-    $('#user').keydown(function (e) {
-      switch (e.which) {
-        case 13:
-          let username = $('#user').val();
-          if (username == null) {
-            log('username: null!');
-          } else {
-            log('username: ' + username)
-            authenticate(event, username);
-          }
-          break;
-      }
-    });
-
-    // Password submit when enter key is pressed
-    $('#pass').keydown(function (e) {
-      switch (e.which) {
-        case 13:
-          $('.login__submit').trigger('click');
-          break;
-      }
-    });
 
     // Action buttons
     addActionLink("shutdown");
@@ -133,13 +65,85 @@ $(document).ready(function () {
     addActionLink("restart");
   });
 
-  $("#bg-switch-close").click(function (e) {
-    e.preventDefault();
-    $("#bg-switch-wrapper").toggleClass("active");
-    $(this).hide();
-    $("#bg-switch-toggle").show();
+  // Set tabindex = -1 on all alements
+  $('*').each(function () {
+    $(this).attr('tabindex', -1);
   });
 
+  // Events
+
+  // Input focus transition
+  $(".input input").focus(function () {
+    $(this).parent(".input").each(function () {
+      $("label", this).css({
+        "line-height": "18px",
+        "font-size": "18px",
+        "font-weight": "100",
+        "top": "0px"
+      })
+      $(".spin", this).css({
+        "width": "calc(100% - 80px)"
+      })
+    });
+  }).blur(function () {
+    $(".spin").css({
+      "width": "0px"
+    })
+    if ($(this).val() == "") {
+      $(this).parent(".input").each(function () {
+        $("label", this).css({
+          "line-height": "60px",
+          "font-weight": "300",
+          "top": "10px"
+        })
+      });
+    }
+  });
+
+  // Username submit
+  $('.login__submit').click(function (e) {
+    e.preventDefault();
+    let submitTimeout = 2000;
+    let submitButton = e.target;
+    if (animating) return;
+    animating = true;
+    $(this).addClass("processing");
+    setTimeout(() => {
+      submitPassword($('#pass').val());
+      log("done");
+    }, submitTimeout);
+  });
+
+  // Username submit when enter key is pressed
+  $('#user').keydown(function (e) {
+    switch (e.which) {
+      case 13:
+        let username = $('#user').val();
+        if (username == null) {
+          log('username: null!');
+        } else {
+          log('username: ' + username)
+          authenticate(event, username);
+        }
+        break;
+    }
+  });
+
+  // Password submit when enter key is pressed
+  $('#pass').keydown(function (e) {
+    switch (e.which) {
+      case 13:
+        $('.login__submit').trigger('click');
+        break;
+    }
+  });
+
+  // Cancel authentication
+  $(".backButton").click(function (e) {
+    cancelAuthentication(event);
+  });
+
+  // Open background panel
   $("#bg-switch-toggle").click(function (e) {
     e.preventDefault();
     $("#bg-switch-wrapper").toggleClass("active");
@@ -147,8 +151,12 @@ $(document).ready(function () {
     $("#bg-switch-close").show();
   });
 
-  $('*').each(function () {
-    $(this).attr('tabindex', -1);
+  // Close background panel
+  $("#bg-switch-close").click(function (e) {
+    e.preventDefault();
+    $("#bg-switch-wrapper").toggleClass("active");
+    $(this).hide();
+    $("#bg-switch-toggle").show();
   });
 
   $(window).load(function () {
