@@ -366,7 +366,7 @@ window.authenticate = function (e, username) {
 
   localStorage.setItem('selUser', username);
 
-  let userSession = getLastUserSession();
+  let userSession = getLastUserSession(username);
 
   $("#user-login-name").text(username);
 
