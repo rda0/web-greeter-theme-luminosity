@@ -187,7 +187,7 @@ $(document).ready(function () {
       }, submitPhase1);
     });
 
-    document.body.addEventListener('keydown', function (e) {
+    document.body.addEventListener('keydown', function inputUser(e) {
       $('#user').focus();
     });
 
@@ -385,6 +385,7 @@ $(document).ready(function () {
 
     const content = document.querySelector('.content');
     const onTransitionEnd = function (e) {
+      document.body.removeEventListener('keydown', inputUser);
       document.body.addEventListener('keydown', function (e) {
         log('active: ' + document.activeElement);
         log('active.id: ' + document.activeElement.id);
