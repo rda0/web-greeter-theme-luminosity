@@ -528,6 +528,8 @@ label {
   width: 500px;
   height: calc(100% - 80px)
   vertical-align: bottom;
+  display: block;
+  z-index: 2;
 }
 
 /* background */
