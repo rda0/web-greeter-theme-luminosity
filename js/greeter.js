@@ -289,8 +289,8 @@ function inputPass(e) {
   switch (e.which) {
     case 27:
       log('keydown: esc');
-      $('.backButton').trigger('click');
       document.body.focus();
+      cancelAuthentication(event);
       break;
     default:
       if (!$('#pass').is(':focus')) {
