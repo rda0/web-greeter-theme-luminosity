@@ -794,6 +794,16 @@ label {
   background: var(--action-button-hover-background); */
   box-shadow: 1px 1px 2px -1px rgba(255, 255, 255, 0.1) inset, 4px 4px 8px -4px rgba(255, 255, 255, 0.12) inset, 1px 1px 4px rgba(0,0,0,0.4);
 }
+.btn-primary:focus,
+.wallpaperButton:focus,
+.actionButton:focus {
+  outline: none;
+}
+.btn-primary:active:focus,
+.wallpaperButton:active:focus,
+.actionButton:active:focus {
+  outline: none;
+}
 .btn-primary:active,
 .wallpaperButton:active,
 .actionButton:active {
@@ -811,211 +821,21 @@ label {
 
 
 /* drop-down style */
-.dropup,.dropdown {
- position:relative
-}
-.dropdown-toggle:focus {
- outline:0
-}
-.dropdown-menu {
- position:absolute;
- top:100%;
- left:0;
- z-index:1000;
- display:none;
- float:left;
- min-width:160px;
- padding:5px 0;
- margin:2px 0 0;
- list-style:none;
- font-size:13px;
- text-align:left;
- background-color:#FFF;
- border:1px solid #CCC;
- border:1px solid rgba(0,0,0,0.15);
- border-radius:3px;
- -webkit-box-shadow:0 6px 12px rgba(0,0,0,0.175);
- box-shadow:0 6px 12px rgba(0,0,0,0.175);
- -webkit-background-clip:padding-box;
- background-clip:padding-box
-}
-.dropdown-menu.pull-right {
- right:0;
- left:auto
-}
-.dropdown-menu .divider {
- height:1px;
- margin:10.5px 0;
- overflow:hidden;
- background-color:#E5E5E5
-}
-.dropdown-menu > li > a {
- display:block;
- padding:3px 20px;
- clear:both;
- font-weight:400;
- line-height:1.846;
- color:#666;
- white-space:nowrap
-}
-.dropdown-menu > li > a:hover,.dropdown-menu > li > a:focus {
- text-decoration:none;
- color:#141414;
- background-color:#EEE
-}
-.dropdown-menu > .active > a,.dropdown-menu > .active > a:hover,.dropdown-menu > .active > a:focus {
- color:#FFF;
- text-decoration:none;
- outline:0;
- background-color:#2196F3
-}
-.dropdown-menu > .disabled > a,.dropdown-menu > .disabled > a:hover,.dropdown-menu > .disabled > a:focus {
- color:#BBB
-}
-.dropdown-menu > .disabled > a:hover,.dropdown-menu > .disabled > a:focus {
- text-decoration:none;
- background:transparent none;
- filter:progid:DXImageTransform.Microsoft.gradient(enabled=false);
- cursor:not-allowed
-}
-.open > .dropdown-menu {
- display:block
-}
-.open > a {
- outline:0
-}
-.dropdown-menu-right {
- left:auto;
- right:0
-}
-.dropdown-menu-left {
- left:0;
- right:auto
-}
-.dropdown-header {
- display:block;
- padding:3px 20px;
- font-size:12px;
- line-height:1.846;
- color:#BBB;
- white-space:nowrap
-}
-.dropdown-backdrop {
- position:fixed;
- left:0;
- right:0;
- bottom:0;
- top:0;
- z-index:990
-}
-.pull-right > .dropdown-menu {
- right:0;
- left:auto
-}
-.dropup .caret,.navbar-fixed-bottom .dropdown .caret {
- border-top:0;
- border-bottom:4px dashed;
- border-bottom:4px solid \9;
- content:""
-}
-.dropup .dropdown-menu,.navbar-fixed-bottom .dropdown .dropdown-menu {
- top:auto;
- bottom:100%;
- margin-bottom:2px
-}
-
-
-
-.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
- border-radius:0
-}
-.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
- border-bottom-right-radius:0;
- border-top-right-radius:0
-}
-.btn-group > .btn:last-child:not(:first-child),.btn-group > .dropdown-toggle:not(:first-child) {
- border-bottom-left-radius:0;
- border-top-left-radius:0
-}
-.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child,.btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
- border-bottom-right-radius:0;
- border-top-right-radius:0
-}
-.btn-group .dropdown-toggle:active,.btn-group.open .dropdown-toggle {
- outline:0
-}
-.btn-group > .btn + .dropdown-toggle {
- padding-left:8px;
- padding-right:8px
-}
-.btn-group > .btn-lg + .dropdown-toggle {
- padding-left:12px;
- padding-right:12px
-}
-.btn-group.open .dropdown-toggle {
- -webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,0.125);
- box-shadow:inset 0 3px 5px rgba(0,0,0,0.125)
-}
-.btn-group.open .dropdown-toggle.btn-link {
- -webkit-box-shadow:none;
- box-shadow:none
-}
-.input-group .form-control:first-child,.input-group-addon:first-child,.input-group-btn:first-child > .btn,.input-group-btn:first-child > .btn-group > .btn,.input-group-btn:first-child > .dropdown-toggle,.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
- border-bottom-right-radius:0;
- border-top-right-radius:0
-}
-.input-group-addon:first-child {
- border-right:0
-}
-.input-group .form-control:last-child,.input-group-addon:last-child,.input-group-btn:last-child > .btn,.input-group-btn:last-child > .btn-group > .btn,.input-group-btn:last-child > .dropdown-toggle,.input-group-btn:first-child > .btn:not(:first-child),.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
- border-bottom-left-radius:0;
- border-top-left-radius:0
-}
-.nav-tabs.nav-justified > .dropdown .dropdown-menu {
- top:auto;
- left:auto
-}
-.nav-justified > .dropdown .dropdown-menu {
- top:auto;
- left:auto
-}
-.nav-tabs .dropdown-menu {
- margin-top:-1px;
- border-top-right-radius:0;
- border-top-left-radius:0
-}
-
-
-.btn-default:active,.btn-default.active,.open > .dropdown-toggle.btn-default {
- color:#444;
- background-color:#E6E6E6;
- border-color:rgba(0,0,0,0)
-}
-.btn-default:active:hover,.btn-default.active:hover,.open > .dropdown-toggle.btn-default:hover,.btn-default:active:focus,.btn-default.active:focus,.open > .dropdown-toggle.btn-default:focus,.btn-default:active.focus,.btn-default.active.focus,.open > .dropdown-toggle.btn-default.focus {
- color:#444;
- background-color:#D4D4D4;
- border-color:rgba(0,0,0,0)
-}
-.btn-default:active,.btn-default.active,.open > .dropdown-toggle.btn-default {
- background-image:none
-}
-.btn-primary:active,.btn-primary.active,.open > .dropdown-toggle.btn-primary {
- color:#FFF;
- background-color:#0C7CD5;
- border-color:rgba(0,0,0,0)
-}
-.btn-primary:active:hover,.btn-primary.active:hover,.open > .dropdown-toggle.btn-primary:hover,.btn-primary:active:focus,.btn-primary.active:focus,.open > .dropdown-toggle.btn-primary:focus,.btn-primary:active.focus,.btn-primary.active.focus,.open > .dropdown-toggle.btn-primary.focus {
- color:#FFF;
- background-color:#0A68B4;
- border-color:rgba(0,0,0,0)
-}
-.btn-primary:active,.btn-primary.active,.open > .dropdown-toggle.btn-primary {
- background-image:none
-}
-
-
 #session-list .btn-default {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0);
+}
+#session-list .btn-default:focus {
+  outline: none;
+}
+#session-list .btn-default:active {
+  background: none;
+  background-image: none;
+  background-color: none;
+}
+#session-list .btn-default:active:hover {
+  background: none;
+  background-image: none;
+  background-color: none;
 }
 #session-selected {
   width: 100%;
@@ -1023,17 +843,19 @@ label {
   text-align: left;
   vertical-align: middle;
   padding: 0;
+  padding-left: 20px;
 }
 #session-arrow {
   height: 60px;
 }
 #sessions {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.7);
   width: calc(100% - 80px);
   margin-left: 40px;
   margin-right: 40px;
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
+  /* -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px); */
+  margin-top: 5px;
 }
 #session-selected,
 #session-arrow,
@@ -1043,6 +865,36 @@ label {
   font-weight: normal;
   color: #fff;
 }
+#sessions li a {
+  color: #fff;
+}
+#sessions li a:hover {
+  color: #000;
+}
+#session-selected,
+#session-arrow {
+  -webkit-box-shadow: 0px 5px 2px -5px rgba(255, 255, 255, 0.2) inset, 0px 10px 20px -5px rgba(255, 255, 255, 0.02) inset, 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 5px 2px -5px rgba(255, 255, 255, 0.2) inset, 0px 10px 20px -5px rgba(255, 255, 255, 0.02) inset, 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+#session-selected:hover,
+#session-arrow:hover {
+  -webkit-box-shadow: 0px 5px 2px -5px rgba(255, 255, 255, 0.3) inset, 0px 10px 20px -5px rgba(255, 255, 255, 0.04) inset, 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 5px 2px -5px rgba(255, 255, 255, 0.3) inset, 0px 10px 20px -5px rgba(255, 255, 255, 0.04) inset, 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+}
+#session-selected {
+  margin-right: 1px;
+}
+#session-selected:hover {
+}
+#session-arrow {
+  margin-left: 1px;
+}
+#session-arrow:hover {
+  
+}
+
+
+
 
 
 /* input field style */
