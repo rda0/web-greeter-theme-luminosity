@@ -187,9 +187,7 @@ $(document).ready(function () {
       }, submitPhase1);
     });
 
-    document.body.addEventListener('keydown', function inputUser(e) {
-      $('#user').focus();
-    });
+    document.body.addEventListener('keydown', inputUser(e));
 
     // Username submit when enter key is pressed
     $('#user').keydown(function (e) {
@@ -378,6 +376,11 @@ $(document).ready(function () {
     }
     return session;
   }
+  
+  function inputUser(e) {
+    $('#user').focus();
+  }
+
 
   function slideContent(e) {
     const selectedUser = e.target.cloneNode(true);
