@@ -410,7 +410,9 @@ $(document).ready(function () {
     const content = document.querySelector('.content');
     const onTransitionEnd = function (e) {
       document.body.addEventListener('keydown', function (e) {
-        $('#pass').focus();
+        if (document.activeElement !== $('#pass')) {
+          $('#pass').focus();
+        }
       });
       /* $('#pass').focus(); */
       content.removeEventListener('transitionend', onTransitionEnd);
