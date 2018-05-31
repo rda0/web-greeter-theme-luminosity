@@ -264,7 +264,7 @@ function slideToUsernameArea(e) {
   });
 }
 
-function inputUser() {
+function inputUser(e) {
   // log('active.id: ' + document.activeElement.id);
   // log('user has focus: ' + $('#user').is(':focus'));
 
@@ -282,7 +282,7 @@ function inputUser() {
   }
 }
 
-function inputPass() {
+function inputPass(e) {
   // log('active.id: ' + document.activeElement.id);
   // log('pass has focus: ' + $('#pass').is(':focus'));
 
