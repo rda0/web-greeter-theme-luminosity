@@ -658,7 +658,7 @@ label {
 
 .content {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding: 0;
   transition: margin 0.25s;
   width: calc(100% * 2);
@@ -849,13 +849,15 @@ label {
   height: 60px;
 }
 #sessions {
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.9);
   width: calc(100% - 80px);
   margin-left: 40px;
   margin-right: 40px;
   /* -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px); */
   margin-top: 5px;
+  height: 210px;
+  overflow-y: auto;
 }
 #session-selected,
 #session-arrow,
@@ -870,6 +872,9 @@ label {
 }
 #sessions li a:hover {
   color: #000;
+}
+#sessions ul {
+  top: 0;
 }
 #session-selected,
 #session-arrow {
@@ -892,8 +897,25 @@ label {
 #session-arrow:hover {
   
 }
+ /* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.9);
+}
 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
+} 
 
 
 
