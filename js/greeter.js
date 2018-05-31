@@ -189,8 +189,8 @@ window.authenticate = function (e, username) {
   let userSessionEl = "[data-session-id=" + userSession + "]";
   let userSessionName = $(userSessionEl).html();
   log('userSessionName: ' + userSessionName);
-  $('.selected').html(userSessionName);
-  $('.selected').attr('data-session-id', userSession);
+  $('#session-list .selected').html(userSessionName);
+  $('#session-list .selected').attr('data-session-id', userSession);
   // $('.dropdown-toggle').dropdown();
 
   authPending = true;
@@ -200,8 +200,9 @@ window.authenticate = function (e, username) {
 window.cancelAuthentication = function (e) {
   log("authentication cancelled for " + $('#user').val());
   slideToUsernameArea();
-  $('#user').text('')
-  $('#session-list .selected').html('')
+  #('#pass').html('');
+  $('#user').html('');
+  //$('#session-list .selected').html('')
   log("call: lightdm.cancel_authentication()");
   lightdm.cancel_authentication();
   authPending = false;
