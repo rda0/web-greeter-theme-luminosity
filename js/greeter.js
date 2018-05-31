@@ -186,8 +186,7 @@ $(document).ready(function () {
       defaultBG();
     }
 
-    // initialize_timer();
-    get_hostname();
+    getHostname();
     buildSessionList();
   });
 
@@ -226,8 +225,8 @@ function defaultBG() {
 }
  
 function inputUser() {
-  log('active.id: ' + document.activeElement.id);
-  log('user has focus: ' + $('#user').is(':focus'));
+  // log('active.id: ' + document.activeElement.id);
+  // log('user has focus: ' + $('#user').is(':focus'));
 
   if (!$('#user').is(':focus')) {
     $('#user').focus();
@@ -236,8 +235,8 @@ function inputUser() {
 }
 
 function inputPass(e) {
-  log('active.id: ' + document.activeElement.id);
-  log('pass has focus: ' + $('#pass').is(':focus'));
+  // log('active.id: ' + document.activeElement.id);
+  // log('pass has focus: ' + $('#pass').is(':focus'));
 
   if (!$('#pass').is(':focus')) {
     $('#pass').focus();
@@ -245,22 +244,17 @@ function inputPass(e) {
   }
 }
 
-function buildUserList() {
-  // User list building
-  var accountList = $('.account-list');
-
-  for (var i in lightdm.users) {
-    var user = lightdm.users[i];
-    var tux = 'img/icons/user.png';
-    var imageSrc = user.image ? user.image : tux;
-    var lastSession = localStorage.getItem(user.name);
-    if (lastSession == null && lastSession == undefined) {
-      localStorage.setItem(user.name, lightdm.default_session);
-      lastSession = localStorage.getItem(user.name);
-    }
-    log('Last Session (' + user.name + '): ' + lastSession);
-    $(accountList).append(item);
+function getLastUserSession(username) {
+  let lastSession = localStorage.getItem(username);
+  
+  if (lastSession == null && lastSession == undefined) {
+    log('last user session not found. using default: ' + lightdm.default_session)
+    localStorage.setItem(username, lightdm.default_session);
+    return lightdm.default_session;
   }
+  
+  log(username + '\'s last session: ' + lastSession);
+  return lastSession;
 }
 
 function buildSessionList() {
@@ -269,14 +263,16 @@ function buildSessionList() {
   for (var i in lightdm.sessions) {
     var session = lightdm.sessions[i];
     var theClass = session.name.replace(/ /g, '');
-    var button = '\n<li><a href="#" data-session-id="' + session.key + '" onclick="sessionToggle(this)" class="' + theClass + '">' + session.name + '</a></li>';
+    var button = '\n<li><a href="#" data-session-id="' +
+        session.key + '" onclick="sessionToggle(this)" class="' +
+        theClass + '">' + session.name + '</a></li>';
 
     $(btnGrp).append(button);
   }
   $('.dropdown-toggle').dropdown();
 }
 
-function get_hostname() {
+function getHostname() {
   var hostname = lightdm.hostname;
   var hostname_span = document.getElementById('hostname');
   $(hostname_span).append(hostname);
@@ -370,22 +366,19 @@ window.authenticate = function (e, username) {
 
   localStorage.setItem('selUser', username);
 
-  var usrSession = localStorage.getItem(username);
+  let userSession = getLastUserSession();
 
   $("#user-login-name").text(username);
 
-  log("usrSession: " + usrSession);
-  var usrSessionEl = "[data-session-id=" + usrSession + "]";
-  var usrSessionName = $(usrSessionEl).html();
-  log("usrSessionName: " + usrSessionName);
-  $('.selected').html(usrSessionName);
-  $('.selected').attr('data-session-id', usrSession);
-  //$('#session-list').removeClass('hidden');
-  $('#session-list').show();
-  $('#passwordArea').show();
+  log('userSession: ' + userSession);
+  let userSessionEl = "[data-session-id=" + userSession + "]";
+  let userSessionName = $(userSessionEl).html();
+  log('userSessionName: ' + userSessionName);
+  $('.selected').html(userSessionName);
+  $('.selected').attr('data-session-id', userSession);
   $('.dropdown-toggle').dropdown();
-  authPending = true;
 
+  authPending = true;
   lightdm.start_authentication(username);
 }
 
@@ -409,6 +402,7 @@ window.submitPassword = function () {
  */
 
 window.sessionToggle = function (el) {
+  log('sessionToggle');
   var selText = $(el).text();
   var selID = $(el).attr('data-session-id');
   var selUser = localStorage.getItem('selUser');
