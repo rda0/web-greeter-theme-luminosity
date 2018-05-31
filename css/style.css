@@ -522,14 +522,29 @@ label {
 
 /* log */
 #logArea {
+  height: 100%;
+  width: 100%;
+}
+#logWrap {
   position: absolute;
+  display: block;
+  z-index: 2;
+  overflow: auto;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 20px;
   top: 40px;
   left: 40px;
   width: 500px;
   height: calc(100% - 80px)
-  vertical-align: bottom;
-  display: block;
+  display: flex;
   z-index: 2;
+}
+
+#logWrap span {
+  align-self: flex-end;
 }
 
 /* background */
