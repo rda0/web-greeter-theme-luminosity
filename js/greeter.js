@@ -56,21 +56,10 @@ $(document).ready(function () {
     showPanel();
 
     $(".backButton").click(function (e) {
-      $('#user').text('')
-      $('.content').css({
-        marginLeft: '0px'
-      });
-      $('#backArea').fadeOut(250, function() {
-        $('#actionsArea').fadeIn(250);
-      });
-      $('#session-list .selected').html('')
-      $('#session-list').addClass('hidden');
-      lightdm.cancel_authentication();
-      log("authentication cancelled for " + $('#user').val());
-      authPending = false;
+      cancelAuthentication(event);
     });
 
-/*    $(".input input").focus(function () {
+    $(".input input").focus(function () {
       $(this).parent(".input").each(function () {
         $("label", this).css({
           "line-height": "18px",
@@ -90,13 +79,12 @@ $(document).ready(function () {
         $(this).parent(".input").each(function () {
           $("label", this).css({
             "line-height": "60px",
-            //"font-size": "24px",
             "font-weight": "300",
             "top": "10px"
           })
         });
       }
-    }); */
+    });
 
     $('.login__submit').click(function (e) {
       e.preventDefault();
@@ -340,7 +328,7 @@ function getSessionObj(sessionname) {
   return session;
 }
 
-function slideContent(e) {
+function slideToPasswordArea(e) {
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
     document.body.removeEventListener('keydown', inputUser);
@@ -358,8 +346,17 @@ function slideContent(e) {
   $('#session-list .selected').html(e.target.getAttribute('data-session'));
 }
 
+function slideToUsernameArea(e) {
+  $('.content').css({
+    marginLeft: '0px'
+  });
+  $('#backArea').fadeOut(250, function() {
+    $('#actionsArea').fadeIn(250);
+  });
+}
+
 window.authenticate = function (e, username) {
-  slideContent(e);
+  slideToPasswordArea(e);
 
   $("#user-login-name").text(username);
   let userSession = getLastUserSession(username);
@@ -375,11 +372,13 @@ window.authenticate = function (e, username) {
   lightdm.start_authentication(username);
 }
 
-window.cancelAuthentication = function () {
-  log("call: cancel_authentication()");
+window.cancelAuthentication = function (e) {
+  log("authentication cancelled for " + $('#user').val());
+  $('#user').text('')
+  $('#session-list .selected').html('')
+  log("call: lightdm.cancel_authentication()");
   lightdm.cancel_authentication();
   authPending = false;
-  return true;
 };
 
 window.submitPassword = function () {
