@@ -361,11 +361,13 @@ function slideContent(e) {
 
 window.authenticate = function (e, username) {
   slideContent(e);
+
   if (selectedUser !== null) {
     lightdm.cancel_authentication();
     localStorage.setItem('selUser', null);
     log("authentication cancelled for " + selectedUser);
   }
+
   localStorage.setItem('selUser', username);
 
   var usrSession = localStorage.getItem(username);
@@ -388,41 +390,31 @@ window.authenticate = function (e, username) {
 }
 
 window.cancelAuthentication = function () {
-  log("cancelAuthentication()");
-  $('#session-list').hide();
+  log("call: cancelAuthentication()");
   lightdm.cancel_authentication();
-  log("authentication cancelled for " + selectedUser);
-  $('.fa-toggle-down').show();
+  log("done: authentication cancelled for " + selectedUser);
   selectedUser = null;
   authPending = false;
   return true;
 };
 
 window.submitPassword = function () {
-  log("provideSecret()");
+  log("call: provideSecret()");
   lightdm.provide_secret($('#passwordField').val());
-  $('#passwordArea').hide();
-  $('#timerArea').show();
-  log("done");
+  log("done: provideSecret()");
 };
 
 /*
  * Image loading management.
  */
 
-window.imgNotFound = function (source) {
-  source.src = 'img/logo-user.png';
-  source.onerror = "";
-  return true;
-};
-
 window.sessionToggle = function (el) {
   var selText = $(el).text();
-  var theID = $(el).attr('data-session-id');
+  var selID = $(el).attr('data-session-id');
   var selUser = localStorage.getItem('selUser');
-  $(el).parents('.btn-group').find('.selected').attr('data-session-id', theID);
+  $(el).parents('.btn-group').find('.selected').attr('data-session-id', selID);
   $(el).parents('.btn-group').find('.selected').html(selText);
-  localStorage.setItem(selUser, theID)
+  localStorage.setItem(selUser, selID)
 };
 
 /*
@@ -431,9 +423,6 @@ window.sessionToggle = function (el) {
 
 function show_prompt(text) {
   log("show_prompt(): " + text);
-  $('#passwordField').val("");
-  $('#passwordArea').show();
-  $('#passwordField').focus();
 }
 
 function authentication_complete() {
@@ -441,11 +430,11 @@ function authentication_complete() {
   authPending = false;
   var selSession = $('.selected').attr('data-session-id');
   if (lightdm.is_authenticated) {
-    log("authenticated !");
+    log("authentication success!");
     lightdm.login(lightdm.authentication_user, selSession);
   } else {
-    log("not authenticated !");
-    // $('#statusArea').show();
+    log("authentication failure!");
+    $('#pass').val('');
     animating = false;
     $('.login__submit').removeClass('processing');
   }
