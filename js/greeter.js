@@ -410,7 +410,8 @@ $(document).ready(function () {
     const content = document.querySelector('.content');
     const onTransitionEnd = function (e) {
       document.body.addEventListener('keydown', function (e) {
-        if (document.activeElement !== $('#pass')) {
+        let passwordField = document.getElementById('#pass');
+        if (document.activeElement !== passwordField) {
           $('#pass').focus();
           log("set focus on #pass")
         }
