@@ -248,11 +248,7 @@ function slideToPasswordArea(e) {
 function slideToUsernameArea(e) {
   log('slideToUsernameArea()');
   document.body.removeEventListener('keydown', inputPass);
-  const content = document.querySelector('.content');
-  const onTransitionEnd = function (e) {
-    document.body.addEventListener('keydown', inputUser);
-    content.removeEventListener('transitionend', onTransitionEnd);
-  };
+  document.body.addEventListener('keydown', inputUser);
 
   $('.content').css({
     marginLeft: '0px'
