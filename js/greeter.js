@@ -202,7 +202,7 @@ window.cancelAuthentication = function (e) {
   slideToUsernameArea();
   $('#pass').html('');
   $('#user').html('');
-  //$('#session-list .selected').html('')
+  $('#session-list .selected').html('')
   log("call: lightdm.cancel_authentication()");
   lightdm.cancel_authentication();
   authPending = false;
@@ -245,7 +245,7 @@ function slideToPasswordArea(e) {
     $('#backArea').fadeIn(250);
   });
 
-  // $('#session-list .selected').html(e.target.getAttribute('data-session'));
+  $('#session-list .selected').html(e.target.getAttribute('data-session'));
 }
 
 function slideToUsernameArea(e) {
