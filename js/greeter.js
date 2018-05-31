@@ -36,7 +36,23 @@ function defaultBG() {
 }
  
 function inputUser() {
-  $('#user').focus();
+  log('active.id: ' + document.activeElement.id);
+  log('user has focus: ' + $('#user').is(':focus'));
+
+  if (!$('#user').is(':focus')) {
+    $('#user').focus();
+    log("set focus on #user");
+  }
+}
+
+function inputPass(e) {
+  log('active.id: ' + document.activeElement.id);
+  log('pass has focus: ' + $('#pass').is(':focus'));
+
+  if (!$('#pass').is(':focus')) {
+    $('#pass').focus();
+    log("set focus on #pass");
+  }
 }
 
 $(document).ready(function () {
@@ -389,16 +405,7 @@ $(document).ready(function () {
     const content = document.querySelector('.content');
     const onTransitionEnd = function (e) {
       document.body.removeEventListener('keydown', inputUser);
-      document.body.addEventListener('keydown', function (e) {
-        log('active: ' + document.activeElement);
-        log('active.id: ' + document.activeElement.id);
-        log('#pass is active:' + ($('#pass') == document.activeElement));
-        log('#pass is focus:' + $('#pass').is(':focus'));
-        if (!$('#pass').is(':focus')) {
-          $('#pass').focus();
-          log("set focus on #pass")
-        }
-      });
+      document.body.addEventListener('keydown', inputPass)
       content.removeEventListener('transitionend', onTransitionEnd);
     };
     content.addEventListener('transitionend', onTransitionEnd);
