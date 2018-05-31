@@ -897,25 +897,6 @@ label {
 #session-arrow:hover {
   
 }
- /* width */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.9);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #888;
-} 
 
 
 
