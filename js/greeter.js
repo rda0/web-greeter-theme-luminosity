@@ -31,13 +31,13 @@ $(document).ready(function () {
           `);
     });
 
-    var $btns = $(".bg-switch .background");
+    let $btns = $(".bg-switch .background");
     $btns.click(function (e) {
       e.preventDefault();
       $btns.removeClass("active");
       $(".bgs .background .default").first().removeClass('active');
       $(this).addClass("active");
-      var bg = $(this).data("img");
+      let bg = $(this).data("img");
       if (bg == 'default') {
         localStorage.setItem("bgdefault", '1');
         defaultBG();
@@ -48,7 +48,7 @@ $(document).ready(function () {
             "background-image": "url('" + bg + "')",
           }));
         }).fadeTo('slow', 1);
-        var bgurl = "url('" + bg + "')";
+        let bgurl = "url('" + bg + "')";
         localStorage.setItem("bgsaved", bgurl)
       }
     });
@@ -267,7 +267,7 @@ function slideToUsernameArea(e) {
 }
 
 function buildSessionList() {
-  var buttonGroup = $('#sessions');
+  let buttonGroup = $('#sessions');
   for (var i in lightdm.sessions) {
     let session = lightdm.sessions[i];
     let className = session.name.replace(/ /g, '');
@@ -281,8 +281,8 @@ function buildSessionList() {
 }
 
 function getHostname() {
-  var hostname = lightdm.hostname;
-  var hostname_span = document.getElementById('hostname');
+  let hostname = lightdm.hostname;
+  let hostname_span = document.getElementById('hostname');
   $(hostname_span).append(hostname);
   $("#hostname-label").text(hostname);
 }
@@ -357,8 +357,8 @@ function getLastUserSession(username) {
 
 function addActionLink(id) {
   if (eval("lightdm.can_" + id)) {
-    var label = id.substr(0, 1).toUpperCase() + id.substr(1, id.length - 1);
-    var id2;
+    let label = id.substr(0, 1).toUpperCase() + id.substr(1, id.length - 1);
+    let id2;
     if (id == "shutdown") {
       id2 = "power-off"
     }
@@ -386,7 +386,7 @@ function show_prompt(text) {
 function authentication_complete() {
   log("callback: authentication_complete()");
   authPending = false;
-  var selSession = $('.selected').attr('data-session-id');
+  let selSession = $('.selected').attr('data-session-id');
   if (lightdm.is_authenticated) {
     log("authentication successful!");
     lightdm.login(lightdm.authentication_user, selSession);
@@ -400,7 +400,7 @@ function authentication_complete() {
 
 function show_message(text) {
   log('callback: show_message(): ' + text)
-  var msgWrap = document.getElementById('statusArea'),
+  let msgWrap = document.getElementById('statusArea'),
     showMsg = document.getElementById('showMsg');
   showMsg.innerHTML = text;
   if (text.length > 0) {
