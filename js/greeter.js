@@ -1,8 +1,10 @@
+/*
+ * global variables
+ */
+
 let DEBUG = true;
-let selectedUser = null;
 let authPending = null;
-let users_shown = null;
-let userList, animating = false;
+let animating = false;
 window.config = {};
 
 /*
@@ -54,7 +56,7 @@ $(document).ready(function () {
     showPanel();
 
     $(".backButton").click(function (e) {
-      $('.selected-user').html("")
+      $('#user').text('')
       $('.content').css({
         marginLeft: '0px'
       });
@@ -64,8 +66,7 @@ $(document).ready(function () {
       $('#session-list .selected').html('')
       $('#session-list').addClass('hidden');
       lightdm.cancel_authentication();
-      log("authentication cancelled for " + selectedUser);
-      selectedUser = null;
+      log("authentication cancelled for " + $('#user').val());
       authPending = false;
     });
 
@@ -118,8 +119,13 @@ $(document).ready(function () {
     $('#user').keydown(function (e) {
       switch (e.which) {
         case 13:
-          dphys_username = $('#user').val();;
-          authenticate(event, dphys_username);
+          let username = $('#user').val();
+          if (username == null) {
+            log('username: null!');
+          } else {
+            log('username: ' + username)
+            authenticate(event, username);
+          }
           break;
       }
     });
@@ -335,9 +341,6 @@ function getSessionObj(sessionname) {
 }
 
 function slideContent(e) {
-  const selectedUser = e.target.cloneNode(true);
-  $('.selected-user').append(selectedUser);
-
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
     document.body.removeEventListener('keydown', inputUser);
@@ -358,35 +361,23 @@ function slideContent(e) {
 window.authenticate = function (e, username) {
   slideContent(e);
 
-  if (selectedUser !== null) {
-    lightdm.cancel_authentication();
-    localStorage.setItem('selUser', null);
-    log("authentication cancelled for " + selectedUser);
-  }
-
-  localStorage.setItem('selUser', username);
-
-  let userSession = getLastUserSession(username);
-
   $("#user-login-name").text(username);
-
+  let userSession = getLastUserSession(username);
   log('userSession: ' + userSession);
   let userSessionEl = "[data-session-id=" + userSession + "]";
   let userSessionName = $(userSessionEl).html();
   log('userSessionName: ' + userSessionName);
   $('.selected').html(userSessionName);
   $('.selected').attr('data-session-id', userSession);
-  $('.dropdown-toggle').dropdown();
+  // $('.dropdown-toggle').dropdown();
 
   authPending = true;
   lightdm.start_authentication(username);
 }
 
 window.cancelAuthentication = function () {
-  log("call: cancelAuthentication()");
+  log("call: cancel_authentication()");
   lightdm.cancel_authentication();
-  log("done: authentication cancelled for " + selectedUser);
-  selectedUser = null;
   authPending = false;
   return true;
 };
@@ -416,15 +407,15 @@ window.sessionToggle = function (el) {
  */
 
 function show_prompt(text) {
-  log("show_prompt(): " + text);
+  log("callback: show_prompt(): " + text);
 }
 
 function authentication_complete() {
-  log("authentication_complete()");
+  log("callback: authentication_complete()");
   authPending = false;
   var selSession = $('.selected').attr('data-session-id');
   if (lightdm.is_authenticated) {
-    log("authentication success!");
+    log("authentication successful!");
     lightdm.login(lightdm.authentication_user, selSession);
   } else {
     log("authentication failure!");
@@ -435,7 +426,7 @@ function authentication_complete() {
 }
 
 function show_message(text) {
-  log('show_message(): ' + text)
+  log('callback: show_message(): ' + text)
   var msgWrap = document.getElementById('statusArea'),
     showMsg = document.getElementById('showMsg');
   showMsg.innerHTML = text;
@@ -446,6 +437,6 @@ function show_message(text) {
 }
 
 function show_error(text) {
-  log('show_error(): ' + text)
+  log('callback: show_error(): ' + text)
   show_message(text);
 }
