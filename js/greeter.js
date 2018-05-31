@@ -289,6 +289,8 @@ function inputPass(e) {
   switch (e.which) {
     case 27:
       log('keydown: esc');
+      $('#pass').val('');
+      $('#user').val('');
       $('.backButton').trigger('click');
       document.body.focus();
       break;
