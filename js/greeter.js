@@ -234,7 +234,6 @@ function slideToPasswordArea(e) {
     document.body.removeEventListener('keydown', inputUser);
     document.body.addEventListener('keydown', inputPass);
     content.removeEventListener('transitionend', onTransitionEnd);
-    log('onTransitionEnd()');
   };
   content.addEventListener('transitionend', onTransitionEnd);
 
@@ -247,8 +246,13 @@ function slideToPasswordArea(e) {
 }
 
 function slideToUsernameArea(e) {
-  document.body.removeEventListener('keydown', inputPass);
-  document.body.addEventListener('keydown', inputUser);
+  log('slideToUsernameArea()');
+  const content = document.querySelector('.content');
+  const onTransitionEnd = function (e) {
+    document.body.removeEventListener('keydown', inputPass);
+    document.body.addEventListener('keydown', inputUser);
+    content.removeEventListener('transitionend', onTransitionEnd);
+  };
 
   $('.content').css({
     marginLeft: '0px'
