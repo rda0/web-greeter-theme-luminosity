@@ -56,7 +56,7 @@ $(document).ready(function () {
     showPanel();
 
     // Focus user input field on keydown
-    document.body.addEventListener('keydown', inputUser(event));
+    document.body.addEventListener('keydown', inputUser);
 
     // Action buttons
     addActionLink("shutdown");
@@ -235,10 +235,10 @@ window.handleAction = function (id) {
 
 function slideToPasswordArea(e) {
   log('slideToPasswordArea()');
-  document.body.removeEventListener('keydown', inputUser(e));
+  document.body.removeEventListener('keydown', inputUser);
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
-    document.body.addEventListener('keydown', inputPass(e));
+    document.body.addEventListener('keydown', inputPass);
     content.removeEventListener('transitionend', onTransitionEnd);
   };
   content.addEventListener('transitionend', onTransitionEnd);
@@ -253,8 +253,8 @@ function slideToPasswordArea(e) {
 
 function slideToUsernameArea(e) {
   log('slideToUsernameArea()');
-  document.body.removeEventListener('keydown', inputPass(e));
-  document.body.addEventListener('keydown', inputUser(e));
+  document.body.removeEventListener('keydown', inputPass);
+  document.body.addEventListener('keydown', inputUser);
 
   $('.content').css({
     marginLeft: '0px'
@@ -264,7 +264,7 @@ function slideToUsernameArea(e) {
   });
 }
 
-function inputUser(e) {
+function inputUser() {
   // log('active.id: ' + document.activeElement.id);
   // log('user has focus: ' + $('#user').is(':focus'));
 
@@ -282,15 +282,15 @@ function inputUser(e) {
   }
 }
 
-function inputPass(e) {
+function inputPass() {
   // log('active.id: ' + document.activeElement.id);
   // log('pass has focus: ' + $('#pass').is(':focus'));
 
   switch (e.which) {
     case 27:
       log('keydown: esc');
+      $('.backButton').trigger('click');
       document.body.focus();
-      cancelAuthentication(event);
       break;
     default:
       if (!$('#pass').is(':focus')) {
