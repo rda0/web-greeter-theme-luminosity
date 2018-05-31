@@ -229,9 +229,9 @@ window.handleAction = function (id) {
 
 function slideToPasswordArea(e) {
   log('slideToPasswordArea()');
+  document.body.removeEventListener('keydown', inputUser);
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
-    document.body.removeEventListener('keydown', inputUser);
     document.body.addEventListener('keydown', inputPass);
     content.removeEventListener('transitionend', onTransitionEnd);
   };
@@ -247,9 +247,9 @@ function slideToPasswordArea(e) {
 
 function slideToUsernameArea(e) {
   log('slideToUsernameArea()');
+  document.body.removeEventListener('keydown', inputPass);
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
-    document.body.removeEventListener('keydown', inputPass);
     document.body.addEventListener('keydown', inputUser);
     content.removeEventListener('transitionend', onTransitionEnd);
   };
