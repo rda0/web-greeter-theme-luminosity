@@ -34,6 +34,10 @@ function defaultBG() {
     }));
   }).fadeTo('slow', 1);
 }
+ 
+function inputUser(e) {
+  $('#user').focus();
+}
 
 $(document).ready(function () {
   function buildUserList() {
@@ -375,10 +379,6 @@ $(document).ready(function () {
       }
     }
     return session;
-  }
-  
-  function inputUser(e) {
-    $('#user').focus();
   }
 
 
