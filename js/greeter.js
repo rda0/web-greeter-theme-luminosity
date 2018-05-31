@@ -88,16 +88,15 @@ $(document).ready(function () {
 
     $('.login__submit').click(function (e) {
       e.preventDefault();
-      var submitPhase1 = 3000;
-      var btn = e.target;
+      let submitTimeout = 3000;
+      let submitButton = e.target;
       if (animating) return;
       animating = true;
       $(this).addClass("processing");
-      log("provideSecret()");
       setTimeout(() => {
-        lightdm.provide_secret($('#pass').val());
+        submitPassword($('#pass').val());
         log("done");
-      }, submitPhase1);
+      }, submitTimeout);
     });
 
     // Focus user input field on keydown
@@ -151,15 +150,6 @@ $(document).ready(function () {
   $('*').each(function () {
     $(this).attr('tabindex', -1);
   });
-
-  /* 
-  $('#collapseTwo').on('shown.bs.collapse', function () {
-    $('#collapseTwo a').filter(':not(.dropdown-menu *)').each(function (index) {
-      var i = index + 1;
-      $(this).attr('tabindex', i);
-    });
-  });
-  */
 
   $(window).load(function () {
     /**
@@ -306,28 +296,6 @@ window.handleAction = function (id) {
   eval("lightdm." + id + "()");
 };
 
-function getUserObj(username) {
-  var user = null;
-  for (var i = 0; i < lightdm.users.length; ++i) {
-    if (lightdm.users[i].name == username) {
-      user = lightdm.users[i];
-      break;
-    }
-  }
-  return user;
-}
-
-function getSessionObj(sessionname) {
-  var session = null;
-  for (var i = 0; i < lightdm.sessions.length; ++i) {
-    if (lightdm.sessions[i].name == sessionname) {
-      session = lightdm.sessions[i];
-      break;
-    }
-  }
-  return session;
-}
-
 function slideToPasswordArea(e) {
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
@@ -381,10 +349,10 @@ window.cancelAuthentication = function (e) {
   authPending = false;
 };
 
-window.submitPassword = function () {
-  log("call: provideSecret()");
-  lightdm.provide_secret($('#passwordField').val());
-  log("done: provideSecret()");
+window.submitPassword = function (password) {
+  log("call: lightdm.provide_secret()");
+  lightdm.provide_secret(password);
+  log("done: lightdm.provide_secret()");
 };
 
 /*
