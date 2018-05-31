@@ -342,6 +342,7 @@ window.authenticate = function (e, username) {
 
 window.cancelAuthentication = function (e) {
   log("authentication cancelled for " + $('#user').val());
+  slideToUsernameArea();
   $('#user').text('')
   $('#session-list .selected').html('')
   log("call: lightdm.cancel_authentication()");
