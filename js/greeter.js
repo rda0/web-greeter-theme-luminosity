@@ -291,6 +291,7 @@ function inputPass(e) {
       log('keydown: esc');
       $('#pass').val('');
       $('#user').val('');
+      $('#user').focus();
       $('.backButton').trigger('click');
       document.body.focus();
       break;
