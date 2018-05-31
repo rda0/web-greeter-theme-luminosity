@@ -235,10 +235,10 @@ window.handleAction = function (id) {
 
 function slideToPasswordArea(e) {
   log('slideToPasswordArea()');
-  document.body.removeEventListener('keydown', inputUser);
+  document.body.removeEventListener('keydown', inputUser(e));
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
-    document.body.addEventListener('keydown', inputPass);
+    document.body.addEventListener('keydown', inputPass(e));
     content.removeEventListener('transitionend', onTransitionEnd);
   };
   content.addEventListener('transitionend', onTransitionEnd);
@@ -253,8 +253,8 @@ function slideToPasswordArea(e) {
 
 function slideToUsernameArea(e) {
   log('slideToUsernameArea()');
-  document.body.removeEventListener('keydown', inputPass);
-  document.body.addEventListener('keydown', inputUser);
+  document.body.removeEventListener('keydown', inputPass(e));
+  document.body.addEventListener('keydown', inputUser(e));
 
   $('.content').css({
     marginLeft: '0px'
@@ -262,6 +262,34 @@ function slideToUsernameArea(e) {
   $('#backArea').fadeOut(125, function() {
     $('#actionsArea').fadeIn(125);
   });
+}
+
+function inputUser(e) {
+  // log('active.id: ' + document.activeElement.id);
+  // log('user has focus: ' + $('#user').is(':focus'));
+
+  switch (e.which) {
+    case 27:
+      log('keydown: esc');
+      $('#user').val('');
+      document.body.focus();
+      break;
+    default:
+      if (!$('#user').is(':focus')) {
+        $('#user').focus();
+        log("set focus on #user");
+      }
+  }
+}
+
+function inputPass(e) {
+  // log('active.id: ' + document.activeElement.id);
+  // log('pass has focus: ' + $('#pass').is(':focus'));
+
+  if (!$('#pass').is(':focus')) {
+    $('#pass').focus();
+    log("set focus on #pass");
+  }
 }
 
 function buildSessionList() {
@@ -283,10 +311,6 @@ function getHostname() {
   $(hostname_span).append(hostname);
   $("#hostname-label").text(hostname);
 }
-
-/*
- * Logs.
- */
 
 function log(text) {
   if (DEBUG) {
@@ -315,26 +339,6 @@ function defaultBG() {
   }).fadeTo('slow', 1);
 }
  
-function inputUser() {
-  // log('active.id: ' + document.activeElement.id);
-  // log('user has focus: ' + $('#user').is(':focus'));
-
-  if (!$('#user').is(':focus')) {
-    $('#user').focus();
-    log("set focus on #user");
-  }
-}
-
-function inputPass(e) {
-  // log('active.id: ' + document.activeElement.id);
-  // log('pass has focus: ' + $('#pass').is(':focus'));
-
-  if (!$('#pass').is(':focus')) {
-    $('#pass').focus();
-    log("set focus on #pass");
-  }
-}
-
 function getLastUserSession(username) {
   let lastSession = localStorage.getItem(username);
   
@@ -347,10 +351,6 @@ function getLastUserSession(username) {
   log(username + '\'s last session: ' + lastSession);
   return lastSession;
 }
-
-/*
- * Actions management.
- */
 
 function addActionLink(id) {
   if (eval("lightdm.can_" + id)) {
