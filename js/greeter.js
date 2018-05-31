@@ -176,6 +176,88 @@ $(document).ready(function () {
 
 });
 
+/*
+ * window functions
+ */
+
+window.authenticate = function (e, username) {
+  slideToPasswordArea(e);
+
+  $("#user-login-name").text(username);
+  let userSession = getLastUserSession(username);
+  log('userSession: ' + userSession);
+  let userSessionEl = "[data-session-id=" + userSession + "]";
+  let userSessionName = $(userSessionEl).html();
+  log('userSessionName: ' + userSessionName);
+  $('.selected').html(userSessionName);
+  $('.selected').attr('data-session-id', userSession);
+  // $('.dropdown-toggle').dropdown();
+
+  authPending = true;
+  lightdm.start_authentication(username);
+}
+
+window.cancelAuthentication = function (e) {
+  log("authentication cancelled for " + $('#user').val());
+  slideToUsernameArea();
+  $('#user').text('')
+  $('#session-list .selected').html('')
+  log("call: lightdm.cancel_authentication()");
+  lightdm.cancel_authentication();
+  authPending = false;
+};
+
+window.submitPassword = function (password) {
+  log("call: lightdm.provide_secret()");
+  lightdm.provide_secret(password);
+  log("done: lightdm.provide_secret()");
+};
+
+window.sessionToggle = function (el) {
+  log('sessionToggle');
+  var selText = $(el).text();
+  var selID = $(el).attr('data-session-id');
+  var selUser = localStorage.getItem('selUser');
+  $(el).parents('.btn-group').find('.selected').attr('data-session-id', selID);
+  $(el).parents('.btn-group').find('.selected').html(selText);
+  localStorage.setItem(selUser, selID)
+};
+
+window.handleAction = function (id) {
+  log("handleAction(" + id + ")");
+  eval("lightdm." + id + "()");
+};
+
+function slideToPasswordArea(e) {
+  const content = document.querySelector('.content');
+  const onTransitionEnd = function (e) {
+    document.body.removeEventListener('keydown', inputUser);
+    document.body.addEventListener('keydown', inputPass);
+    content.removeEventListener('transitionend', onTransitionEnd);
+  };
+  content.addEventListener('transitionend', onTransitionEnd);
+
+  $('.content').css({
+    marginLeft: '-450px'
+  });
+  $('#actionsArea').fadeOut(250, function() {
+    $('#backArea').fadeIn(250);
+  });
+
+  // $('#session-list .selected').html(e.target.getAttribute('data-session'));
+}
+
+function slideToUsernameArea(e) {
+  document.body.removeEventListener('keydown', inputPass);
+  document.body.addEventListener('keydown', inputUser);
+
+  $('.content').css({
+    marginLeft: '0px'
+  });
+  $('#backArea').fadeOut(250, function() {
+    $('#actionsArea').fadeIn(250);
+  });
+}
 
 /**
  * Logs.
@@ -290,85 +372,6 @@ function addActionLink(id) {
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
-window.handleAction = function (id) {
-  log("handleAction(" + id + ")");
-  eval("lightdm." + id + "()");
-};
-
-function slideToPasswordArea(e) {
-  const content = document.querySelector('.content');
-  const onTransitionEnd = function (e) {
-    document.body.removeEventListener('keydown', inputUser);
-    document.body.addEventListener('keydown', inputPass)
-    content.removeEventListener('transitionend', onTransitionEnd);
-  };
-  content.addEventListener('transitionend', onTransitionEnd);
-
-  $('.content').css({
-    marginLeft: '-450px'
-  });
-  $('#actionsArea').fadeOut(250, function() {
-    $('#backArea').fadeIn(250);
-  });
-  $('#session-list .selected').html(e.target.getAttribute('data-session'));
-}
-
-function slideToUsernameArea(e) {
-  $('.content').css({
-    marginLeft: '0px'
-  });
-  $('#backArea').fadeOut(250, function() {
-    $('#actionsArea').fadeIn(250);
-  });
-}
-
-window.authenticate = function (e, username) {
-  slideToPasswordArea(e);
-
-  $("#user-login-name").text(username);
-  let userSession = getLastUserSession(username);
-  log('userSession: ' + userSession);
-  let userSessionEl = "[data-session-id=" + userSession + "]";
-  let userSessionName = $(userSessionEl).html();
-  log('userSessionName: ' + userSessionName);
-  $('.selected').html(userSessionName);
-  $('.selected').attr('data-session-id', userSession);
-  // $('.dropdown-toggle').dropdown();
-
-  authPending = true;
-  lightdm.start_authentication(username);
-}
-
-window.cancelAuthentication = function (e) {
-  log("authentication cancelled for " + $('#user').val());
-  slideToUsernameArea();
-  $('#user').text('')
-  $('#session-list .selected').html('')
-  log("call: lightdm.cancel_authentication()");
-  lightdm.cancel_authentication();
-  authPending = false;
-};
-
-window.submitPassword = function (password) {
-  log("call: lightdm.provide_secret()");
-  lightdm.provide_secret(password);
-  log("done: lightdm.provide_secret()");
-};
-
-/*
- * Image loading management.
- */
-
-window.sessionToggle = function (el) {
-  log('sessionToggle');
-  var selText = $(el).text();
-  var selID = $(el).attr('data-session-id');
-  var selUser = localStorage.getItem('selUser');
-  $(el).parents('.btn-group').find('.selected').attr('data-session-id', selID);
-  $(el).parents('.btn-group').find('.selected').html(selText);
-  localStorage.setItem(selUser, selID)
-};
 
 /*
  * Lightdm Callbacks
