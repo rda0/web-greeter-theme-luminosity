@@ -286,9 +286,17 @@ function inputPass(e) {
   // log('active.id: ' + document.activeElement.id);
   // log('pass has focus: ' + $('#pass').is(':focus'));
 
-  if (!$('#pass').is(':focus')) {
-    $('#pass').focus();
-    log("set focus on #pass");
+  switch (e.which) {
+    case 27:
+      log('keydown: esc');
+      $('.backButton').trigger('click');
+      document.body.focus();
+      break;
+    default:
+      if (!$('#pass').is(':focus')) {
+        $('#pass').focus();
+        log("set focus on #pass");
+      }
   }
 }
 
