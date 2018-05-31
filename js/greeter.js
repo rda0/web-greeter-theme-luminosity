@@ -202,6 +202,9 @@ $(document).ready(function () {
         log("done");
       }, submitPhase1);
     });
+    document.body.addEventListener('keydown', function (e) {
+      alert('hello world');
+    });
     // Username submit when enter key is pressed
     $('#user').keydown(function (e) {
       switch (e.which) {
