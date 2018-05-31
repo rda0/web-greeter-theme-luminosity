@@ -248,8 +248,8 @@ function slideToPasswordArea(e) {
   $('.content').css({
     marginLeft: '-450px'
   });
-  $('#actionsArea').fadeOut(250, function() {
-    $('#backArea').fadeIn(250);
+  $('#actionsArea').fadeOut(125, function() {
+    $('#backArea').fadeIn(125);
   });
 }
 
@@ -261,8 +261,8 @@ function slideToUsernameArea(e) {
   $('.content').css({
     marginLeft: '0px'
   });
-  $('#backArea').fadeOut(250, function() {
-    $('#actionsArea').fadeIn(250);
+  $('#backArea').fadeOut(125, function() {
+    $('#actionsArea').fadeIn(125);
   });
 }
 
