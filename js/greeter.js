@@ -10,6 +10,10 @@ window.config = {};
  */
 
 $(document).ready(function () {
+  if (DEBUG) {
+    showLog();
+  }
+
   fetch('config.json').then(async function (res) {
     config = await res.json();
     $('#panel').css(config.styles.panel);
@@ -107,6 +111,7 @@ $(document).ready(function () {
       }, submitPhase1);
     });
 
+    // Focus user input field on keydown
     document.body.addEventListener('keydown', inputUser);
 
     // Username submit when enter key is pressed
@@ -153,12 +158,14 @@ $(document).ready(function () {
     $(this).attr('tabindex', -1);
   });
 
+  /* 
   $('#collapseTwo').on('shown.bs.collapse', function () {
     $('#collapseTwo a').filter(':not(.dropdown-menu *)').each(function (index) {
       var i = index + 1;
       $(this).attr('tabindex', i);
     });
   });
+  */
 
   $(window).load(function () {
     /**
@@ -181,7 +188,6 @@ $(document).ready(function () {
 
     // initialize_timer();
     get_hostname();
-    buildUserList();
     buildSessionList();
   });
 
@@ -200,7 +206,7 @@ function log(text) {
 }
 
 function showLog() {
-  $("#logArea").show();
+  $("#logWrap").show().css('display', 'flex');
 }
 
 function showPanel() {
@@ -270,15 +276,6 @@ function buildSessionList() {
   $('.dropdown-toggle').dropdown();
 }
 
-function show_users() {
-  if ($('#collapseOne').hasClass('in')) {
-    $('#trigger').trigger('click');
-    users_shown = true;
-  }
-  if ($('#user-list2 a').length <= 1) $('#user-list2 a').trigger('click');
-}
-
-
 function get_hostname() {
   var hostname = lightdm.hostname;
   var hostname_span = document.getElementById('hostname');
@@ -340,7 +337,6 @@ function getSessionObj(sessionname) {
   }
   return session;
 }
-
 
 function slideContent(e) {
   const selectedUser = e.target.cloneNode(true);
@@ -410,7 +406,7 @@ window.submitPassword = function () {
   log("done");
 };
 
-/**
+/*
  * Image loading management.
  */
 
@@ -429,14 +425,12 @@ window.sessionToggle = function (el) {
   localStorage.setItem(selUser, theID)
 };
 
-
-
-
-/**
+/*
  * Lightdm Callbacks
  */
+
 function show_prompt(text) {
-  log("show_prompt(" + text + ")");
+  log("show_prompt(): " + text);
   $('#passwordField').val("");
   $('#passwordArea').show();
   $('#passwordField').focus();
@@ -445,7 +439,6 @@ function show_prompt(text) {
 function authentication_complete() {
   log("authentication_complete()");
   authPending = false;
-  // $('#timerArea').hide();
   var selSession = $('.selected').attr('data-session-id');
   if (lightdm.is_authenticated) {
     log("authenticated !");
@@ -459,6 +452,7 @@ function authentication_complete() {
 }
 
 function show_message(text) {
+  log('show_message(): ' + text)
   var msgWrap = document.getElementById('statusArea'),
     showMsg = document.getElementById('showMsg');
   showMsg.innerHTML = text;
@@ -469,5 +463,6 @@ function show_message(text) {
 }
 
 function show_error(text) {
+  log('show_error(): ' + text)
   show_message(text);
 }

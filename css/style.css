@@ -521,13 +521,10 @@ label {
 
 
 /* log */
-#logArea {
-  height: 100%;
-  width: 100%;
-}
+
 #logWrap {
   position: absolute;
-  display: hidden;
+  display: none;
   z-index: 2;
   overflow: auto;
   color: #FFFFFF;
@@ -537,14 +534,14 @@ label {
   padding: 20px;
   bottom: 40px;
   left: 40px;
-  width: 500px;
-  height: calc(100% - 80px)
-  display: flex;
+  width: 600px;
+  height: 350px;
   z-index: 2;
 }
 
 #logWrap span {
   align-self: flex-end;
+  overflow: hidden;
 }
 
 /* background */
