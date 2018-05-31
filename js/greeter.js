@@ -192,8 +192,8 @@ window.authenticate = function (e, username) {
   $('#session-list .selected').html(userSessionName);
   $('#session-list .selected').attr('data-session-id', userSession);
   // $('.dropdown-toggle').dropdown();
-
   authPending = true;
+  log('call: lightdm.start_authentication(' + username + ')');
   lightdm.start_authentication(username);
 }
 
@@ -209,19 +209,18 @@ window.cancelAuthentication = function (e) {
 };
 
 window.submitPassword = function (password) {
-  log("call: lightdm.provide_secret()");
+  log("call: lightdm.provide_secret(password)");
   lightdm.provide_secret(password);
-  log("done: lightdm.provide_secret()");
 };
 
 window.sessionToggle = function (el) {
   log('sessionToggle');
-  var selText = $(el).text();
-  var selID = $(el).attr('data-session-id');
-  var selUser = localStorage.getItem('selUser');
+  let selText = $(el).text();
+  let selID = $(el).attr('data-session-id');
+  let username = $('#user').val();
   $(el).parents('.btn-group').find('.selected').attr('data-session-id', selID);
   $(el).parents('.btn-group').find('.selected').html(selText);
-  localStorage.setItem(selUser, selID)
+  localStorage.setItem(username, selID)
 };
 
 window.handleAction = function (id) {
