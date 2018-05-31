@@ -725,7 +725,7 @@ label {
 .info-container {
 }
 .info-block {
-  opacity: 0.5;
+  /* opacity: 0.6; */
 }
 .info-left {
   width: 40%;
