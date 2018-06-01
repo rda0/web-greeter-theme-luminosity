@@ -13,8 +13,14 @@ let theme_config = {};
 $(document).ready(function () {
   if (DEBUG) {
     showLog();
-  } else if (greeter_config.debug_mode) {
+  } else if (greeter_config.greeter.debug_mode) {
     showLog();
+  }
+
+  for (let key in greeter_config.greeter) {
+    if (greeter_config.greeter.hasOwnProperty(key)) {
+      log(key + ': ' + greeter_config.greeter[key]);
+    }
   }
 
   loadThemeConfig();
