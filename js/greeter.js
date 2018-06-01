@@ -11,9 +11,7 @@ let theme_config = {};
  */
 
 $(document).ready(function () {
-  if (DEBUG) {
-    showLog();
-  } else if (greeter_config.greeter.debug_mode) {
+  if (greeter_config.greeter.debug_mode && DEBUG) {
     showLog();
   }
 
