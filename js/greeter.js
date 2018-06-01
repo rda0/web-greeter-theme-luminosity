@@ -178,10 +178,12 @@ function handleAction(id) {
 
 function slideToPasswordArea(e) {
   debug('slideToPasswordArea()');
+  setTabIndexUsernameArea(false);
   document.body.removeEventListener('keydown', inputUserEventHandler);
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
     document.body.addEventListener('keydown', inputPassEventHandler);
+    setTabIndexPasswordArea(true);
     content.removeEventListener('transitionend', onTransitionEnd);
   };
   content.addEventListener('transitionend', onTransitionEnd);
@@ -192,16 +194,16 @@ function slideToPasswordArea(e) {
   $('#actionsArea').fadeOut(125, function() {
     $('#backArea').fadeIn(125);
   });
-
-  setTabIndexPasswordArea(true);
 }
 
 function slideToUsernameArea(e) {
   debug('slideToUsernameArea()');
+  setTabIndexPasswordArea(false);
   document.body.removeEventListener('keydown', inputPassEventHandler);
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
     document.body.addEventListener('keydown', inputUserEventHandler);
+    setTabIndexUsernameArea(true);
     content.removeEventListener('transitionend', onTransitionEnd);
   };
   content.addEventListener('transitionend', onTransitionEnd);
@@ -212,8 +214,6 @@ function slideToUsernameArea(e) {
   $('#backArea').fadeOut(125, function() {
     $('#actionsArea').fadeIn(125);
   });
-
-  setTabIndexUsernameArea(true);
 }
 
 function inputUserEventHandler(e) {
@@ -475,7 +475,6 @@ function setTabIndex() {
 
 function setTabIndexUsernameArea(active) {
   if (active) {
-    setTabIndexPasswordArea(false);
     $('#user').attr('tabindex', 1);
     $('.shutdown').attr('tabindex', 2);
     $('.hibernate').attr('tabindex', 3);
@@ -492,7 +491,6 @@ function setTabIndexUsernameArea(active) {
 
 function setTabIndexPasswordArea(active) {
   if (active) {
-    setTabIndexUsernameArea(false);
     $('#pass').attr('tabindex', 1);
     $('.backButton').attr('tabindex', 2);
   } else {
