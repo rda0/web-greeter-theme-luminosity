@@ -18,9 +18,7 @@ $(document).ready(function () {
   }
 
   for (let key in greeter_config.greeter) {
-    if (greeter_config.greeter.hasOwnProperty(key)) {
-      log(key + ': ' + greeter_config.greeter[key]);
-    }
+    log(key + ': ' + greeter_config.greeter[key]);
   }
 
   loadThemeConfig();
