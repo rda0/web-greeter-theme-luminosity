@@ -55,7 +55,7 @@ $(document).ready(function () {
     showPanel();
 
     // Focus user input field on keydown
-    document.body.addEventListener('keydown', inputUser);
+    document.body.addEventListener('keydown', inputUserEventHandler);
 
     // Action buttons
     addActionLink("shutdown");
