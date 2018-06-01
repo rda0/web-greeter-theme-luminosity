@@ -13,7 +13,6 @@
   -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />
   <!-- Custom CSS here -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap/theme.css">
   <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="css/font.css" />
   <!--
@@ -21,7 +20,7 @@
   -->
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <!-- The order in which each script appears in document is VERY IMPORTANT -->
-  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
   <!--
   -->
   <script src="js/bootstrap.min.js"></script>
@@ -31,7 +30,7 @@
   <a id="bg-switch-toggle" href="#" class="btn btn-default bg-toggle">
     <i class="fa fa-bars"></i>
   </a>
-  <div id="bg-switch-wrapper">
+  <div id="bg-switch-wrapper" class="panels">
     <div class="bg-switch-container">
       <div class="switch-container">
         <button id="bg-switch-close" class="btn btn-default pull-right bg-toggle">
@@ -50,7 +49,7 @@
       </div>
     </div>
   </div>
-  <div id="panel" class="fade">
+  <div id="panel" class="panels fade">
     <div id="header">
       <div id="banner">
         <img src="" alt="Banner" />
@@ -156,12 +155,12 @@
     </div>
   </div>
   <div id="bg" class="bg fade" aria-hidden="true"></div>
-  <div id="debugPanel" class="logPanel">
+  <div id="debugPanel" class="panels logPanel">
     <div class="logWrap">
       <span id="debugArea"></span>
     </div>
   </div>
-  <div id="messagePanel" class="logPanel">
+  <div id="messagePanel" class="panels logPanel">
     <div class="logWrap">
       <span id="messageArea"></span>
     </div>

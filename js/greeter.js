@@ -24,7 +24,7 @@ $(document).ready(function () {
   // Focus user input field on keydown
   document.body.addEventListener('keydown', inputUserEventHandler);
 
-  $(window).load(function () {
+  $(window).on('load', function () {
     setBackground();
     getHostname();
     getSessionList();
@@ -381,6 +381,7 @@ function loadThemeConfig() {
     theme_config = await res.json();
 
     $('#panel').css(theme_config.styles.panel);
+    $('.panels').css(theme_config.styles.panels);
     $('.content-footer').css(theme_config.styles.contentFooter);
     $('.bg').css(theme_config.styles.background);
     $('#banner img').attr('src', `img/banners/${theme_config.banner}.png`);
