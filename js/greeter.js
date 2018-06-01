@@ -3,8 +3,8 @@
  */
 
 let DEBUG = true;
-let animating = false;
-window.config = {};
+let processing = false;
+let theme_config = {};
 
 /*
  * document ready
@@ -15,14 +15,14 @@ $(document).ready(function () {
     showLog();
   }
 
-  fetch('config.json').then(async function (res) {
-    config = await res.json();
-    $('#panel').css(config.styles.panel);
-    $('.content-footer').css(config.styles.contentFooter);
-    $('.bg').css(config.styles.background);
-    $('#banner img').attr('src', `img/banners/${config.banner}.png`);
-    $('#logo img').attr('src', `img/banners/${config.logo}.png`);
-    config.backgrounds.forEach(function (background) {
+  fetch('theme_config.json').then(async function (res) {
+    theme_config = await res.json();
+    $('#panel').css(theme_config.styles.panel);
+    $('.content-footer').css(theme_config.styles.contentFooter);
+    $('.bg').css(theme_config.styles.background);
+    $('#banner img').attr('src', `img/banners/${theme_config.banner}.png`);
+    $('#logo img').attr('src', `img/banners/${theme_config.logo}.png`);
+    theme_config.backgrounds.forEach(function (background) {
       $('.bgs').append(`
             <a href="#" data-img="${background.image}" class="background">
               <img src="${background.thumb}" /> 
@@ -43,7 +43,7 @@ $(document).ready(function () {
       } else {
         localStorage.setItem("bgdefault", '0');
         $('.bg').fadeTo('slow', 0.3, function () {
-          $(".bg").css(Object.assign(config.styles.background, {
+          $(".bg").css(Object.assign(theme_config.styles.background, {
             "background-image": "url('" + bg + "')",
           }));
         }).fadeTo('slow', 1);
@@ -75,7 +75,7 @@ $(document).ready(function () {
 
     if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgdefault") === '0')) {
       $('.bg').fadeTo('slow', 0.3, function () {
-        $(".bg").css(Object.assign((config && config.styles) ? config.styles.background : {}, {
+        $(".bg").css(Object.assign((theme_config && theme_config.styles) ? theme_config.styles.background : {}, {
           "background-image": localStorage.bgsaved
         }));
       }).fadeTo('slow', 1);
@@ -124,9 +124,9 @@ $(document).ready(function () {
   // Username submit
   $('#authenticateButton').click(function (e) {
     e.preventDefault();
-    if (!animating) {
+    if (!processing) {
       log('authenticateButton.click()');
-      animating = true;
+      processing = true;
       submitPassword(e);
     }
   });
@@ -183,10 +183,10 @@ $(document).ready(function () {
 });
 
 /*
- * window functions
+ * functions
  */
 
-window.authenticate = function (e, username) {
+function authenticate(e, username) {
   $("#user-login-name").text(username);
   $('#user').prop('disabled', true);
   let userSession = getLastUserSession(username);
@@ -200,7 +200,7 @@ window.authenticate = function (e, username) {
   lightdm.start_authentication(username);
 }
 
-window.cancelAuthentication = function (e) {
+function cancelAuthentication(e) {
   log("authentication cancelled for " + $('#user').val());
   $('#pass').prop('disabled', false);
   $('#pass').val('');
@@ -209,10 +209,10 @@ window.cancelAuthentication = function (e) {
   log("call: lightdm.cancel_authentication()");
   lightdm.cancel_authentication();
   $('#authenticateButton').removeClass('processing');
-  animating = false;
+  processing = false;
 };
 
-window.submitPassword = function (e) {
+function submitPassword(e) {
   let submitTimeout = 2000;
   let submitButton = e.target;
   $('#authenticateButton').addClass("processing");
@@ -223,17 +223,16 @@ window.submitPassword = function (e) {
   }, submitTimeout);
 };
 
-window.sessionToggle = function (element) {
+function sessionToggle(element) {
   log('sessionToggle');
   let sessionText = $(element).text();
   let sessionID = $(element).attr('data-session-id');
   let username = $('#user').val();
   $(element).parents('.btn-group').find('.selected').attr('data-session-id', sessionID);
   $(element).parents('.btn-group').find('.selected').html(sessionText);
-  localStorage.setItem(username, sessionID)
 };
 
-window.handleAction = function (id) {
+function handleAction(id) {
   log("handleAction(" + id + ")");
   eval("lightdm." + id + "()");
 };
@@ -354,21 +353,13 @@ function showPanel() {
 function defaultBG() {
   localStorage.setItem("bgsaved", 'img/default-bg.jpg');
   $('.bg').fadeTo('slow', 0.3, function () {
-    $(".bg").css(Object.assign(config.styles.background, {
+    $(".bg").css(Object.assign(theme_config.styles.background, {
       "background-image": "url('img/default-bg.jpg')"
     }));
   }).fadeTo('slow', 1);
 }
  
 function getLastUserSession(username) {
-  /*let lastSession = localStorage.getItem(username);
-  
-  if (lastSession == null && lastSession == undefined) {
-    log('last user session not found. using default: ' + lightdm.default_session)
-    localStorage.setItem(username, lightdm.default_session);
-    return lightdm.default_session;
-  }*/
-  
   let lastSession = null;
 
   for (let i in lightdm.users) {
