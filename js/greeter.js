@@ -17,9 +17,10 @@ $(document).ready(function () {
     showLog();
   }
 
-  for (let key in greeter_config.greeter) {
-    log(key + ': ' + greeter_config.greeter[key]);
-  }
+  log('webkit_theme: ' + greeter_config.greeter.webkit_theme);
+  log('detect_theme_errors: ' + greeter_config.greeter.detect_theme_errors);
+  log('screensaver_timeout: ' + greeter_config.greeter.detect_theme_errors);
+  log('secure_mode: ' + greeter_config.greeter.detect_theme_errors);
 
   loadThemeConfig();
 
