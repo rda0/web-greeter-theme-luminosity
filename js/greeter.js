@@ -48,7 +48,7 @@ $(document).ready(function () {
       case 09:
       case 13:
         let username = $('#user').val();
-        if (username == null) {
+        if (username == '') {
           debug('username: null!');
         } else {
           debug('username: ' + username)
