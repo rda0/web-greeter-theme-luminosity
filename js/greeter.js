@@ -288,7 +288,6 @@ function getLastUserSession(username) {
 function getSessionList() {
   let buttonGroup = $('#sessions');
   for (let i in lightdm.sessions) {
-    log('session: ' + session.key);
     let session = lightdm.sessions[i];
     let className = session.name.replace(/ /g, '');
     let button = '\n<li><a href="#" data-session-id="' +
@@ -296,6 +295,7 @@ function getSessionList() {
         className + '">' + session.name + '</a></li>';
 
     $(buttonGroup).append(button);
+    log('session: ' + session.key);
   }
 }
 
@@ -309,7 +309,6 @@ function getHostname() {
 
 function addActionButton(id) {
   if (eval("lightdm.can_" + id)) {
-    log('lightdm.can: ' + id);
     let label = id.substr(0, 1).toUpperCase() + id.substr(1, id.length - 1);
     let id2;
     if (id == "shutdown") {
@@ -328,6 +327,7 @@ function addActionButton(id) {
         ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label +
         '" data-container="body" onclick="handleAction(\'' + id +
         '\')"><i class="fa fa-' + id2 + '"></i></button>');
+    log('lightdm.can: ' + id);
   }
 }
 
