@@ -833,14 +833,12 @@ label {
 .actionButton:active {
   background: none;
   background-image: none;
-  background-color: none;
 }
 .btn-primary:active:hover,
 .wallpaperButton:active:hover,
 .actionButton:active:hover {
   background: none;
   background-image: none;
-  background-color: none;
 }
 
 
@@ -854,12 +852,10 @@ label {
 #session-list .btn-default:active {
   background: none;
   background-image: none;
-  background-color: none;
 }
 #session-list .btn-default:active:hover {
   background: none;
   background-image: none;
-  background-color: none;
 }
 #session-selected {
   width: 100%;

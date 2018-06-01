@@ -220,12 +220,12 @@ window.submitPassword = function (password) {
 
 window.sessionToggle = function (element) {
   log('sessionToggle');
-  let selText = $(element).text();
-  let selID = $(element).attr('data-session-id');
+  let sessionText = $(element).text();
+  let sessionID = $(element).attr('data-session-id');
   let username = $('#user').val();
-  $(el).parents('.btn-group').find('.selected').attr('data-session-id', selID);
-  $(el).parents('.btn-group').find('.selected').html(selText);
-  localStorage.setItem(username, selID)
+  $(element).parents('.btn-group').find('.selected').attr('data-session-id', sessionID);
+  $(element).parents('.btn-group').find('.selected').html(sessionText);
+  localStorage.setItem(username, sessionID)
 };
 
 window.handleAction = function (id) {
@@ -397,10 +397,10 @@ function show_prompt(text) {
 function authentication_complete() {
   log("callback: authentication_complete()");
   authPending = false;
-  let selSession = $('.selected').attr('data-session-id');
+  let selectedSession = $('.selected').attr('data-session-id');
   if (lightdm.is_authenticated) {
     log("authentication successful!");
-    lightdm.login(lightdm.authentication_user, selSession);
+    lightdm.login(lightdm.authentication_user, selectedSession);
   } else {
     log("authentication failure!");
     $('#pass').val('');
