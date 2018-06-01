@@ -93,15 +93,6 @@ $(document).ready(function () {
     $("#bg-switch-toggle").show();
   });
 
-  // Switch background
-  $(".bg-switch .background").click(function (e) {
-    e.preventDefault();
-    $(this).removeClass("active");
-    $(".bgs .background .default").first().removeClass('active');
-    $(this).addClass("active");
-    switchBackground($(this).data("img"));
-  });
-
   // Input focus transition
   $(".input input").focus(function () {
     $(this).parent(".input").each(function () {
@@ -397,6 +388,15 @@ function loadThemeConfig() {
               <img src="${background.thumb}" />
             </a>
           `);
+    });
+
+    // Switch background
+    $(".bg-switch .background").click(function (e) {
+      e.preventDefault();
+      $(this).removeClass("active");
+      $(".bgs .background .default").first().removeClass('active');
+      $(this).addClass("active");
+      switchBackground($(this).data("img"));
     });
 
     addActionButton("shutdown");
