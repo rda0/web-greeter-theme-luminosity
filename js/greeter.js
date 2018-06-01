@@ -15,76 +15,15 @@ $(document).ready(function () {
     showLog();
   }
 
-  fetch('config.json').then(async function (res) {
-    theme_config = await res.json();
-    $('#panel').css(theme_config.styles.panel);
-    $('.content-footer').css(theme_config.styles.contentFooter);
-    $('.bg').css(theme_config.styles.background);
-    $('#banner img').attr('src', `img/banners/${theme_config.banner}.png`);
-    $('#logo img').attr('src', `img/banners/${theme_config.logo}.png`);
-    theme_config.backgrounds.forEach(function (background) {
-      $('.bgs').append(`
-            <a href="#" data-img="${background.image}" class="background">
-              <img src="${background.thumb}" /> 
-            </a>
-          `);
-    });
+  loadThemeConfig();
 
-    let $btns = $(".bg-switch .background");
-    $btns.click(function (e) {
-      e.preventDefault();
-      $btns.removeClass("active");
-      $(".bgs .background .default").first().removeClass('active');
-      $(this).addClass("active");
-      let bg = $(this).data("img");
-      if (bg == 'default') {
-        localStorage.setItem("bgdefault", '1');
-        defaultBG();
-      } else {
-        localStorage.setItem("bgdefault", '0');
-        $('.bg').fadeTo('slow', 0.3, function () {
-          $(".bg").css(Object.assign(theme_config.styles.background, {
-            "background-image": "url('" + bg + "')",
-          }));
-        }).fadeTo('slow', 1);
-        let bgurl = "url('" + bg + "')";
-        localStorage.setItem("bgsaved", bgurl)
-      }
-    });
-
-    showPanel();
-
-    // Focus user input field on keydown
-    document.body.addEventListener('keydown', inputUserEventHandler);
-
-    // Action buttons
-    addActionLink("shutdown");
-    addActionLink("hibernate");
-    addActionLink("suspend");
-    addActionLink("restart");
-  });
+  // Focus user input field on keydown
+  document.body.addEventListener('keydown', inputUserEventHandler);
 
   $(window).load(function () {
-    /*
-     * UI Initialization.
-     */
-
-    if (localStorage.getItem("bgdefault") === null && (localStorage.getItem("bgsaved") === null)) {
-      localStorage.setItem("bgdefault", "1");
-    }
-
-    if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgdefault") === '0')) {
-      $('.bg').fadeTo('slow', 0.3, function () {
-        $(".bg").css(Object.assign((theme_config && theme_config.styles) ? theme_config.styles.background : {}, {
-          "background-image": localStorage.bgsaved
-        }));
-      }).fadeTo('slow', 1);
-    } else {
-      defaultBG();
-    }
-
+    setBackground();
     getHostname();
-    buildSessionList();
+    getSessionList();
   });
 
   // Set tabindex = -1 on all alements
@@ -93,33 +32,6 @@ $(document).ready(function () {
   });
 
   // Events
-
-  // Input focus transition
-  $(".input input").focus(function () {
-    $(this).parent(".input").each(function () {
-      $("label", this).css({
-        "line-height": "16px",
-        "font-size": "16px",
-        "top": "0px"
-      })
-      $(".spin", this).css({
-        "width": "calc(100% - 80px)"
-      })
-    });
-  }).blur(function () {
-    $(".spin").css({
-      "width": "0px"
-    })
-    if ($(this).val() == "") {
-      $(this).parent(".input").each(function () {
-        $("label", this).css({
-          "line-height": "60px",
-          "font-size": "20px",
-          "top": "10px"
-        })
-      });
-    }
-  });
 
   // Username submit
   $('#authenticateButton').click(function (e) {
@@ -179,6 +91,42 @@ $(document).ready(function () {
     $("#bg-switch-wrapper").toggleClass("active");
     $(this).hide();
     $("#bg-switch-toggle").show();
+  });
+
+  // Switch background
+  $(".bg-switch .background").click(function (e) {
+    e.preventDefault();
+    $(this).removeClass("active");
+    $(".bgs .background .default").first().removeClass('active');
+    $(this).addClass("active");
+    switchBackground($(this).data("img"));
+  });
+
+  // Input focus transition
+  $(".input input").focus(function () {
+    $(this).parent(".input").each(function () {
+      $("label", this).css({
+        "line-height": "16px",
+        "font-size": "16px",
+        "top": "0px"
+      })
+      $(".spin", this).css({
+        "width": "calc(100% - 80px)"
+      })
+    });
+  }).blur(function () {
+    $(".spin").css({
+      "width": "0px"
+    })
+    if ($(this).val() == "") {
+      $(this).parent(".input").each(function () {
+        $("label", this).css({
+          "line-height": "60px",
+          "font-size": "20px",
+          "top": "10px"
+        })
+      });
+    }
   });
 });
 
@@ -274,9 +222,6 @@ function slideToUsernameArea(e) {
 }
 
 function inputUserEventHandler(e) {
-  // log('active.id: ' + document.activeElement.id);
-  // log('user has focus: ' + $('#user').is(':focus'));
-
   switch (e.which) {
     case 27:
       log('keydown: esc');
@@ -292,9 +237,6 @@ function inputUserEventHandler(e) {
 }
 
 function inputPassEventHandler(e) {
-  // log('active.id: ' + document.activeElement.id);
-  // log('pass has focus: ' + $('#pass').is(':focus'));
-
   switch (e.which) {
     case 27:
       log('keydown: esc');
@@ -312,7 +254,7 @@ function inputPassEventHandler(e) {
   }
 }
 
-function buildSessionList() {
+function getSessionList() {
   let buttonGroup = $('#sessions');
   for (let i in lightdm.sessions) {
     let session = lightdm.sessions[i];
@@ -350,15 +292,6 @@ function showPanel() {
   }, 1000);
 }
 
-function defaultBG() {
-  localStorage.setItem("bgsaved", 'img/default-bg.jpg');
-  $('.bg').fadeTo('slow', 0.3, function () {
-    $(".bg").css(Object.assign(theme_config.styles.background, {
-      "background-image": "url('img/default-bg.jpg')"
-    }));
-  }).fadeTo('slow', 1);
-}
- 
 function getLastUserSession(username) {
   let lastSession = null;
 
@@ -377,7 +310,7 @@ function getLastUserSession(username) {
   return lastSession;
 }
 
-function addActionLink(id) {
+function addActionButton(id) {
   if (eval("lightdm.can_" + id)) {
     let label = id.substr(0, 1).toUpperCase() + id.substr(1, id.length - 1);
     let id2;
@@ -443,3 +376,76 @@ function show_error(text) {
   log('callback: show_error(): ' + text)
   show_message(text);
 }
+
+/*
+ * functions for UI initialisation
+ */
+
+function loadThemeConfig() {
+  fetch('config.json').then(async function (res) {
+    theme_config = await res.json();
+
+    $('#panel').css(theme_config.styles.panel);
+    $('.content-footer').css(theme_config.styles.contentFooter);
+    $('.bg').css(theme_config.styles.background);
+    $('#banner img').attr('src', `img/banners/${theme_config.banner}.png`);
+    $('#logo img').attr('src', `img/banners/${theme_config.logo}.png`);
+
+    theme_config.backgrounds.forEach(function (background) {
+      $('.bgs').append(`
+            <a href="#" data-img="${background.image}" class="background">
+              <img src="${background.thumb}" />
+            </a>
+          `);
+    });
+
+    addActionButton("shutdown");
+    addActionButton("hibernate");
+    addActionButton("suspend");
+    addActionButton("restart");
+
+    showPanel();
+  });
+}
+
+function switchBackground(background) {
+  if (background == 'default') {
+    localStorage.setItem("bgdefault", '1');
+    setDefaultBackground();
+  } else {
+    let backgroundUrl = "url('" + background + "')";
+    localStorage.setItem("bgdefault", '0');
+    $('.bg').fadeTo('slow', 0.3, function () {
+      $(".bg").css(Object.assign(theme_config.styles.background, {
+        "background-image": backgroundUrl,
+      }));
+    }).fadeTo('slow', 1);
+    localStorage.setItem("bgsaved", backgroundUrl)
+  }
+}
+
+function setBackground() {
+  if (localStorage.getItem("bgdefault") === null && (localStorage.getItem("bgsaved") === null)) {
+    localStorage.setItem("bgdefault", "1");
+  }
+
+  if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgdefault") === '0')) {
+    $('.bg').fadeTo('slow', 0.3, function () {
+      $(".bg").css(Object.assign((theme_config && theme_config.styles) ? theme_config.styles.background : {}, {
+        "background-image": localStorage.bgsaved
+      }));
+    }).fadeTo('slow', 1);
+  } else {
+    setDefaultBackground();
+  }
+}
+
+function setDefaultBackground() {
+  localStorage.setItem("bgsaved", 'img/default-bg.jpg');
+  $('.bg').fadeTo('slow', 0.3, function () {
+    $(".bg").css(Object.assign(theme_config.styles.background, {
+      "background-image": "url('img/default-bg.jpg')"
+    }));
+  }).fadeTo('slow', 1);
+}
+ 
