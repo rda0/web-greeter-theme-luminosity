@@ -387,6 +387,8 @@ function authentication_complete() {
   if (lightdm.is_authenticated) {
     debug('authentication successful');
     $('#statusMessage').html('ACCESS GRANTED');
+    $('#unlocked').show();
+    $('#locked').hide();
     $('#statusPanel').css(theme_config.styles.status_panel_granted);
     $('#statusPanel').show();
     $('#statusPanel').fadeTo(200, 1, function () {
@@ -404,6 +406,8 @@ function authentication_complete() {
     debug('authentication failure: ' + username);
     cancelAuthentication();
     $('#statusMessage').html('ACCESS DENIED');
+    $('#locked').show();
+    $('#unlocked').hide();
     $('#statusPanel').css(theme_config.styles.status_panel_denied);
     $('#statusPanel').show();
     $('#statusPanel').fadeTo(400, 1, function () {
