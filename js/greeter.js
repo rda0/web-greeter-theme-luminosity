@@ -216,8 +216,6 @@ function slideToUsernameArea(e) {
 }
 
 function inputUserEventHandler(e) {
-  debug('char: ' + e.which);
-
   if (!ignoreCharacter(e.which)) {
     switch (e.which) {
       case 27:
@@ -393,9 +391,12 @@ function authentication_complete() {
       lightdm.start_session(selectedSession);
     }, 2000);
   } else {
-
     debug('authentication failure: ' + username);
     cancelAuthentication();
+    $('#statusPanel').show();
+    $('#statusPanel').css({
+      "opacity": "1"
+    });
     debug('call: lightdm.authenticate(' + username + ')');
     lightdm.authenticate(username);
   }
@@ -420,7 +421,10 @@ function loadThemeConfig() {
     theme_config = await res.json();
 
     $('#panel').css(theme_config.styles.panel);
-    $('.panels').css(theme_config.styles.panels);
+    $('.panels').css(theme_config.styles.panels_color);
+    $('.panels').css(theme_config.styles.panels_shadow);
+    $('#statusPanel').css(theme_config.styles.panels_shadow);
+    $('#statusPanel').css(theme_config.styles.status_panel);
     $('.content-footer').css(theme_config.styles.contentFooter);
     $('.bg').css(theme_config.styles.background);
     $('#banner img').attr('src', `img/banners/${theme_config.banner}.png`);

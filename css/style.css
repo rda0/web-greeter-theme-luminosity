@@ -48,38 +48,6 @@ a {
 }
 
 
-
-/* log */
-
-.logPanel {
-  position: absolute;
-  display: none;
-  z-index: 2;
-  color: #FFFFFF;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  font-size: 16px;
-  padding: 20px;
-  left: 40px;
-  width: 600px;
-  height: calc(50% - 60px);
-  z-index: 2;
-}
-.logWrap {
-  display: flex;
-  overflow: hidden;
-}
-.logWrap span {
-  align-self: flex-end;
-}
-#debugPanel {
-  bottom: 40px;
-}
-#messagePanel {
-  top: 40px;
-}
-
-
 /* background */
 
 .bg {
@@ -180,6 +148,69 @@ a {
 }
 .username-area.flying-pods #username-area {
   transition: width 180ms ease, height 180ms ease;
+}
+
+
+/* status */
+#statusPanel {
+  display: none;
+  opacity: 0;
+  z-index: 2000;
+  position: absolute;
+  width: 400px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+}
+
+#statusArea {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+#statusArea span {
+  width: 350px;
+  font-size: 40px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  transition: opacity .4;
+}
+
+/* log */
+
+.logPanel {
+  position: absolute;
+  display: none;
+  z-index: 2;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 20px;
+  left: 40px;
+  width: 600px;
+  height: calc(50% - 60px);
+  z-index: 2;
+}
+.logWrap {
+  display: flex;
+  overflow: hidden;
+}
+.logWrap span {
+  align-self: flex-end;
+}
+#debugPanel {
+  bottom: 40px;
+}
+#messagePanel {
+  top: 40px;
 }
 
 
