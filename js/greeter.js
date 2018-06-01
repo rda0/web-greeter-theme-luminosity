@@ -217,6 +217,7 @@ function slideToUsernameArea(e) {
 
 function inputUserEventHandler(e) {
   debug('char: ' + e.which);
+
   switch (e.which) {
     case 27:
       debug('keydown: esc');
@@ -224,7 +225,14 @@ function inputUserEventHandler(e) {
       document.body.focus();
       break;
     case 09:
-      debug('keydown: tab');
+      break;
+    case 13:
+      break;
+    case 17:
+      break;
+    case 18:
+      break;
+    case 19:
       break;
     default:
       if (!$('#user').is(':focus')) {
@@ -243,6 +251,16 @@ function inputPassEventHandler(e) {
       $('#user').focus();
       document.body.focus();
       $('.backButton').trigger('click');
+      break;
+    case 09:
+      break;
+    case 13:
+      break;
+    case 17:
+      break;
+    case 18:
+      break;
+    case 19:
       break;
     default:
       if (!$('#pass').is(':focus')) {
