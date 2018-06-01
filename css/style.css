@@ -9,6 +9,7 @@ html {
   letter-spacing: normal;
   line-height: normal;
   overflow: hidden;
+  background-color: #000;
 }
 *:focus,
 a:focus,
@@ -27,20 +28,20 @@ label {
 }
 
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #EAEAEA;
-    border-left: 1px solid #CCCCCC;
+    background-color: rgba(0,0,0,0.9);
+    border: none;;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #5D5D5D;
+    background-color: #ddd;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #B3B3B3;
+    background-color: #fff;
 }
 a { 
     text-decoration: none !important; 
@@ -82,7 +83,7 @@ a {
 /* background */
 
 .bg {
-  background: #fff;
+  background: #000;
   bottom: 0;
   direction: ltr;
   left: 0;
