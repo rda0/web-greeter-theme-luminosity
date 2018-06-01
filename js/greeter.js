@@ -395,17 +395,23 @@ function show_prompt(text) {
 }
 
 function authentication_complete() {
-  log("callback: authentication_complete()");
+  log('callback: authentication_complete()');
   authPending = false;
+  let username = lightdm.authentication_user;
   let selectedSession = $('.selected').attr('data-session-id');
   if (lightdm.is_authenticated) {
-    log("authentication successful!");
-    lightdm.login(lightdm.authentication_user, selectedSession);
+    log('authentication successful');
+    lightdm.login(username, selectedSession);
   } else {
-    log("authentication failure!");
+
+    log('authentication failure: ' + username);
+    log('call: lightdm.cancel_authentication()');
+    lightdm.cancel_authentication();
     $('#pass').val('');
     animating = false;
     $('.login__submit').removeClass('processing');
+    log('call: lightdm.start_authentication(' + username + ')');
+    lightdm.start_authentication(username);
   }
 }
 
