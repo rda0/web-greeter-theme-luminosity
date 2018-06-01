@@ -361,12 +361,26 @@ function defaultBG() {
 }
  
 function getLastUserSession(username) {
-  let lastSession = localStorage.getItem(username);
+  /*let lastSession = localStorage.getItem(username);
   
   if (lastSession == null && lastSession == undefined) {
     log('last user session not found. using default: ' + lightdm.default_session)
     localStorage.setItem(username, lightdm.default_session);
     return lightdm.default_session;
+  }*/
+  
+  let lastSession = null;
+  let users = lightdm.users();
+
+  for (let user in lightdm.users()) {
+    if (user.username == username) {
+      lastSession = user.session;
+    }
+  }
+
+  if (!lastSession) {
+    log('last session not found. using default: ' + lightdm.default_session)
+    lastSession = lightdm.default_session;
   }
   
   log(username + '\'s last session: ' + lastSession);
