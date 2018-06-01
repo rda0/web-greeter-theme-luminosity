@@ -15,6 +15,10 @@ $(document).ready(function () {
     showLog();
   }
 
+  for (let key in greeter_config.greeter) {
+    log(key + ': ' + greeter_config.greeter[key]);
+  }
+
   loadThemeConfig();
 
   // Focus user input field on keydown
