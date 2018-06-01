@@ -394,8 +394,11 @@ function authentication_complete() {
     debug('authentication failure: ' + username);
     cancelAuthentication();
     $('#statusPanel').show();
-    $('#statusPanel').css({
-      "opacity": "1"
+    $('#statusPanel').fadeTo(400, 1, function () {
+      setTimeout(() => {
+        $('#statusPanel').fadeTo(400, 0);
+        $('#statusPanel').hide();
+      }, 1000); 
     });
     debug('call: lightdm.authenticate(' + username + ')');
     lightdm.authenticate(username);
