@@ -216,7 +216,7 @@ function slideToUsernameArea(e) {
 }
 
 function inputUserEventHandler(e) {
-  log('char: ' + e.which)
+  debug('char: ' + e.which);
   switch (e.which) {
     case 27:
       debug('keydown: esc');
