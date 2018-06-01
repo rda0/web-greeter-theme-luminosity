@@ -2,7 +2,7 @@
  * global variables
  */
 
-let DEBUG = true;
+let DEBUG = false;
 let processing = false;
 let theme_config = {};
 
@@ -12,6 +12,8 @@ let theme_config = {};
 
 $(document).ready(function () {
   if (DEBUG) {
+    showLog();
+  } else if (greeter_config.debug_mode) {
     showLog();
   }
 
