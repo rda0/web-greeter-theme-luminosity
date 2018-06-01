@@ -122,7 +122,7 @@ $(document).ready(function () {
   });
 
   // Username submit
-  $('.login__submit').click(function (e) {
+  $('#authenticateButton').click(function (e) {
     e.preventDefault();
     if (!animating) {
       animating = true;
@@ -150,7 +150,7 @@ $(document).ready(function () {
   $('#pass').keydown(function (e) {
     switch (e.which) {
       case 13:
-        $('.login__submit').trigger('click');
+        $('#authenticateButton').trigger('click');
         break;
     }
   });
@@ -205,15 +205,15 @@ window.cancelAuthentication = function (e) {
   document.body.focus();
   log("call: lightdm.cancel_authentication()");
   lightdm.cancel_authentication();
-  $('.login__submit').removeClass('processing');
+  $('#authenticateButton').removeClass('processing');
   animating = false;
 };
 
 window.submitPassword = function (e) {
   let submitTimeout = 2000;
   let submitButton = e.target;
+  $('#authenticateButton').addClass("processing");
   $('#pass').prop('disabled', true);
-  $(this).addClass("processing");
   setTimeout(() => {
     log("call: lightdm.provide_secret(password)")
     lightdm.provide_secret($('#pass').val());
