@@ -129,7 +129,7 @@ $(document).ready(function () {
     e.preventDefault();
     let submitTimeout = 2000;
     let submitButton = e.target;
-    document.body.focus();
+    //document.body.focus();
     $('#pass').prop('disabled', true);
     animating = true;
     $(this).addClass("processing");
@@ -207,7 +207,7 @@ window.authenticate = function (e, username) {
 
 window.cancelAuthentication = function (e) {
   log("authentication cancelled for " + $('#user').val());
-  $('#pass').prop('enabled', true);
+  $('#pass').prop('disabled', false);
   $('#pass').val('');
   $('#pass').focus();
   document.body.focus();
