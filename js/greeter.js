@@ -15,7 +15,7 @@ $(document).ready(function () {
     showLog();
   }
 
-  fetch('theme_config.json').then(async function (res) {
+  fetch('config.json').then(async function (res) {
     theme_config = await res.json();
     $('#panel').css(theme_config.styles.panel);
     $('.content-footer').css(theme_config.styles.contentFooter);
