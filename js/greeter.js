@@ -45,7 +45,6 @@ $(document).ready(function () {
   // Username submit when enter key is pressed
   $('#user').keydown(function (e) {
     switch (e.which) {
-      case 09:
       case 13:
         let username = $('#user').val();
         if (username == '') {
@@ -491,7 +490,7 @@ function setTabIndexUsernameArea(active) {
 
 function setTabIndexPasswordArea(active) {
   if (active) {
-    //$('#pass').attr('tabindex', 1);
+    $('#pass').attr('tabindex', 1);
     $('.backButton').attr('tabindex', 2);
   } else {
     $('#pass').attr('tabindex', -1);
