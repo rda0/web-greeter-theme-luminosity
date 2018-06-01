@@ -1,5 +1,5 @@
 /* Global Styles */
-
+/*
 @font-face {
 	font-family: Lato;
 	src: url('../../font-awesome/fonts/Lato-Regular.ttf');
@@ -55,14 +55,16 @@
 .close_wallpapers {
 	padding: 2px 10px !important;
 }
+*/
 
+/*
 html,
 body {
 	height: 100%;
 	width: 100%;
 	background-color: #000000;
-	/* font-family: "Lato", "Open Sans", sans-serif; */
 }
+*/
 
 /*
 i {
@@ -77,9 +79,11 @@ h3, .panel-heading {
 }
 */
 
+/*
 a {
 	text-decoration: none !important;
 }
+*/
 
 /* Background Switcher */
 
@@ -118,10 +122,12 @@ a {
 }
 */
 
+/*
 .hovered {
 	text-decoration: none;
 	background-color: #ECF0F1;
 }
+*/
 
 /*
 #user-list2 {
@@ -184,6 +190,7 @@ a {
 
 /* Full Page Image Header Area */
 
+/*
 .header {
 	display: table;
 	height: 100%;
@@ -194,6 +201,7 @@ a {
 	background-repeat: no-repeat !important;
 	background-position: center !important;
 }
+*/
 
 /*
 #user-target2 {
@@ -207,6 +215,7 @@ a {
 }
 */
 
+/*
 #trigger i {
 	color: #2C3E50;
 	font-size: 14px;
@@ -214,9 +223,11 @@ a {
 	top: 10px;
 	right: 5px;
 }
+*/
 
 /* Clock Widget */
 
+/*
 .time {
 	font-family: "LatoLight", "Open Sans", sans-serif;
 	font-size: 96px;
@@ -242,7 +253,6 @@ a {
 .time:hover {
 	cursor: pointer;
 	color: #77ADFF;
-	/* text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.7); */
 }
 
 .time-panel {
@@ -260,6 +270,7 @@ a {
 
 /* Login Dialog */
 
+/*
 .welcome {
 	font-weight: 500;
 	font-size: 17px;
@@ -318,6 +329,7 @@ a {
 #accordion {
 	margin-bottom: 10px;
 }
+*/
 
 /*
 #sessions, #actionsArea {
@@ -325,6 +337,7 @@ a {
 }
 */
 
+/*
 .panel-footer .btn {
 	padding: 7px 12px;
 }
@@ -394,7 +407,7 @@ input.password.form-control:focus {
 */
 
 /* Animation */
-
+/*
 @-webkit-keyframes bounce {
 	0% {
 		-webkit-transform: translateY(0);
@@ -440,7 +453,7 @@ input.password.form-control:focus {
 .random.active {
 	border: 2px solid #3D73C5;
 }
-
+*/
 /*
 .user-wrap2 {
 	max-width: 50%;
@@ -449,12 +462,12 @@ input.password.form-control:focus {
 	overflow: visible;
 }
 */
-
+/*
 #list-group {
 	padding: 0px;
 	overflow: visible;
 }
-
+*/
 /*
 @media (max-width: 1900px) {
 
@@ -500,7 +513,7 @@ input.password.form-control:focus {
 	}
 }
 */
-
+/*
 .list-group-item {
 	padding: 5px 15px;
 }
@@ -550,3 +563,4 @@ a.list-group-item:focus:after, a.list-group-item:hover:after, a.list-group-item.
 	width: 100%;
 	margin-top: 5px;
 }
+*/

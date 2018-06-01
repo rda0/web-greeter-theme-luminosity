@@ -26,6 +26,27 @@ label {
   opacity: 0.5;
 }
 
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #EAEAEA;
+    border-left: 1px solid #CCCCCC;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #5D5D5D;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #B3B3B3;
+}
+a { 
+    text-decoration: none !important; 
+}
+
+
 
 /* log */
 
@@ -82,9 +103,6 @@ label {
   right: -2px;
   position: fixed;
   z-index: 2;
-}
-.toggle {
-  margin: 5px 5px 0 0;
 }
 #bg-switch-wrapper {
   margin-right: -250px;
@@ -306,11 +324,18 @@ label {
 #backArea {
   display: none;
 }
+.toggle {
+  margin: 5px 5px 0 0;
+  font-size: 17px;
+  padding: 8px 12px;
+  line-height: 1;
+}
+.toggle .btn,
 #actionsArea .btn,
 #backArea .btn {
   padding: 2px 12px;
 }
-.btn-primary,
+.toggle,
 .wallpaperButton,
 .actionButton {
   color: #fff;
@@ -319,7 +344,7 @@ label {
   background: var(--action-button-background); */
   box-shadow: 1px 1px 2px -1px rgba(255, 255, 255, 0.06) inset, 4px 4px 8px -4px rgba(255, 255, 255, 0.03) inset, 1px 1px 4px rgba(0,0,0,0.4);
 }
-.btn-primary:hover,
+.toggle:hover,
 .wallpaperButton:hover,
 .actionButton:hover {
   color: #fff;
@@ -328,23 +353,23 @@ label {
   background: var(--action-button-hover-background); */
   box-shadow: 1px 1px 2px -1px rgba(255, 255, 255, 0.1) inset, 4px 4px 8px -4px rgba(255, 255, 255, 0.12) inset, 1px 1px 4px rgba(0,0,0,0.4);
 }
-.btn-primary:focus,
+.toggle:focus,
 .wallpaperButton:focus,
 .actionButton:focus {
   outline: none;
 }
-.btn-primary:active:focus,
+.toggle:active:focus,
 .wallpaperButton:active:focus,
 .actionButton:active:focus {
   outline: none;
 }
-.btn-primary:active,
+.toggle:active,
 .wallpaperButton:active,
 .actionButton:active {
   background: none;
   background-image: none;
 }
-.btn-primary:active:hover,
+.toggle:active:hover,
 .wallpaperButton:active:hover,
 .actionButton:active:hover {
   background: none;
