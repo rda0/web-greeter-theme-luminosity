@@ -206,6 +206,8 @@ window.authenticate = function (e, username) {
 window.cancelAuthentication = function (e) {
   log("authentication cancelled for " + $('#user').val());
   $('#pass').val('');
+  $('#pass').focus();
+  document.body.focus();
   log("call: lightdm.cancel_authentication()");
   lightdm.cancel_authentication();
   $('.login__submit').removeClass('processing');
