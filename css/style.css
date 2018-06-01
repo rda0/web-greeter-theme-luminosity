@@ -324,56 +324,42 @@ a {
 #backArea {
   display: none;
 }
-.toggle {
-  margin: 5px 5px 0 0;
-  font-size: 17px;
-  padding: 8px 12px;
-  line-height: 1;
-}
-.toggle .btn,
-#actionsArea .btn,
-#backArea .btn {
+.btn {
   padding: 2px 12px;
 }
-.toggle,
-.wallpaperButton,
-.actionButton {
+.btn {
   color: #fff;
   background: none;
   /* color: var(--action-button-color);
   background: var(--action-button-background); */
   box-shadow: 1px 1px 2px -1px rgba(255, 255, 255, 0.06) inset, 4px 4px 8px -4px rgba(255, 255, 255, 0.03) inset, 1px 1px 4px rgba(0,0,0,0.4);
 }
-.toggle:hover,
-.wallpaperButton:hover,
-.actionButton:hover {
+.btn:hover {
   color: #fff;
   background: none;
   /* color: var(--action-button-hover-color);
   background: var(--action-button-hover-background); */
   box-shadow: 1px 1px 2px -1px rgba(255, 255, 255, 0.1) inset, 4px 4px 8px -4px rgba(255, 255, 255, 0.12) inset, 1px 1px 4px rgba(0,0,0,0.4);
 }
-.toggle:focus,
-.wallpaperButton:focus,
-.actionButton:focus {
+.btn:focus {
   outline: none;
 }
-.toggle:active:focus,
-.wallpaperButton:active:focus,
-.actionButton:active:focus {
+.btn:active:focus {
   outline: none;
 }
-.toggle:active,
-.wallpaperButton:active,
-.actionButton:active {
+.btn:active {
   background: none;
   background-image: none;
 }
-.toggle:active:hover,
-.wallpaperButton:active:hover,
-.actionButton:active:hover {
+.btn:active:hover {
   background: none;
   background-image: none;
+}
+.bg-toggle {
+  margin: 5px 5px 0 0;
+  font-size: 17px;
+  padding: 8px 12px;
+  line-height: 1;
 }
 
 
