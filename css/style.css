@@ -924,7 +924,9 @@ label {
 #session-arrow:hover {
   
 }
-
+.dropdown-backdrop {
+  display:none;
+}
 
 
 /* input field style */

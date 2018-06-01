@@ -258,14 +258,14 @@ function debug(text) {
 
 function message(text) {
   if (DEBUG) {
-    $('#messageArea').append(text);
-    $('#messageArea').append('<br/>');
+    // $('#messageArea').append(text);
+    // $('#messageArea').append('<br/>');
   }
 }
 
 function showLogPanel() {
   $("#debugPanel").show().css('display', 'flex');
-  $("#messagePanel").show().css('display', 'flex');
+  // $("#messagePanel").show().css('display', 'flex');
 }
 
 function showPanel() {
