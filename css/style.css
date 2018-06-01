@@ -522,27 +522,34 @@ label {
 
 /* log */
 
-#logWrap {
+.logPanel {
   position: absolute;
   display: none;
   z-index: 2;
-  overflow: auto;
   color: #FFFFFF;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   font-size: 16px;
   padding: 20px;
-  bottom: 40px;
   left: 40px;
   width: 600px;
-  height: 350px;
+  height: calc(50% - 60px);
   z-index: 2;
 }
-
-#logWrap span {
-  align-self: flex-end;
+.logWrap {
+  display: flex;
   overflow: hidden;
 }
+.logWrap span {
+  align-self: flex-end;
+}
+#debugPanel {
+  bottom: 40px;
+}
+#messagePanel {
+  top: 40px;
+}
+
 
 /* background */
 

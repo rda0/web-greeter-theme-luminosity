@@ -17,6 +17,10 @@ if (typeof lightdm == 'undefined') {
   lightdm.can_restart = true;
   lightdm.can_shutdown = true;
 
+  greeter_config = {};
+  greeter_config.greeter = {};
+  greeter_config.greeter.debug_mode = true;
+
   lightdm.users = [
     { name: "clarkk", real_name: "Superman", display_name: "Clark Kent", language: "en_US", layout: null, session: "gnome", logged_in: false },
     // { name: "brucew", real_name: "Batman", display_name: "Bruce Wayne", language: "en_US", layout: null, session: "cinnamon", logged_in: false },

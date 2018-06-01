@@ -12,11 +12,11 @@ let theme_config = {};
 
 $(document).ready(function () {
   if (greeter_config.greeter.debug_mode && DEBUG) {
-    showLog();
+    showLogPanel();
   }
 
   for (let key in greeter_config.greeter) {
-    log(key + ': ' + greeter_config.greeter[key]);
+    debug(key + ': ' + greeter_config.greeter[key]);
   }
 
   loadThemeConfig();
@@ -41,7 +41,7 @@ $(document).ready(function () {
   $('#authenticateButton').click(function (e) {
     e.preventDefault();
     if (!processing) {
-      log('authenticateButton.click()');
+      debug('authenticateButton.click()');
       processing = true;
       submitPassword(e);
     }
@@ -53,9 +53,9 @@ $(document).ready(function () {
       case 13:
         let username = $('#user').val();
         if (username == null) {
-          log('username: null!');
+          debug('username: null!');
         } else {
-          log('username: ' + username)
+          debug('username: ' + username)
           slideToPasswordArea(e);
           authenticate(event, username);
         }
@@ -133,23 +133,23 @@ function authenticate(e, username) {
   $("#user-login-name").text(username);
   $('#user').prop('disabled', true);
   let userSession = getLastUserSession(username);
-  log('userSession: ' + userSession);
+  debug('userSession: ' + userSession);
   let userSessionEl = "#sessions [data-session-id=" + userSession + "]";
   let userSessionName = $(userSessionEl).html();
-  log('userSessionName: ' + userSessionName);
+  debug('userSessionName: ' + userSessionName);
   $('#session-list .selected').html(userSessionName);
   $('#session-list .selected').attr('data-session-id', userSession);
-  log('call: lightdm.start_authentication(' + username + ')');
+  debug('call: lightdm.start_authentication(' + username + ')');
   lightdm.start_authentication(username);
 }
 
 function cancelAuthentication(e) {
-  log("authentication cancelled for " + $('#user').val());
+  debug("authentication cancelled for " + $('#user').val());
   $('#pass').prop('disabled', false);
   $('#pass').val('');
   $('#pass').focus();
   document.body.focus();
-  log("call: lightdm.cancel_authentication()");
+  debug("call: lightdm.cancel_authentication()");
   lightdm.cancel_authentication();
   $('#authenticateButton').removeClass('processing');
   processing = false;
@@ -161,13 +161,13 @@ function submitPassword(e) {
   $('#authenticateButton').addClass("processing");
   $('#pass').prop('disabled', true);
   setTimeout(() => {
-    log("call: lightdm.respond(password)")
+    debug("call: lightdm.respond(password)")
     lightdm.respond($('#pass').val());
   }, submitTimeout);
 };
 
 function sessionToggle(element) {
-  log('sessionToggle');
+  debug('sessionToggle');
   let sessionText = $(element).text();
   let sessionID = $(element).attr('data-session-id');
   let username = $('#user').val();
@@ -176,12 +176,12 @@ function sessionToggle(element) {
 };
 
 function handleAction(id) {
-  log("handleAction(" + id + ")");
+  debug("handleAction(" + id + ")");
   eval("lightdm." + id + "()");
 };
 
 function slideToPasswordArea(e) {
-  log('slideToPasswordArea()');
+  debug('slideToPasswordArea()');
   document.body.removeEventListener('keydown', inputUserEventHandler);
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
@@ -199,7 +199,7 @@ function slideToPasswordArea(e) {
 }
 
 function slideToUsernameArea(e) {
-  log('slideToUsernameArea()');
+  debug('slideToUsernameArea()');
   document.body.removeEventListener('keydown', inputPassEventHandler);
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
@@ -219,14 +219,14 @@ function slideToUsernameArea(e) {
 function inputUserEventHandler(e) {
   switch (e.which) {
     case 27:
-      log('keydown: esc');
+      debug('keydown: esc');
       $('#user').val('');
       document.body.focus();
       break;
     default:
       if (!$('#user').is(':focus')) {
         $('#user').focus();
-        log("set focus on #user");
+        debug("set focus on #user");
       }
   }
 }
@@ -234,7 +234,7 @@ function inputUserEventHandler(e) {
 function inputPassEventHandler(e) {
   switch (e.which) {
     case 27:
-      log('keydown: esc');
+      debug('keydown: esc');
       $('#pass').val('');
       $('#user').val('');
       $('#user').focus();
@@ -244,20 +244,28 @@ function inputPassEventHandler(e) {
     default:
       if (!$('#pass').is(':focus')) {
         $('#pass').focus();
-        log("set focus on #pass");
+        debug("set focus on #pass");
       }
   }
 }
 
-function log(text) {
+function debug(text) {
   if (DEBUG) {
-    $('#logArea').append(text);
-    $('#logArea').append('<br/>');
+    $('#debugArea').append(text);
+    $('#debugArea').append('<br/>');
   }
 }
 
-function showLog() {
-  $("#logWrap").show().css('display', 'flex');
+function message(text) {
+  if (DEBUG) {
+    $('#messageArea').append(text);
+    $('#messageArea').append('<br/>');
+  }
+}
+
+function showLogPanel() {
+  $("#debugPanel").show().css('display', 'flex');
+  $("#messagePanel").show().css('display', 'flex');
 }
 
 function showPanel() {
@@ -277,11 +285,11 @@ function getLastUserSession(username) {
   }
 
   if (!lastSession) {
-    log('last session not found. using default: ' + lightdm.default_session)
+    debug('last session not found. using default: ' + lightdm.default_session)
     lastSession = lightdm.default_session;
   }
   
-  log(username + '\'s last session: ' + lastSession);
+  debug(username + '\'s last session: ' + lastSession);
   return lastSession;
 }
 
@@ -295,7 +303,7 @@ function getSessionList() {
         className + '">' + session.name + '</a></li>';
 
     $(buttonGroup).append(button);
-    log('session: ' + session.key);
+    debug('session: ' + session.key);
   }
 }
 
@@ -304,7 +312,7 @@ function getHostname() {
   let hostname_span = document.getElementById('hostname');
   $(hostname_span).append(hostname);
   $("#hostname-label").text(hostname);
-  log('hostname: ' + hostname);
+  debug('hostname: ' + hostname);
 }
 
 function addActionButton(id) {
@@ -327,7 +335,7 @@ function addActionButton(id) {
         ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label +
         '" data-container="body" onclick="handleAction(\'' + id +
         '\')"><i class="fa fa-' + id2 + '"></i></button>');
-    log('lightdm.can: ' + id);
+    debug('lightdm.can: ' + id);
   }
 }
 
@@ -336,43 +344,37 @@ function addActionButton(id) {
  */
 
 function show_prompt(text) {
-  log("callback: show_prompt(): " + text);
+  debug("callback: show_prompt(): " + text);
 }
 
 function authentication_complete() {
-  log('callback: authentication_complete()');
+  debug('callback: authentication_complete()');
   let username = lightdm.authentication_user;
   username = 'rdatest';
   let selectedSession = $('.selected').attr('data-session-id');
   if (lightdm.is_authenticated) {
-    log('authentication successful');
+    debug('authentication successful');
     setTimeout(() => {
-      log('call: lightdm.start_session(' + selectedSession + ')');
+      debug('call: lightdm.start_session(' + selectedSession + ')');
       lightdm.start_session(selectedSession);
     }, 2000);
   } else {
 
-    log('authentication failure: ' + username);
+    debug('authentication failure: ' + username);
     cancelAuthentication();
-    log('call: lightdm.authenticate(' + username + ')');
+    debug('call: lightdm.authenticate(' + username + ')');
     lightdm.authenticate(username);
   }
 }
 
 function show_message(text) {
-  log('callback: show_message(): ' + text)
-  let msgWrap = document.getElementById('statusArea'),
-    showMsg = document.getElementById('showMsg');
-  showMsg.innerHTML = text;
-  if (text.length > 0) {
-    $('#passwordArea').hide();
-    $(msgWrap).show();
-  }
+  debug('callback: show_message(): ' + text)
+  message(text);
 }
 
 function show_error(text) {
-  log('callback: show_error(): ' + text)
-  show_message(text);
+  debug('callback: show_error(): ' + text)
+  show_message('error: ' + text);
 }
 
 /*
