@@ -46,7 +46,7 @@
       "color": "#fff"
     },
     "status_panel_granted": {
-      "background": "rgba(0,120,196,.6)"
+      "background": "rgba(66,133,244,.6)"
     },
     "status_panel_denied": {
       "background": "rgba(143,0,17,.6)"

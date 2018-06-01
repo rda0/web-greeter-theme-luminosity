@@ -389,16 +389,16 @@ function authentication_complete() {
     $('#statusMessage').html('Access Granted');
     $('#statusPanel').css(theme_config.styles.status_panel_granted);
     $('#statusPanel').show();
-    $('#statusPanel').fadeTo(400, 1, function () {
+    $('#statusPanel').fadeTo(200, 1, function () {
       setTimeout(() => {
-        $('#statusPanel').fadeTo(400, 0, function () {
+        $('#statusPanel').fadeTo(200, 0, function () {
           $('#statusPanel').hide();
           setTimeout(() => {
             debug('call: lightdm.start_session(' + selectedSession + ')');
             lightdm.start_session(selectedSession);
           }, 200);
         });
-      }, 1000); 
+      }, 300); 
     });
   } else {
     debug('authentication failure: ' + username);
