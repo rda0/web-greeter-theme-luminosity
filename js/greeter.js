@@ -411,14 +411,16 @@ function authentication_complete() {
   let selectedSession = $('.selected').attr('data-session-id');
   if (lightdm.is_authenticated) {
     log('authentication successful');
-    log('call: lightdm.login(' + username + ', ' + selectedSession + ')');
-    lightdm.login(username, selectedSession);
+    setTimeout(() => {
+      log('call: lightdm.start_session(' + selectedSession + ')');
+      lightdm.start_session(selectedSession);
+    }, 2000);
   } else {
 
     log('authentication failure: ' + username);
     cancelAuthentication();
-    log('call: lightdm.start_authentication(' + username + ')');
-    lightdm.start_authentication(username);
+    log('call: lightdm.authenticate(' + username + ')');
+    lightdm.authenticate(username);
   }
 }
 
