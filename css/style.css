@@ -171,7 +171,6 @@ a {
 }
 #statusArea span {
   width: 350px;
-  font-size: 40px;
   font-weight: bold;
   position: absolute;
   left: 50%;
@@ -185,6 +184,7 @@ a {
   transform: translate(-50%, -50%);
 }
 #statusMessage {
+  font-size: 40px;
   top: 70%;
   transform: translate(-50%, -50%);
 }

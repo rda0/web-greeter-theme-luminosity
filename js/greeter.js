@@ -355,18 +355,18 @@ function addActionButton(id) {
       id2 = "power-off"
     }
     if (id == "hibernate") {
-      id2 = "asterisk"
+      id2 = "moon"
     }
     if (id == "suspend") {
       id2 = "arrow-down"
     }
     if (id == "restart") {
-      id2 = "refresh"
+      id2 = "sync-alt"
     }
     $("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id +
         ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label +
         '" data-container="body" onclick="handleAction(\'' + id +
-        '\')"><i class="fa fa-' + id2 + '"></i></button>');
+        '\')"><i class="fas fa-' + id2 + '"></i></button>');
     debug('lightdm.can: ' + id);
   }
 }
