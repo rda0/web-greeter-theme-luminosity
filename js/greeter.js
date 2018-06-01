@@ -45,6 +45,7 @@ $(document).ready(function () {
   // Username submit when enter key is pressed
   $('#user').keydown(function (e) {
     switch (e.which) {
+      case 09:
       case 13:
         let username = $('#user').val();
         if (username == null) {
@@ -218,55 +219,68 @@ function slideToUsernameArea(e) {
 function inputUserEventHandler(e) {
   debug('char: ' + e.which);
 
-  switch (e.which) {
-    case 27:
-      debug('keydown: esc');
-      $('#user').val('');
-      document.body.focus();
-      break;
-    case 09:
-      break;
-    case 13:
-      break;
-    case 17:
-      break;
-    case 18:
-      break;
-    case 19:
-      break;
-    default:
-      if (!$('#user').is(':focus')) {
-        $('#user').focus();
-        debug("set focus on #user");
-      }
+  if (!ignoreCharacter(e.which)) {
+    switch (e.which) {
+      case 27:
+        debug('keydown: esc');
+        $('#user').val('');
+        document.body.focus();
+        break;
+      default:
+        if (!$('#user').is(':focus')) {
+          $('#user').focus();
+          debug("set focus on #user");
+        }
+    }
   }
 }
 
 function inputPassEventHandler(e) {
-  switch (e.which) {
-    case 27:
-      debug('keydown: esc');
-      $('#pass').val('');
-      $('#user').val('');
-      $('#user').focus();
-      document.body.focus();
-      $('.backButton').trigger('click');
-      break;
+  if (!ignoreCharacter(e.which)) {
+    switch (e.which) {
+      case 27:
+        debug('keydown: esc');
+        $('#pass').val('');
+        $('#user').val('');
+        $('#user').focus();
+        document.body.focus();
+        $('.backButton').trigger('click');
+        break;
+      default:
+        if (!$('#pass').is(':focus')) {
+          $('#pass').focus();
+          debug("set focus on #pass");
+        }
+    }
+  }
+}
+
+function ignoreCharacter(character) {
+  switch (character) {
     case 09:
-      break;
     case 13:
-      break;
     case 17:
-      break;
     case 18:
-      break;
     case 19:
-      break;
+    case 33:
+    case 34:
+    case 112:
+    case 113:
+    case 114:
+    case 115:
+    case 116:
+    case 117:
+    case 118:
+    case 119:
+    case 120:
+    case 121:
+    case 122:
+    case 123:
+    case 144:
+    case 145:
+      return true;
     default:
-      if (!$('#pass').is(':focus')) {
-        $('#pass').focus();
-        debug("set focus on #pass");
-      }
+      return false;
   }
 }
 
