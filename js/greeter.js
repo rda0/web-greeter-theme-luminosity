@@ -3,7 +3,6 @@
  */
 
 let DEBUG = true;
-let authPending = null;
 let animating = false;
 window.config = {};
 
@@ -162,6 +161,9 @@ $(document).ready(function () {
 
   // Cancel authentication
   $(".backButton").click(function (e) {
+    slideToUsernameArea(event);
+    $('#user').val('');
+    $('#session-list .selected').html('')
     cancelAuthentication(event);
   });
 
@@ -197,20 +199,16 @@ window.authenticate = function (e, username) {
   log('userSessionName: ' + userSessionName);
   $('#session-list .selected').html(userSessionName);
   $('#session-list .selected').attr('data-session-id', userSession);
-  authPending = true;
   log('call: lightdm.start_authentication(' + username + ')');
   lightdm.start_authentication(username);
 }
 
 window.cancelAuthentication = function (e) {
   log("authentication cancelled for " + $('#user').val());
-  slideToUsernameArea();
-  $('#pass').val('');
-  $('#user').val('');
-  $('#session-list .selected').html('')
   log("call: lightdm.cancel_authentication()");
   lightdm.cancel_authentication();
-  authPending = false;
+  $('.login__submit').removeClass('processing');
+  animating = false;
 };
 
 window.submitPassword = function (password) {
@@ -396,20 +394,16 @@ function show_prompt(text) {
 
 function authentication_complete() {
   log('callback: authentication_complete()');
-  authPending = false;
   let username = lightdm.authentication_user;
   let selectedSession = $('.selected').attr('data-session-id');
   if (lightdm.is_authenticated) {
     log('authentication successful');
+    log('call: lightdm.login(' + username + ', ' + selectedSession + )');
     lightdm.login(username, selectedSession);
   } else {
 
     log('authentication failure: ' + username);
-    log('call: lightdm.cancel_authentication()');
-    lightdm.cancel_authentication();
-    $('#pass').val('');
-    animating = false;
-    $('.login__submit').removeClass('processing');
+    cancelAuthentication();
     log('call: lightdm.start_authentication(' + username + ')');
     lightdm.start_authentication(username);
   }
