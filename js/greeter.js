@@ -218,8 +218,8 @@ window.submitPassword = function (e) {
   $('#authenticateButton').addClass("processing");
   $('#pass').prop('disabled', true);
   setTimeout(() => {
-    log("call: lightdm.provide_secret(password)")
-    lightdm.provide_secret($('#pass').val());
+    log("call: lightdm.respond(password)")
+    lightdm.respond($('#pass').val());
   }, submitTimeout);
 };
 
