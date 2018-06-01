@@ -81,6 +81,15 @@ $(document).ready(function () {
     cancelAuthentication(event);
   });
 
+  // Dropdown menu
+  $(".dropdown-toggle").click(function (e) {
+    if ($('#sessions').is(':visible')) {
+      $('#sessions').hide();
+    } else {
+      $('#sessions').show();
+    }
+  });
+
   // Open background panel
   $("#bg-switch-toggle").click(function (e) {
     e.preventDefault();
