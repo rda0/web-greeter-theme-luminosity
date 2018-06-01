@@ -17,11 +17,6 @@ $(document).ready(function () {
     showLog();
   }
 
-  log('webkit_theme: ' + greeter_config.greeter.webkit_theme);
-  log('detect_theme_errors: ' + greeter_config.greeter.detect_theme_errors);
-  log('screensaver_timeout: ' + greeter_config.greeter.detect_theme_errors);
-  log('secure_mode: ' + greeter_config.greeter.detect_theme_errors);
-
   loadThemeConfig();
 
   // Focus user input field on keydown
@@ -31,6 +26,11 @@ $(document).ready(function () {
     setBackground();
     getHostname();
     getSessionList();
+
+    log('webkit_theme: ' + greeter_config.greeter.webkit_theme);
+    log('detect_theme_errors: ' + greeter_config.greeter.detect_theme_errors);
+    log('screensaver_timeout: ' + greeter_config.greeter.screensaver_timeout);
+    log('secure_mode: ' + greeter_config.greeter.secure_mode);
   });
 
   // Set tabindex = -1 on all alements
