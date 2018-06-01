@@ -28,11 +28,6 @@ $(document).ready(function () {
     setBackground();
     getHostname();
     getSessionList();
-
-    log('webkit_theme: ' + greeter_config.greeter.webkit_theme);
-    log('detect_theme_errors: ' + greeter_config.greeter.detect_theme_errors);
-    log('screensaver_timeout: ' + greeter_config.greeter.screensaver_timeout);
-    log('secure_mode: ' + greeter_config.greeter.secure_mode);
   });
 
   // Set tabindex = -1 on all alements
@@ -254,26 +249,6 @@ function inputPassEventHandler(e) {
   }
 }
 
-function getSessionList() {
-  let buttonGroup = $('#sessions');
-  for (let i in lightdm.sessions) {
-    let session = lightdm.sessions[i];
-    let className = session.name.replace(/ /g, '');
-    let button = '\n<li><a href="#" data-session-id="' +
-        session.key + '" onclick="sessionToggle(this)" class="' +
-        className + '">' + session.name + '</a></li>';
-
-    $(buttonGroup).append(button);
-  }
-}
-
-function getHostname() {
-  let hostname = lightdm.hostname;
-  let hostname_span = document.getElementById('hostname');
-  $(hostname_span).append(hostname);
-  $("#hostname-label").text(hostname);
-}
-
 function log(text) {
   if (DEBUG) {
     $('#logArea').append(text);
@@ -310,8 +285,31 @@ function getLastUserSession(username) {
   return lastSession;
 }
 
+function getSessionList() {
+  let buttonGroup = $('#sessions');
+  for (let i in lightdm.sessions) {
+    log('session: ' + session.key);
+    let session = lightdm.sessions[i];
+    let className = session.name.replace(/ /g, '');
+    let button = '\n<li><a href="#" data-session-id="' +
+        session.key + '" onclick="sessionToggle(this)" class="' +
+        className + '">' + session.name + '</a></li>';
+
+    $(buttonGroup).append(button);
+  }
+}
+
+function getHostname() {
+  let hostname = lightdm.hostname;
+  let hostname_span = document.getElementById('hostname');
+  $(hostname_span).append(hostname);
+  $("#hostname-label").text(hostname);
+  log('hostname: ' + hostname);
+}
+
 function addActionButton(id) {
   if (eval("lightdm.can_" + id)) {
+    log('lightdm.can: ' + id);
     let label = id.substr(0, 1).toUpperCase() + id.substr(1, id.length - 1);
     let id2;
     if (id == "shutdown") {
@@ -457,5 +455,4 @@ function setDefaultBackground() {
       "background-image": "url('img/default-bg.jpg')"
     }));
   }).fadeTo('slow', 1);
-}
- 
+} 
