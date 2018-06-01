@@ -159,6 +159,7 @@ $(document).ready(function () {
   // Cancel authentication
   $(".backButton").click(function (e) {
     slideToUsernameArea(event);
+    $('#user').prop('disabled', false);
     $('#user').val('');
     $('#session-list .selected').html('')
     cancelAuthentication(event);
@@ -187,6 +188,7 @@ $(document).ready(function () {
 
 window.authenticate = function (e, username) {
   $("#user-login-name").text(username);
+  $('#user').prop('disabled', true);
   let userSession = getLastUserSession(username);
   log('userSession: ' + userSession);
   let userSessionEl = "#sessions [data-session-id=" + userSession + "]";
