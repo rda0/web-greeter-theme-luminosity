@@ -81,16 +81,10 @@ $(document).ready(function () {
     cancelAuthentication(event);
   });
 
-  /*
   // Dropdown menu
-  $(".dropdown-toggle").click(function (e) {
-    if ($('#sessions').is(':visible')) {
-      $('#sessions').hide();
-    } else {
-      $('#sessions').show();
-    }
+  $('#session-selected').click(function (e) {
+    $('#session-arrow').trigger('click');
   });
-  */
 
   // Open background panel
   $("#bg-switch-toggle").click(function (e) {
