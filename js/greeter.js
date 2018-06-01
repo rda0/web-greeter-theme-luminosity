@@ -30,11 +30,6 @@ $(document).ready(function () {
     getSessionList();
   });
 
-  // Set tabindex = -1 on all alements
-  $('*').each(function () {
-    $(this).attr('tabindex', -1);
-  });
-
   // Events
 
   // Username submit
@@ -391,31 +386,49 @@ function loadThemeConfig() {
     $('#banner img').attr('src', `img/banners/${theme_config.banner}.png`);
     $('#logo img').attr('src', `img/banners/${theme_config.logo}.png`);
 
-    theme_config.backgrounds.forEach(function (background) {
-      $('.bgs').append(`
-            <a href="#" data-img="${background.image}" class="background">
-              <img src="${background.thumb}" />
-            </a>
-          `);
-    });
-
-    // Add background buttons handler
-    let backgroundButtons = $(".bg-switch .background");
-    backgroundButtons.click(function (e) {
-      e.preventDefault();
-      backgroundButtons.removeClass("active");
-      $(".bgs .background .default").first().removeClass('active');
-      $(this).addClass("active");
-      switchBackground($(this).data("img"));
-    });
-
-    addActionButton("shutdown");
-    addActionButton("hibernate");
-    addActionButton("suspend");
-    addActionButton("restart");
-
+    addBackgroundButtons();
+    addBackgroundButtonsHandler();
+    addActionButtons();
+    setTabIndex();
     showPanel();
   });
+}
+
+function addBackgroundButtons() {
+  theme_config.backgrounds.forEach(function (background) {
+    $('.bgs').append(`
+          <a href="#" data-img="${background.image}" class="background">
+            <img src="${background.thumb}" />
+          </a>
+        `);
+  });
+}
+
+function addBackgroundButtonsHandler() {
+  // Add background buttons handler
+  let backgroundButtons = $(".bg-switch .background");
+  backgroundButtons.click(function (e) {
+    e.preventDefault();
+    backgroundButtons.removeClass("active");
+    $(".bgs .background .default").first().removeClass('active');
+    $(this).addClass("active");
+    switchBackground($(this).data("img"));
+  });
+}
+
+function addActionButtons() {
+  addActionButton("shutdown");
+  addActionButton("hibernate");
+  addActionButton("suspend");
+  addActionButton("restart");
+}
+
+function setTabIndex() {
+  // Set tabindex = -1 on all alements
+  $('*').each(function () {
+    $(this).attr('tabindex', -1);
+  });
+
 }
 
 function switchBackground(background) {
