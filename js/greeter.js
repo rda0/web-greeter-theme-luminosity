@@ -144,6 +144,7 @@ $(document).ready(function () {
           log('username: null!');
         } else {
           log('username: ' + username)
+          slideToPasswordArea(e);
           authenticate(event, username);
         }
         break;
@@ -189,8 +190,6 @@ $(document).ready(function () {
  */
 
 window.authenticate = function (e, username) {
-  slideToPasswordArea(e);
-
   $("#user-login-name").text(username);
   let userSession = getLastUserSession(username);
   log('userSession: ' + userSession);
@@ -236,10 +235,10 @@ window.handleAction = function (id) {
 
 function slideToPasswordArea(e) {
   log('slideToPasswordArea()');
-  document.body.removeEventListener('keydown', inputUser);
+  document.body.removeEventListener('keydown', inputUserEventHandler);
   const content = document.querySelector('.content');
   const onTransitionEnd = function (e) {
-    document.body.addEventListener('keydown', inputPass);
+    document.body.addEventListener('keydown', inputPassEventHandler);
     content.removeEventListener('transitionend', onTransitionEnd);
   };
   content.addEventListener('transitionend', onTransitionEnd);
@@ -254,8 +253,13 @@ function slideToPasswordArea(e) {
 
 function slideToUsernameArea(e) {
   log('slideToUsernameArea()');
-  document.body.removeEventListener('keydown', inputPass);
-  document.body.addEventListener('keydown', inputUser);
+  document.body.removeEventListener('keydown', inputPassEventHandler);
+  const content = document.querySelector('.content');
+  const onTransitionEnd = function (e) {
+    document.body.addEventListener('keydown', inputUserEventHandler);
+    content.removeEventListener('transitionend', onTransitionEnd);
+  };
+  content.addEventListener('transitionend', onTransitionEnd);
 
   $('.content').css({
     marginLeft: '0px'
@@ -265,7 +269,7 @@ function slideToUsernameArea(e) {
   });
 }
 
-function inputUser(e) {
+function inputUserEventHandler(e) {
   // log('active.id: ' + document.activeElement.id);
   // log('user has focus: ' + $('#user').is(':focus'));
 
@@ -283,7 +287,7 @@ function inputUser(e) {
   }
 }
 
-function inputPass(e) {
+function inputPassEventHandler(e) {
   // log('active.id: ' + document.activeElement.id);
   // log('pass has focus: ' + $('#pass').is(':focus'));
 
