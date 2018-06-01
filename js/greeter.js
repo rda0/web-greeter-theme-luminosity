@@ -125,6 +125,7 @@ $(document).ready(function () {
   $('#authenticateButton').click(function (e) {
     e.preventDefault();
     if (!animating) {
+      log('authenticateButton.click()')
       animating = true;
       submitPassword(e);
     }
