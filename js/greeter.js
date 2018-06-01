@@ -396,8 +396,9 @@ function authentication_complete() {
     $('#statusPanel').show();
     $('#statusPanel').fadeTo(400, 1, function () {
       setTimeout(() => {
-        $('#statusPanel').fadeTo(400, 0);
-        $('#statusPanel').hide();
+        $('#statusPanel').fadeTo(400, 0, function () {
+          $('#statusPanel').hide();
+        });
       }, 1000); 
     });
     debug('call: lightdm.authenticate(' + username + ')');
