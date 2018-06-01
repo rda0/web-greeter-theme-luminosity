@@ -386,7 +386,7 @@ function authentication_complete() {
   let selectedSession = $('.selected').attr('data-session-id');
   if (lightdm.is_authenticated) {
     debug('authentication successful');
-    $('#statusPanel').html('Access Granted');
+    $('#statusMessage').html('Access Granted');
     $('#statusPanel').css(theme_config.styles.status_panel_granted);
     $('#statusPanel').show();
     $('#statusPanel').fadeTo(400, 1, function () {
@@ -403,7 +403,7 @@ function authentication_complete() {
   } else {
     debug('authentication failure: ' + username);
     cancelAuthentication();
-    $('#statusPanel').html('Access Denied');
+    $('#statusMessage').html('Access Denied');
     $('#statusPanel').css(theme_config.styles.status_panel_denied);
     $('#statusPanel').show();
     $('#statusPanel').fadeTo(400, 1, function () {
