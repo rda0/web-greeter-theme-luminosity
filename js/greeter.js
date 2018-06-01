@@ -191,6 +191,8 @@ function slideToPasswordArea(e) {
   $('#actionsArea').fadeOut(125, function() {
     $('#backArea').fadeIn(125);
   });
+
+  setTabIndexPasswordArea(true);
 }
 
 function slideToUsernameArea(e) {
@@ -209,14 +211,20 @@ function slideToUsernameArea(e) {
   $('#backArea').fadeOut(125, function() {
     $('#actionsArea').fadeIn(125);
   });
+
+  setTabIndexUsernameArea(true);
 }
 
 function inputUserEventHandler(e) {
+  log('char: ' + e.which)
   switch (e.which) {
     case 27:
       debug('keydown: esc');
       $('#user').val('');
       document.body.focus();
+      break;
+    case 09:
+      debug('keydown: tab');
       break;
     default:
       if (!$('#user').is(':focus')) {
@@ -430,6 +438,35 @@ function setTabIndex() {
     $(this).attr('tabindex', -1);
   });
 
+  setTabIndexUsernameArea(true);
+}
+
+function setTabIndexUsernameArea(active) {
+  if (active) {
+    setTabIndexPasswordArea(false);
+    $('#user').attr('tabindex', 1);
+    $('.shutdown').attr('tabindex', 2);
+    $('.hibernate').attr('tabindex', 3);
+    $('.suspend').attr('tabindex', 4);
+    $('.restart').attr('tabindex', 5);
+  } else {
+    $('#user').attr('tabindex', -1);
+    $('.shutdown').attr('tabindex', -1);
+    $('.hibernate').attr('tabindex', -1);
+    $('.suspend').attr('tabindex', -1);
+    $('.restart').attr('tabindex', -1);
+  }
+}
+
+function setTabIndexPasswordArea(active) {
+  if (active) {
+    setTabIndexUsernameArea(false);
+    $('#pass').attr('tabindex', 1);
+    $('.backButton').attr('tabindex', 2);
+  } else {
+    $('#pass').attr('tabindex', -1);
+    $('.backButton').attr('tabindex', -1);
+  }
 }
 
 function switchBackground(background) {
