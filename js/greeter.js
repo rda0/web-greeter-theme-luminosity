@@ -371,9 +371,9 @@ function getLastUserSession(username) {
   
   let lastSession = null;
 
-  for (let user in lightdm.users) {
-    if (user.username == username) {
-      lastSession = user.session;
+  for (let i in lightdm.users) {
+    if (lightdm.users[i].username == username) {
+      lastSession = lightdm.users[i].session;
     }
   }
 
