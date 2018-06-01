@@ -390,10 +390,11 @@ function loadThemeConfig() {
           `);
     });
 
-    // Switch background
-    $(".bg-switch .background").click(function (e) {
+    // Add background buttons handler
+    let backgroundButtons = $(".bg-switch .background");
+    backgroundButtons.click(function (e) {
       e.preventDefault();
-      $(this).removeClass("active");
+      backgroundButtons.removeClass("active");
       $(".bgs .background .default").first().removeClass('active');
       $(this).addClass("active");
       switchBackground($(this).data("img"));
