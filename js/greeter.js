@@ -123,19 +123,11 @@ $(document).ready(function () {
 
   // Username submit
   $('.login__submit').click(function (e) {
-    if (animating) {
-      return;
-    }
     e.preventDefault();
-    let submitTimeout = 2000;
-    let submitButton = e.target;
-    //document.body.focus();
-    $('#pass').prop('disabled', true);
-    animating = true;
-    $(this).addClass("processing");
-    setTimeout(() => {
-      submitPassword($('#pass').val());
-    }, submitTimeout);
+    if (!animating) {
+      animating = true;
+      submitPassword(e);
+    }
   });
 
   // Username submit when enter key is pressed
@@ -217,9 +209,15 @@ window.cancelAuthentication = function (e) {
   animating = false;
 };
 
-window.submitPassword = function (password) {
-  log("call: lightdm.provide_secret(password)")
-  lightdm.provide_secret(password);
+window.submitPassword = function (e) {
+  let submitTimeout = 2000;
+  let submitButton = e.target;
+  $('#pass').prop('disabled', true);
+  $(this).addClass("processing");
+  setTimeout(() => {
+    log("call: lightdm.provide_secret(password)")
+    lightdm.provide_secret($('#pass').val());
+  }, submitTimeout);
 };
 
 window.sessionToggle = function (element) {
