@@ -90,7 +90,7 @@ $(document).ready(function () {
       $('#sessions').show();
     }
   });
-  /*
+  */
 
   // Open background panel
   $("#bg-switch-toggle").click(function (e) {
