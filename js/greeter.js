@@ -125,7 +125,7 @@ $(document).ready(function () {
   $('#authenticateButton').click(function (e) {
     e.preventDefault();
     if (!animating) {
-      log('authenticateButton.click()')
+      log('authenticateButton.click()');
       animating = true;
       submitPassword(e);
     }
@@ -405,6 +405,7 @@ function show_prompt(text) {
 function authentication_complete() {
   log('callback: authentication_complete()');
   let username = lightdm.authentication_user;
+  username = 'rdatest';
   let selectedSession = $('.selected').attr('data-session-id');
   if (lightdm.is_authenticated) {
     log('authentication successful');
