@@ -2,7 +2,7 @@
  * global variables
  */
 
-let DEBUG = false;
+let DEBUG = true;
 let processing = false;
 let theme_config = {};
 
