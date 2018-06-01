@@ -81,11 +81,6 @@ $(document).ready(function () {
     cancelAuthentication(event);
   });
 
-  // Dropdown menu
-  $('#session-selected').click(function (e) {
-    $('#session-arrow').trigger('click');
-  });
-
   // Open background panel
   $("#bg-switch-toggle").click(function (e) {
     e.preventDefault();
