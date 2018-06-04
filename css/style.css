@@ -691,6 +691,8 @@ a {
 }
 
 #authenticateButton:after {
+  color: #fff;
+  background-color: none;
   content: "";
   position: absolute;
   top: 50%;
@@ -710,6 +712,8 @@ a {
 }
 
 #authenticateButton.processing {
+  color: #fff;
+  background-color: none;
   -webkit-transition: width 200ms ease-in, padding 200ms ease-out, border-radius 200ms ease-in 200ms, font-size 200ms ease-in, background 400ms, box-shadow .4s;
   transition: width 200ms ease-in, padding 200ms ease-out, border-radius 200ms ease-in 200ms, font-size 200ms ease-in, background 400ms, box-shadow .4s;
   width: 50px;
@@ -719,6 +723,8 @@ a {
 }
 
 #authenticateButton.processing:after {
+  color: #fff;
+  background-color: none;
   opacity: 1;
   -webkit-animation: rotate 0.5s 0.4s infinite linear;
   animation: rotate 0.5s 0.4s infinite linear;
