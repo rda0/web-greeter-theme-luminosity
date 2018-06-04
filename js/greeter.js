@@ -516,12 +516,10 @@ function setTabIndexPasswordArea(active) {
   if (active) {
     $('#pass').attr('tabindex', 1);
     $('#session-button').attr('tabindex', 2);
-    $('#authenticateButton').attr('tabindex', 3);
-    $('.backButton').attr('tabindex', 4);
+    $('.backButton').attr('tabindex', 3);
   } else {
     $('#pass').attr('tabindex', -1);
     $('#session-button').attr('tabindex', -1);
-    $('#authenticateButton').attr('tabindex', -1);
     $('.backButton').attr('tabindex', -1);
   }
 }
