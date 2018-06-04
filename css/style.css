@@ -382,9 +382,15 @@ a {
 }
 .btn:focus {
   outline: none;
+  background-image: none;
+  color: #000;
+  background-color: #fff;
 }
 .btn:active:focus {
   outline: none;
+  background-image: none;
+  color: #000;
+  background-color: #fff;
 }
 .btn:active {
   background: none;
