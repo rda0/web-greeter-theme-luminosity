@@ -403,7 +403,7 @@ a {
 
 
 /* drop-down style */
-#session-list .btn-default {
+/*#session-list .btn-default {
   background-color: rgba(0,0,0,0);
 }
 #session-list .btn-default:focus {
@@ -416,7 +416,7 @@ a {
 #session-list .btn-default:active:hover {
   background: none;
   background-image: none;
-}
+}*/
 #session-button {
   width: 100%;
   height: 60px;
