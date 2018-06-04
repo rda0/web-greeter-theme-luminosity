@@ -668,31 +668,18 @@ a {
   box-shadow: 0px 5px 2px -5px rgba(255, 255, 255, 0.3) inset, 0px 10px 20px -5px rgba(255, 255, 255, 0.04) inset, 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 3px 3px 0 rgba(0, 0, 0, 0.3);
 }
 #authenticateButton:focus {
-  outline: none;
-  background-image: none;
-  color: #000;
-  background-color: #fff;
+  border: 2px dotted #fff;
+  border-radius: 50%;
+  border-left: none;
+  border-bottom: none;
 }
 #authenticateButton:active:focus {
-  outline: none;
-  background-image: none;
-  color: #000;
-  background-color: #fff;
+  border: 2px dotted #fff;
+  border-radius: 50%;
+  border-left: none;
+  border-bottom: none;
 }
-#authenticateButton:active {
-  color: #fff;
-  background: none;
-  background-image: none;
-}
-#authenticateButton:active:hover {
-  color: #fff;
-  background: none;
-  background-image: none;
-}
-
 #authenticateButton:after {
-  color: #fff;
-  background-color: none;
   content: "";
   position: absolute;
   top: 50%;
@@ -710,10 +697,7 @@ a {
   opacity: 0;
   overflow: hidden;
 }
-
 #authenticateButton.processing {
-  color: #fff;
-  background-color: none;
   -webkit-transition: width 200ms ease-in, padding 200ms ease-out, border-radius 200ms ease-in 200ms, font-size 200ms ease-in, background 400ms, box-shadow .4s;
   transition: width 200ms ease-in, padding 200ms ease-out, border-radius 200ms ease-in 200ms, font-size 200ms ease-in, background 400ms, box-shadow .4s;
   width: 50px;
@@ -721,15 +705,11 @@ a {
   font-size: 0;
   padding: 1em;
 }
-
 #authenticateButton.processing:after {
-  color: #fff;
-  background-color: none;
   opacity: 1;
   -webkit-animation: rotate 0.5s 0.4s infinite linear;
   animation: rotate 0.5s 0.4s infinite linear;
 }
-
 #authenticateButton.success {
   -webkit-transition: opacity 0.1s 0.3s, background-color 0.1s 0.3s, -webkit-transform 0.3s 0.1s ease-out;
   transition: opacity 0.1s 0.3s, background-color 0.1s 0.3s, -webkit-transform 0.3s 0.1s ease-out;
@@ -739,7 +719,6 @@ a {
   transform: scale(30);
   opacity: 0.9;
 }
-
 #authenticateButton.success:after {
   -webkit-transition: opacity 0.1s 0s;
   transition: opacity 0.1s 0s;
@@ -747,14 +726,12 @@ a {
   -webkit-animation: none;
   animation: none;
 }
-
 @-webkit-keyframes rotate {
   to {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @keyframes rotate {
   to {
     -webkit-transform: rotate(360deg);
