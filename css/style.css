@@ -467,14 +467,41 @@ a {
   font-size: 20px;
   font-weight: normal;
 }
-#sessions li a {
-  color: #fff;
-}
-#sessions li a:hover {
-  color: #000;
-}
 #sessions ul {
   top: 0;
+}
+#sessions li a {
+  color: inherit;
+}
+#sessions li: {
+  color: #fff;
+}
+#sessions li:hover {
+  color: #000;
+  background: none;
+  background-color: #fff;
+}
+#sessions li:focus {
+  outline: none;
+  background-image: none;
+  color: #000;
+  background-color: #fff;
+}
+#sessions li:active:focus {
+  outline: none;
+  background-image: none;
+  color: #000;
+  background-color: #fff;
+}
+#sessions li:active {
+  color: #fff;
+  background: none;
+  background-image: none;
+}
+#sessions li:active:hover {
+  color: #fff;
+  background: none;
+  background-image: none;
 }
 #session-button {
   -webkit-box-shadow: 0px 5px 2px -5px rgba(255, 255, 255, 0.2) inset, 0px 10px 20px -5px rgba(255, 255, 255, 0.02) inset, 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 3px 3px 0 rgba(0, 0, 0, 0.3);
