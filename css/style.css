@@ -667,6 +667,28 @@ a {
   -webkit-box-shadow: 0px 5px 2px -5px rgba(255, 255, 255, 0.3) inset, 0px 10px 20px -5px rgba(255, 255, 255, 0.04) inset, 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 3px 3px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0px 5px 2px -5px rgba(255, 255, 255, 0.3) inset, 0px 10px 20px -5px rgba(255, 255, 255, 0.04) inset, 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 3px 3px 0 rgba(0, 0, 0, 0.3);
 }
+#authenticateButton:focus {
+  outline: none;
+  background-image: none;
+  color: #000;
+  background-color: #fff;
+}
+#authenticateButton:active:focus {
+  outline: none;
+  background-image: none;
+  color: #000;
+  background-color: #fff;
+}
+#authenticateButton:active {
+  color: #fff;
+  background: none;
+  background-image: none;
+}
+#authenticateButton:active:hover {
+  color: #fff;
+  background: none;
+  background-image: none;
+}
 
 #authenticateButton:after {
   content: "";
