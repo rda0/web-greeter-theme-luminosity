@@ -515,11 +515,11 @@ function setTabIndexUsernameArea(active) {
 function setTabIndexPasswordArea(active) {
   if (active) {
     $('#pass').attr('tabindex', 1);
-    $('.session-button').attr('tabindex', 2);
+    $('#session-button').attr('tabindex', 2);
     $('.backButton').attr('tabindex', 3);
   } else {
     $('#pass').attr('tabindex', -1);
-    $('.session-button').attr('tabindex', -1);
+    $('#session-button').attr('tabindex', -1);
     $('.backButton').attr('tabindex', -1);
   }
 }
