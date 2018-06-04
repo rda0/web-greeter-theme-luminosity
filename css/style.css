@@ -393,10 +393,12 @@ a {
   background-color: #fff;
 }
 .btn:active {
+  color: #fff;
   background: none;
   background-image: none;
 }
 .btn:active:hover {
+  color: #fff;
   background: none;
   background-image: none;
 }
