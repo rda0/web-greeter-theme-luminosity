@@ -500,7 +500,7 @@ function setTabIndex() {
 function setSelectable() {
   // Set tabindex = -1 on all alements
   $('*').each(function () {
-    $(this).attr('user-select', 'none');
+    $(this).disableSelection();
   });
 }
 
