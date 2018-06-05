@@ -454,6 +454,7 @@ function loadThemeConfig() {
     addBackgroundButtonsHandler();
     addActionButtons();
     setTabIndex();
+    setSelectable();
     showPanel();
   });
 }
