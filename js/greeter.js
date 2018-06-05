@@ -496,6 +496,13 @@ function setTabIndex() {
   setTabIndexUsernameArea(true);
 }
 
+function setSelectable() {
+  // Set tabindex = -1 on all alements
+  $('*').each(function () {
+    $(this).attr('user-select', 'none');
+  });
+}
+
 function setTabIndexUsernameArea(active) {
   if (active) {
     $('#user').attr('tabindex', 1);
