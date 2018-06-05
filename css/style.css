@@ -49,6 +49,12 @@ label {
 a { 
     text-decoration: none !important; 
 }
+::selection {
+  background: #4285f4;
+}
+::-webkit-selection: {
+  background: #4285f4;
+}
 
 
 /* background */
@@ -377,15 +383,11 @@ a {
 .btn {
   color: #fff;
   background: none;
-  /* color: var(--action-button-color);
-  background: var(--action-button-background); */
   box-shadow: 1px 1px 2px -1px rgba(255, 255, 255, 0.06) inset, 4px 4px 8px -4px rgba(255, 255, 255, 0.03) inset, 1px 1px 4px rgba(0,0,0,0.4);
 }
 .btn:hover {
   color: #fff;
   background: none;
-  /* color: var(--action-button-hover-color);
-  background: var(--action-button-hover-background); */
   box-shadow: 1px 1px 2px -1px rgba(255, 255, 255, 0.1) inset, 4px 4px 8px -4px rgba(255, 255, 255, 0.12) inset, 1px 1px 4px rgba(0,0,0,0.4);
 }
 .btn:focus {
@@ -436,20 +438,7 @@ a {
 
 
 /* drop-down style */
-/*#session-list .btn-default {
-  background-color: rgba(0,0,0,0);
-}
-#session-list .btn-default:focus {
-  outline: none;
-}
-#session-list .btn-default:active {
-  background: none;
-  background-image: none;
-}
-#session-list .btn-default:active:hover {
-  background: none;
-  background-image: none;
-}*/
+
 #session-button {
   width: 100%;
   height: 60px;
