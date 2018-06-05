@@ -10,6 +10,9 @@ html {
   line-height: normal;
   overflow: hidden;
   background-color: #000;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 *:focus,
 a:focus,
