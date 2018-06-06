@@ -57,26 +57,6 @@ a {
 }
 
 
-/* clearfix */
-
-/*.clearfix:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
-}
-.clearfix {
-    display: inline-block;
-}
-html[xmlns] .clearfix {
-    display: block;
-}
-* html .clearfix {
-    height: 1%;
-}*/
-
 /* background */
 
 .bg {
@@ -181,6 +161,7 @@ html[xmlns] .clearfix {
 
 
 /* status */
+
 #statusPanel {
   display: none;
   opacity: 0;
@@ -208,7 +189,7 @@ html[xmlns] .clearfix {
 }
 #locked,
 #unlocked {
-  font-size: 80px;
+  font-size: 70px;
   top: 35%;
   transform: translate(-50%, -50%);
 }
@@ -282,7 +263,6 @@ html[xmlns] .clearfix {
 
 .content {
   position: relative;
-  /* overflow: hidden; */
   padding: 0;
   transition: margin 0.25s;
   width: calc(100% * 2);
@@ -290,7 +270,6 @@ html[xmlns] .clearfix {
 .content .username-area,
 .content .password-area {
   position: relative;
-  /* remove min-height: 500px; */
   box-sizing: border-box;
   width: 50%;
   height: 100%;
@@ -330,7 +309,6 @@ html[xmlns] .clearfix {
 .info-container {
 }
 .info-block {
-  /* opacity: 0.6; */
 }
 .info-left {
   width: 40%;

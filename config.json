@@ -70,10 +70,10 @@
       "color": "#fff"
     },
     "status_panel_granted": {
-      "background": "rgba(66,244,95,.6)"
-    },
-    "status_panel_granted_blue": {
       "background": "rgba(66,133,244,.6)"
+    },
+    "status_panel_granted_green": {
+      "background": "rgba(66,244,95,.6)"
     },
     "status_panel_denied": {
       "background": "rgba(143,0,17,.6)"
