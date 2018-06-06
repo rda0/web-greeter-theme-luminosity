@@ -1,7 +1,7 @@
 {
   "username_area": {
     "title": "Kerberos Authentication",
-    "title_locked": "Kerberos Authentication (locked)",
+    "title_locked": "Kerberos Authentication",
     "comment": "Login using your DPHYS Account",
     "comment_locked": "Login or unlock using your DPHYS Account"
   },
