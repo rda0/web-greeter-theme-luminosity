@@ -242,8 +242,8 @@ function inputPassEventHandler(e) {
         debug('keydown: esc');
         $('#pass').val('');
         $('#user').val('');
-        $('#user').focus();
-        document.body.focus();
+        //$('#user').focus();
+        //document.body.focus();
         $('.backButton').trigger('click');
         break;
       default:
