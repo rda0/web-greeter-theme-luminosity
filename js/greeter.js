@@ -183,6 +183,7 @@ function slideToPasswordArea(e) {
   const onTransitionEnd = function (e) {
     document.body.addEventListener('keydown', inputPassEventHandler);
     setTabIndexPasswordArea(true);
+    document.body.focus();
     content.removeEventListener('transitionend', onTransitionEnd);
   };
   content.addEventListener('transitionend', onTransitionEnd);
@@ -203,6 +204,7 @@ function slideToUsernameArea(e) {
   const onTransitionEnd = function (e) {
     document.body.addEventListener('keydown', inputUserEventHandler);
     setTabIndexUsernameArea(true);
+    document.body.focus();
     content.removeEventListener('transitionend', onTransitionEnd);
   };
   content.addEventListener('transitionend', onTransitionEnd);
