@@ -204,6 +204,7 @@ function slideToUsernameArea(e) {
   const onTransitionEnd = function (e) {
     document.body.addEventListener('keydown', inputUserEventHandler);
     setTabIndexUsernameArea(true);
+    $('#user').focus();
     document.body.focus();
     content.removeEventListener('transitionend', onTransitionEnd);
   };
