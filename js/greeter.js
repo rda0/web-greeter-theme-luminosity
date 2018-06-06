@@ -347,7 +347,7 @@ function setHostname() {
 
 function setLockedSessions() {
   if (lightdm.lock_hint) {
-    $('#info-top-left').append('</br>\n<span id="active-sessions-key">' + theme_config.active_sessions_key + '</span>');
+    $('#info-top-left').append('</br>\n<span id="active-sessions-label">' + theme_config.active_sessions_label + '</span>');
     $('#info-top-right').append('</br>\n<span id="active-sessions-value">');
     let first_locked_user = true;
     for (let i in lightdm.users) {
@@ -362,6 +362,24 @@ function setLockedSessions() {
     }
     $('#info-top-right').append('</span>');
   }
+}
+
+function setInfoBlock() {
+  theme_config.info_top.forEach(function (entry) {
+    $('#info-top-left').append('<br/>\n<span>' + entry.label + '</span>');
+    $('#info-top-right').append('<br/>\n<span>' + entry.value + '</span>');
+  });
+  let first_entry = true;
+  theme_config.info_bottom.forEach(function (entry) {
+    if (first_entry) {
+      $('#info-bottom-left').append('\n<span>' + entry.label + '</span>');
+      $('#info-bottom-right').append('\n<span>' + entry.value + '</span>');
+      first_entry = false;
+    } else {
+      $('#info-bottom-left').append('<br/>\n<span>' + entry.label + '</span>');
+      $('#info-bottom-right').append('<br/>\n<span>' + entry.value + '</span>');
+    }
+  });
 }
 
 function addActionButton(id) {
@@ -472,6 +490,7 @@ function loadThemeConfig() {
     addBackgroundButtonsHandler();
     addActionButtons();
     setLockedSessions();
+    setInfoBlock();
     setTabIndex();
     setSelectable();
     showPanel();

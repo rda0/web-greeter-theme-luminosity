@@ -340,6 +340,8 @@ html[xmlns] .clearfix {
   font-weight: bold;
   width: 60%;
   float: left;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .info-spacer {
   height: 10px;

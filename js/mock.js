@@ -1,7 +1,7 @@
 // mock lighdm for testing
 if (typeof lightdm == 'undefined') {
   lightdm = {};
-  lightdm.hostname = "test-host";
+  lightdm.hostname = "myhost";
   lightdm.languages = [{ code: "en_US", name: "English(US)", territory: "USA" }, { code: "en_UK", name: "English(UK)", territory: "UK" }];
   lightdm.default_language = lightdm.languages[0];
   lightdm.layouts = [{ name: "test", short_description: "test description", short_description: "really long epic description" }];

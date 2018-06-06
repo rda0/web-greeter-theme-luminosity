@@ -1,5 +1,37 @@
 {
-  "active_sessions_key": "Locked Sessions",
+  "active_sessions_label": "Locked Sessions",
+  "info_top": [
+    {
+      "label": "Authorized Users",
+      "value": "IPA, Student"
+    },
+    {
+      "label": "Managed by",
+      "value": "ISG DPHYS"
+    }
+  ],
+  "info_bottom": [
+    {
+      "label": "Documentation",
+      "value": "readme.phys.ethz.ch"
+    },
+    {
+      "label": "Announcements",
+      "value": "nic.phys.ethz.ch"
+    },
+    {
+      "label": "IRC",
+      "value": "irc.phys.ethz.ch/#isgphys"
+    },
+    {
+      "label": "Mail",
+      "value": "isg@phys.ethz.ch"
+    },
+    {
+      "label": "Tel",
+      "value": "+41 44 633 26 68"
+    }
+  ],
   "banner": "logo_dphys_200px",
   "logo": "logo_eth_w400",
   "styles": {
