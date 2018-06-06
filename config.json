@@ -1,6 +1,19 @@
 {
+  "username_area": {
+    "title": "LDAP Authentication",
+    "title_locked": "LDAP Authentication (locked)",
+    "comment": "Login using your DPHYS Account",
+    "comment_locked": "Login or unlock using your DPHYS Account"
+  },
+  "password_area": {
+    "comment": "Please enter your DPHYS Password"
+  },
   "active_sessions_label": "Locked Sessions",
   "info_top": [
+    {
+      "label": "OS Version",
+      "value": "Ubuntu 18.04 Bionic"
+    },
     {
       "label": "Authorized Users",
       "value": "IPA, Student"

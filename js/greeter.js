@@ -364,6 +364,17 @@ function setLockedSessions() {
   }
 }
 
+function setHeader() {
+  if (lightdm.lock_hint) {
+    $('#username-area-title').text(theme_config.username_area.title_locked);
+    $('#username-area-comment').text(theme_config.username_area.comment_locked);
+  } else {
+    $('#username-area-title').text(theme_config.username_area.title);
+    $('#username-area-comment').text(theme_config.username_area.comment);
+  }
+  $('#password-area-comment').text(theme_config.password_area.comment);
+}
+
 function setInfoBlock() {
   theme_config.info_top.forEach(function (entry) {
     $('#info-top-left').append('<br/>\n<span>' + entry.label + '</span>');
@@ -490,6 +501,7 @@ function loadThemeConfig() {
     addBackgroundButtonsHandler();
     addActionButtons();
     setLockedSessions();
+    setHeader();
     setInfoBlock();
     setTabIndex();
     setSelectable();
