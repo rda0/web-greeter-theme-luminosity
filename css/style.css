@@ -57,6 +57,26 @@ a {
 }
 
 
+/* clearfix */
+
+/*.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.clearfix {
+    display: inline-block;
+}
+html[xmlns] .clearfix {
+    display: block;
+}
+* html .clearfix {
+    height: 1%;
+}*/
+
 /* background */
 
 .bg {
@@ -273,6 +293,7 @@ a {
   /* remove min-height: 500px; */
   box-sizing: border-box;
   width: 50%;
+  height: 100%;
   float: left;
   display: flex;
   flex-direction: column;
@@ -290,6 +311,10 @@ a {
   box-sizing: border-box;
   padding-left: 40px;
   padding-right: 40px;
+  position: absolute;
+  bottom: 108px;
+  left: 0;
+  width: 100%;
 }
 .content .content-header h1 {
   text-indent: -1px;

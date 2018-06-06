@@ -26,7 +26,7 @@ $(document).ready(function () {
 
   $(window).on('load', function () {
     setBackground();
-    getHostname();
+    setHostname();
     getSessionList();
   });
 
@@ -339,12 +339,29 @@ function getSessionList() {
   }
 }
 
-function getHostname() {
+function setHostname() {
   let hostname = lightdm.hostname;
-  let hostname_span = document.getElementById('hostname');
-  $(hostname_span).append(hostname);
-  $("#hostname-label").text(hostname);
+  $("#hostname-value").text(hostname);
   debug('hostname: ' + hostname);
+}
+
+function setLockedSessions() {
+  if (lightdm.lock_hint) {
+    $('#info-top-left').append('</br>\n<span id="active-sessions-key">' + theme_config.active_sessions_key + '</span>');
+    $('#info-top-right').append('</br>\n<span id="active-sessions-value">');
+    let first_locked_user = true;
+    for (let i in lightdm.users) {
+      if (lightdm.users[i].logged_in) {
+        if (first_locked_user) {
+          first_locked_user = false;
+        } else {
+          $('#info-top-right').append(', ');
+        }
+        $('#info-top-right').append(lightdm.users[i].username);
+      }
+    }
+    $('#info-top-right').append('</span>');
+  }
 }
 
 function addActionButton(id) {
@@ -443,6 +460,7 @@ function loadThemeConfig() {
     $('#panel').css(theme_config.styles.panel);
     $('.panels').css(theme_config.styles.panels_color);
     $('.panels').css(theme_config.styles.panels_shadow);
+    $('.content').css(theme_config.styles.content);
     $('#statusPanel').css(theme_config.styles.panels_shadow);
     $('#statusPanel').css(theme_config.styles.status_panel);
     $('.content-footer').css(theme_config.styles.contentFooter);
@@ -453,6 +471,7 @@ function loadThemeConfig() {
     addBackgroundButtons();
     addBackgroundButtonsHandler();
     addActionButtons();
+    setLockedSessions();
     setTabIndex();
     setSelectable();
     showPanel();
