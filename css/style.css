@@ -630,18 +630,18 @@ a {
   content: "";
   background: #fff;
   /* background: var(--input-line-background,rgba(0, 0, 0, 0.1)); */
-  z-index: 3;
+  z-index: 5;
 }
 .input .spin {
   background: #4285f4;
-  z-index: 4;
+  z-index: 6;
   width: 0;
 }
 .input label {
   position: absolute;
   top: 10px;
   left: 0;
-  z-index: 2;
+  z-index: 4;
   cursor: pointer;
   line-height: 60px;
 }
