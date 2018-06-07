@@ -349,20 +349,21 @@ function setHostname() {
 }
 
 function setLockedSessions() {
-  if (lightdm.lock_hint) {
-    $('#info-top-left').append('</br>\n<span id="active-sessions-label">' + theme_config.active_sessions_label + '</span>');
-    $('#info-top-right').append('</br>\n<span id="active-sessions-value">');
-    let first_locked_user = true;
-    for (let i in lightdm.users) {
-      if (lightdm.users[i].logged_in) {
-        if (first_locked_user) {
-          first_locked_user = false;
-        } else {
-          $('#info-top-right').append(', ');
-        }
-        $('#info-top-right').append(lightdm.users[i].username);
+  let first_locked_user = true;
+  for (let i in lightdm.users) {
+    if (lightdm.users[i].logged_in) {
+      if (first_locked_user) {
+        first_locked_user = false;
+        $('#info-top-left').append('</br>\n<span id="active-sessions-label">' + theme_config.active_sessions_label + '</span>');
+        $('#info-top-right').append('</br>\n<span id="active-sessions-value">');
+      } else {
+        $('#info-top-right').append(', ');
       }
+      $('#info-top-right').append(lightdm.users[i].username);
     }
+  }
+
+  if (!first_locked_user) {
     $('#info-top-right').append('</span>');
   }
 }
