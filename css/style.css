@@ -25,25 +25,21 @@ btn:focus {
 p {
   margin: 0;
 }
-
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-    background-color: rgba(0,0,0,0.9);
-    border: none;;
+  background-color: rgba(0,0,0,0.9);
+  border: none;;
 }
-
 ::-webkit-scrollbar-thumb {
-    background-color: #ddd;
+  background-color: #ddd;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #fff;
+  background-color: #fff;
 }
 a { 
-    text-decoration: none !important; 
+  text-decoration: none !important; 
 }
 ::selection {
   background: #4285f4;
