@@ -25,10 +25,6 @@ btn:focus {
 p {
   margin: 0;
 }
-label {
-  margin: 0;
-  opacity: 0.5;
-}
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -596,6 +592,10 @@ a {
 .input label {
   padding-left: 40px;
   padding-right: 40px;
+}
+.input label {
+  margin: 0;
+  opacity: 0.5;
 }
 .input,
 .button {
