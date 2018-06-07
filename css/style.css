@@ -619,7 +619,18 @@ a {
   font-size: 20px;
   font-weight: normal;
 }
-.input:before,
+.input .nospin {
+  box-sizing: border-box;
+  margin-left: 40px;
+  margin-right: 40px;
+  width: calc(100% - 80px);
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid #fff;
+  z-index: 5;
+}
 .input .spin {
   box-sizing: border-box;
   margin-left: 40px;
@@ -629,16 +640,7 @@ a {
   position: absolute;
   bottom: 0;
   left: 0;
-}
-.input:before {
-  content: "";
-  background: transparent;
-  border-bottom: 1px solid #fff;
-  /* background: var(--input-line-background,rgba(0, 0, 0, 0.1)); */
-  z-index: 5;
-}
-.input .spin {
-  background: #4285f4;
+  border-bottom: 1px solid #4285f4;
   z-index: 6;
   width: 0;
 }
