@@ -365,11 +365,14 @@ function setLockedSessions() {
 
   if (!first_locked_user) {
     $('#info-top-right').append('</span>');
+    return true;
   }
+
+  return false;
 }
 
-function setHeader() {
-  if (lightdm.lock_hint) {
+function setHeader(activeSessions) {
+  if (activeSessions) {
     $('#username-area-title').text(theme_config.username_area.title_locked);
     $('#username-area-comment').text(theme_config.username_area.comment_locked);
   } else {
@@ -504,8 +507,8 @@ function loadThemeConfig() {
     addBackgroundButtons();
     addBackgroundButtonsHandler();
     addActionButtons();
-    setLockedSessions();
-    setHeader();
+    activeSessions = setLockedSessions();
+    setHeader(activeSessions);
     setInfoBlock();
     setTabIndex();
     setSelectable();
