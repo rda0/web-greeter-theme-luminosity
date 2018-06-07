@@ -632,7 +632,8 @@ a {
 }
 .input:before {
   content: "";
-  background: #fff;
+  background: transparent;
+  border-bottom: 1px solid #fff;
   /* background: var(--input-line-background,rgba(0, 0, 0, 0.1)); */
   z-index: 5;
 }
