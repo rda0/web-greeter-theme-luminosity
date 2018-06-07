@@ -151,7 +151,7 @@ function cancelAuthentication(e) {
 };
 
 function submitPassword(e) {
-  let submitTimeout = 400;
+  let submitTimeout = 600;
   let submitButton = e.target;
   $('#authenticateButton').addClass("processing");
   $('#pass').prop('disabled', true);
