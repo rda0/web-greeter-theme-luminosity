@@ -580,10 +580,7 @@ a {
 }
 .input,
 .input label,
-.input input,
-.input .spin,
-.button,
-.button button {
+.input input {
   width: 100%;
   box-sizing: border-box;
   outline: none;
@@ -593,18 +590,16 @@ a {
   padding-left: 40px;
   padding-right: 40px;
 }
-/*.input label {
+.input label {
   margin: 0;
   opacity: 0.5;
-}*/
+}
 .input,
 .button {
   height: 70px;
 }
 .input,
-.input input,
-.button,
-.button button {
+.input input {
   position: relative;
 }
 .input input {
@@ -614,35 +609,9 @@ a {
   background: transparent;
 }
 .input input,
-.input label,
-.button button {
+.input label {
   font-size: 20px;
   font-weight: normal;
-}
-.input .nospin {
-  box-sizing: border-box;
-  margin-left: 40px;
-  margin-right: 40px;
-  width: calc(100% - 80px);
-  height: 1px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border-bottom: 1px solid #fff;
-  z-index: 5;
-}
-.input .spin {
-  box-sizing: border-box;
-  margin-left: 40px;
-  margin-right: 40px;
-  width: calc(100% - 80px);
-  height: 1px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border-bottom: 1px solid #4285f4;
-  z-index: 6;
-  width: 0;
 }
 .input label {
   position: absolute;
@@ -651,6 +620,25 @@ a {
   z-index: 4;
   cursor: pointer;
   line-height: 60px;
+}
+.input .nospin,
+.input .spin {
+  box-sizing: border-box;
+  margin-left: 40px;
+  margin-right: 40px;
+  width: calc(100% - 80px);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.input .nospin {
+  border-bottom: 1px solid #fff;
+  z-index: 5;
+}
+.input .spin {
+  border-bottom: 1px solid #4285f4;
+  z-index: 6;
+  width: 0;
 }
 
 
