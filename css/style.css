@@ -593,10 +593,10 @@ a {
   padding-left: 40px;
   padding-right: 40px;
 }
-.input label {
+/*.input label {
   margin: 0;
   opacity: 0.5;
-}
+}*/
 .input,
 .button {
   height: 70px;
