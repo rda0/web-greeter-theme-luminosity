@@ -74,10 +74,80 @@
   font-weight: bold;
   font-style: italic;
 }
+
+
 @font-face {
-  font-family: 'abel';
-  src: url('../fonts/abel/Abel-Regular.ttf') format("truetype");
+  font-family: 'Rubik';
+  src: url('../fonts/rubik/Rubik-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
+@font-face {
+  font-family: 'Rubik';
+  src: url('../fonts/rubik/Rubik-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+/*
+@font-face {
+  font-family: 'Rubik';
+  src: url('../fonts/rubik/Rubik-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Rubik';
+  src: url('../fonts/rubik/Rubik-MediumItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+*/
+@font-face {
+  font-family: 'Rubik';
+  src: url('../fonts/rubik/Rubik-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Rubik';
+  src: url('../fonts/rubik/Rubik-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url('../fonts/open-sans/OpenSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OpenSans';
+  src: url('../fonts/open-sans/OpenSans-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'OpenSans';
+  src: url('../fonts/open-sans/OpenSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OpenSans';
+  src: url('../fonts/open-sans/OpenSans-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'WhiteRabbit';
+  src: url('../fonts/white-rabbit/whitrabt.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 @font-face {
   font-family: 'abelregular';
   src: url('../webfonts/abel/abel-regular-webfont.eot');
