@@ -36,7 +36,27 @@
   font-weight: bold;
   font-style: italic;
 }
-@font-face
-{ font-family: abel;
+@font-face {
+  font-family: abel;
   src: url('../fonts/dinpro/Abel-Regular.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'Orbitron';
+  src: url('../webfonts/orbitron/orbitron-bold-webfont.eot');
+  src: url('../webfonts/orbitron/orbitron-bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/orbitron/orbitron-bold-webfont.woff') format('woff'),
+       url('../webfonts/orbitron/orbitron-bold-webfont.ttf') format('truetype'),
+       url('../webfonts/orbitron/orbitron-bold-webfont.svg#orbitronbold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Orbitron';
+  src: url('../webfonts/orbitron/orbitron-light-webfont.eot');
+  src: url('../webfonts/orbitron/orbitron-light-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/orbitron/orbitron-light-webfont.woff') format('woff'),
+       url('../webfonts/orbitron/orbitron-light-webfont.ttf') format('truetype'),
+       url('../webfonts/orbitron/orbitron-light-webfont.svg#orbitronlight') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
