@@ -257,7 +257,7 @@ function inputPassEventHandler(e) {
 
 function ignoreCharacter(character) {
   switch (character) {
-    case 09:
+    case 9:
     case 13:
     case 17:
     case 18:
