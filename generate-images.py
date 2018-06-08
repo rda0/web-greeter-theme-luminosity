@@ -12,8 +12,6 @@ PATH_THUMB = 'img/thumbs'
 with open('config.json') as config_file:
     config = json.load(config_file, object_pairs_hook=collections.OrderedDict)
 
-pprint.pprint(config)
-
 subprocess.call(['mogrify',
                  '-resize', '100x56',
                  '-gravity', 'center',
@@ -25,9 +23,8 @@ config['backgrounds'] = list()
 
 for image in os.listdir(PATH_WALL):
     if image.endswith(".jpg"):
-        print(image)
+        print('found image: ' + image)
         name = image.split('.jpg', maxsplit=1)
-        print(name[0])
         thumb = PATH_THUMB + '/' + image
         wall = PATH_WALL + '/' + image
         background = dict()
