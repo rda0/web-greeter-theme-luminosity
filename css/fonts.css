@@ -37,7 +37,7 @@
   font-style: italic;
 }
 @font-face {
-  font-family: abel;
+  font-family: 'abel';
   src: url('../fonts/dinpro/Abel-Regular.ttf') format("truetype");
 }
 @font-face {
