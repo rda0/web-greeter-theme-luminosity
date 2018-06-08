@@ -61,10 +61,10 @@ p {
   border: none;;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #ddd;
+  background-color: #222;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #fff;
+  background-color: #333;
 }
 a { 
   text-decoration: none !important; 
