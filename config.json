@@ -88,116 +88,74 @@
   },
   "backgrounds": [
     {
-      "name": [
-        "5110104-hd-stars-wallpaper",
-        ""
-      ],
-      "image": "5110104-hd-stars-wallpaper.jpg",
-      "thumb": "img/thumbs/5110104-hd-stars-wallpaper.jpg"
+      "name": "5110104-hd-stars-wallpaper",
+      "thumb": "img/thumbs/5110104-hd-stars-wallpaper.jpg",
+      "image": "img/wallpapers/5110104-hd-stars-wallpaper.jpg"
     },
     {
-      "name": [
-        "5110318-hd-stars-wallpaper",
-        ""
-      ],
-      "image": "5110318-hd-stars-wallpaper.jpg",
-      "thumb": "img/thumbs/5110318-hd-stars-wallpaper.jpg"
+      "name": "5110318-hd-stars-wallpaper",
+      "thumb": "img/thumbs/5110318-hd-stars-wallpaper.jpg",
+      "image": "img/wallpapers/5110318-hd-stars-wallpaper.jpg"
     },
     {
-      "name": [
-        "5110216-hd-stars-wallpaper",
-        ""
-      ],
-      "image": "5110216-hd-stars-wallpaper.jpg",
-      "thumb": "img/thumbs/5110216-hd-stars-wallpaper.jpg"
+      "name": "5110216-hd-stars-wallpaper",
+      "thumb": "img/thumbs/5110216-hd-stars-wallpaper.jpg",
+      "image": "img/wallpapers/5110216-hd-stars-wallpaper.jpg"
     },
     {
-      "name": [
-        "5109976-hd-stars-wallpaper",
-        ""
-      ],
-      "image": "5109976-hd-stars-wallpaper.jpg",
-      "thumb": "img/thumbs/5109976-hd-stars-wallpaper.jpg"
+      "name": "5109976-hd-stars-wallpaper",
+      "thumb": "img/thumbs/5109976-hd-stars-wallpaper.jpg",
+      "image": "img/wallpapers/5109976-hd-stars-wallpaper.jpg"
     },
     {
-      "name": [
-        "5110210-hd-stars-wallpaper",
-        ""
-      ],
-      "image": "5110210-hd-stars-wallpaper.jpg",
-      "thumb": "img/thumbs/5110210-hd-stars-wallpaper.jpg"
+      "name": "5110210-hd-stars-wallpaper",
+      "thumb": "img/thumbs/5110210-hd-stars-wallpaper.jpg",
+      "image": "img/wallpapers/5110210-hd-stars-wallpaper.jpg"
     },
     {
-      "name": [
-        "5110228-hd-stars-wallpaper",
-        ""
-      ],
-      "image": "5110228-hd-stars-wallpaper.jpg",
-      "thumb": "img/thumbs/5110228-hd-stars-wallpaper.jpg"
+      "name": "5110228-hd-stars-wallpaper",
+      "thumb": "img/thumbs/5110228-hd-stars-wallpaper.jpg",
+      "image": "img/wallpapers/5110228-hd-stars-wallpaper.jpg"
     },
     {
-      "name": [
-        "star-cloud-blue-red",
-        ""
-      ],
-      "image": "star-cloud-blue-red.jpg",
-      "thumb": "img/thumbs/star-cloud-blue-red.jpg"
+      "name": "star-cloud-blue-red",
+      "thumb": "img/thumbs/star-cloud-blue-red.jpg",
+      "image": "img/wallpapers/star-cloud-blue-red.jpg"
     },
     {
-      "name": [
-        "nathan-anderson-268995",
-        ""
-      ],
-      "image": "nathan-anderson-268995.jpg",
-      "thumb": "img/thumbs/nathan-anderson-268995.jpg"
+      "name": "nathan-anderson-268995",
+      "thumb": "img/thumbs/nathan-anderson-268995.jpg",
+      "image": "img/wallpapers/nathan-anderson-268995.jpg"
     },
     {
-      "name": [
-        "5110154-hd-stars-wallpaper",
-        ""
-      ],
-      "image": "5110154-hd-stars-wallpaper.jpg",
-      "thumb": "img/thumbs/5110154-hd-stars-wallpaper.jpg"
+      "name": "5110154-hd-stars-wallpaper",
+      "thumb": "img/thumbs/5110154-hd-stars-wallpaper.jpg",
+      "image": "img/wallpapers/5110154-hd-stars-wallpaper.jpg"
     },
     {
-      "name": [
-        "hugo-kemmel-289805",
-        ""
-      ],
-      "image": "hugo-kemmel-289805.jpg",
-      "thumb": "img/thumbs/hugo-kemmel-289805.jpg"
+      "name": "hugo-kemmel-289805",
+      "thumb": "img/thumbs/hugo-kemmel-289805.jpg",
+      "image": "img/wallpapers/hugo-kemmel-289805.jpg"
     },
     {
-      "name": [
-        "5109911-hd-stars-wallpaper",
-        ""
-      ],
-      "image": "5109911-hd-stars-wallpaper.jpg",
-      "thumb": "img/thumbs/5109911-hd-stars-wallpaper.jpg"
+      "name": "5109911-hd-stars-wallpaper",
+      "thumb": "img/thumbs/5109911-hd-stars-wallpaper.jpg",
+      "image": "img/wallpapers/5109911-hd-stars-wallpaper.jpg"
     },
     {
-      "name": [
-        "5110369-hd-stars-wallpaper",
-        ""
-      ],
-      "image": "5110369-hd-stars-wallpaper.jpg",
-      "thumb": "img/thumbs/5110369-hd-stars-wallpaper.jpg"
+      "name": "5110369-hd-stars-wallpaper",
+      "thumb": "img/thumbs/5110369-hd-stars-wallpaper.jpg",
+      "image": "img/wallpapers/5110369-hd-stars-wallpaper.jpg"
     },
     {
-      "name": [
-        "5110093-hd-stars-wallpaper",
-        ""
-      ],
-      "image": "5110093-hd-stars-wallpaper.jpg",
-      "thumb": "img/thumbs/5110093-hd-stars-wallpaper.jpg"
+      "name": "5110093-hd-stars-wallpaper",
+      "thumb": "img/thumbs/5110093-hd-stars-wallpaper.jpg",
+      "image": "img/wallpapers/5110093-hd-stars-wallpaper.jpg"
     },
     {
-      "name": [
-        "jamison-mcandie-112376",
-        ""
-      ],
-      "image": "jamison-mcandie-112376.jpg",
-      "thumb": "img/thumbs/jamison-mcandie-112376.jpg"
+      "name": "jamison-mcandie-112376",
+      "thumb": "img/thumbs/jamison-mcandie-112376.jpg",
+      "image": "img/wallpapers/jamison-mcandie-112376.jpg"
     }
   ]
 }

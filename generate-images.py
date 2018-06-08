@@ -31,10 +31,10 @@ for image in os.listdir(PATH_WALL):
         thumb = PATH_THUMB + '/' + image
         wall = PATH_WALL + '/' + image
         background = dict()
-        background['name'] = name
+        background['name'] = name[0]
         background['thumb'] = thumb
-        background['image'] = image
+        background['image'] = wall
         config['backgrounds'].append(background)
 
-with open('config2.json', 'w') as outfile:
+with open('config.json', 'w') as outfile:
     json.dump(config, outfile, indent=2)
