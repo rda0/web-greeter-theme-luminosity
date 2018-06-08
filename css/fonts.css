@@ -1,42 +1,42 @@
 @font-face {
   font-family: 'DINPro';
-  src: url('../fonts/DINPro.otf') format('opentype');
+  src: url('../fonts/dinpro/DINPro.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'DINPro';
-  src: url('../fonts/DINPro-Italic.otf') format('opentype');
+  src: url('../fonts/dinpro/DINPro-Italic.otf') format('opentype');
   font-weight: normal;
   font-style: italic;
 }
 /*
 @font-face {
   font-family: 'DINPro';
-  src: url('../fonts/DINPro-Medium.otf') format('opentype');
+  src: url('../fonts/dinpro/DINPro-Medium.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'DINPro';
-  src: url('../fonts/DINPro-MediumItalic.otf') format('opentype');
+  src: url('../fonts/dinpro/DINPro-MediumItalic.otf') format('opentype');
   font-weight: normal;
   font-style: italic;
 }
 */
 @font-face {
   font-family: 'DINPro';
-  src: url('../fonts/DINPro-Bold.otf') format('opentype');
+  src: url('../fonts/dinpro/DINPro-Bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'DINPro';
-  src: url('../fonts/DINPro-BoldItalic.otf') format('opentype');
+  src: url('../fonts/dinpro/DINPro-BoldItalic.otf') format('opentype');
   font-weight: bold;
   font-style: italic;
 }
 @font-face
 { font-family: abel;
-  src: url('../fonts/Abel-Regular.ttf') format("truetype");
+  src: url('../fonts/dinpro/Abel-Regular.ttf') format("truetype");
 }
