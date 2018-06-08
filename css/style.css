@@ -4,7 +4,7 @@ body,
 html {
   display: block;
   min-height: 100%;
-  font-family: "abelregular", "Orbitron", "Ubuntu", "OpenSans", "Rubik", "DINPro", "Dejavu Sans", sans-serif;
+  font-family: "Rubik", "DINPro", "OpenSans", "Ubuntu", "abelregular", "Orbitron", sans-serif;
   font-size: 16px;
   letter-spacing: normal;
   line-height: normal;
