@@ -502,9 +502,7 @@ a {
 #session-selected,
 #session-arrow,
 #sessions {
-  text-transform: none;
   font-size: 20px;
-  font-weight: normal;
 }
 #sessions ul {
   top: 0;
