@@ -1,6 +1,6 @@
 [theme]
-name=Phys
-description=Phys Theme
+name=Luminosity
+description=Luminosity Theme
 engine=lightdm-webkit2-greeter
 url=index.html
 session=ubuntu
