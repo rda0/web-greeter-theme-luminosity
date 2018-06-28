@@ -4,7 +4,16 @@
 
 Customizable LightDM Web Greeter theme based on the design of [luminos](https://github.com/muhammadsayuti/lightdm-webkit-theme-luminos) by (Muhammad Sayuti) which is based on the [official LightDM Webkit Greeter theme](https://github.com/Antergos/lightdm-webkit-theme-antergos) of [Antergos Linux](http://antergos.com)
 
-This dark theme was built for use on Linux Workstations at the [Department of Physics ETH Zurich](https://www.phys.ethz.ch/), because there was no suitable theme available that would allow us to use it in combination with a central authentication provider like LDAP or Kerberos. Other themes present a list of users to select from, as it is done with the default LightDM configuration, which does just not scale with our currently active 1728 LDAP users :)
+This dark theme was built for use on Linux Workstations at the [Department of Physics ETH Zurich](https://www.phys.ethz.ch/), because there was no suitable theme available that would allow us to use it in combination with a central authentication provider like LDAP or Kerberos. Other themes present a list of users to select from, as it is done with the default LightDM configuration, which does just not scale with our currently active 1728 LDAP user accounts :)
+
+## Credits
+
+Many thanks to the following guys for their support on this project.
+
+- Claude Becker ([upekkha](https://github.com/upekkha))
+- Anastassios Martakos ([realmar](https://github.com/realmar))
+- Christian Herzog ([daduke](https://github.com/daduke))
+- Alex Myczko ([alexmyczko](https://github.com/alexmyczko))
 
 ## Features
 
