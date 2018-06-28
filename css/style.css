@@ -229,7 +229,8 @@ a {
   color: #FFFFFF;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-  font-size: 16px;
+  font-family: "PTMono", "RobotoMono", "SpaceMono", monospace;
+  font-size: 13px;
   padding: 20px;
   left: 40px;
   width: 600px;
