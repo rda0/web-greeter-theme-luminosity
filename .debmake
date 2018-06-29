@@ -1,4 +1,4 @@
-TARGET="usr/share/lightdm-webkit/themes/dphys-logo"
+TARGET="usr/share/lightdm-webkit/themes/luminosity"
 HOMEPAGE="https://github.com/rda0/web-greeter-theme-luminosity.git"
 DEPENDS="lightdm-webkit2-greeter, python3"
 SUGGESTS="light-locker"
