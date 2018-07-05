@@ -9,6 +9,11 @@ import collections
 PATH_WALL = 'img/wallpapers'
 PATH_THUMB = 'img/thumbs'
 
+scriptpath = os.path.realpath(__file__)
+dirpath = os.path.dirname(scriptpath)
+abspath = os.path.abspath(dirpath)
+os.chdir(abspath)
+
 with open('config.json') as config_file:
     config = json.load(config_file, object_pairs_hook=collections.OrderedDict)
 
