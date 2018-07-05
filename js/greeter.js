@@ -47,12 +47,15 @@ $(document).ready(function () {
     debug(key + ': ' + greeter_config.greeter[key]);
   }
 
-  loadThemeConfig();
+  debug('before loadThemeConfigLocal');
+  loadThemeConfigLocal();
+  debug('after loadThemeConfigLocal');
 
   // Focus user input field on keydown
   document.body.addEventListener('keydown', inputUserEventHandler);
 
   $(window).on('load', function () {
+    debug('window on load');
     setBackground();
     setHostname();
     getSessionList();
@@ -517,31 +520,82 @@ function show_error(text) {
  * functions for UI initialisation
  */
 
-function loadThemeConfig() {
-  fetch('config.json').then(async function (res) {
+function loadThemeConfigLocal() {
+  debug('in loadThemeConfigLocal');
+  fetch('config.json.local').then(async function (res) {
+    debug('in fetch config.json.local');
     theme_config = await res.json();
-
-    $('#panel').css(theme_config.styles.panel);
-    $('.panels').css(theme_config.styles.panels_color);
-    $('.panels').css(theme_config.styles.panels_shadow);
-    $('.content').css(theme_config.styles.content);
-    $('#statusPanel').css(theme_config.styles.panels_shadow);
-    $('#statusPanel').css(theme_config.styles.status_panel);
-    $('.content-footer').css(theme_config.styles.contentFooter);
-    $('.bg').css(theme_config.styles.background);
-    $('#banner img').attr('src', `img/banners/${theme_config.banner}.png`);
-    $('#logo img').attr('src', `img/banners/${theme_config.logo}.png`);
-
-    addBackgroundButtons();
-    addBackgroundButtonsHandler();
-    addActionButtons();
-    activeSessions = setLockedSessions();
-    setHeader(activeSessions);
-    setInfoBlock();
-    setTabIndex();
-    setSelectable();
-    showPanel();
+    debug('success loading config.json.local');
+    loadBackgroundConfigLocal();
+  }).catch(function(error) {
+    debug('failed loading config.json.local: ' + error.message);
+    loadThemeConfig();
   });
+}
+
+function loadThemeConfig() {
+  debug('in loadThemeConfig');
+  fetch('config.json').then(async function (res) {
+    debug('in fetch config.json');
+    theme_config = await res.json();
+    debug('success loading config.json');
+    loadBackgroundConfigLocal();
+  }).catch(function(error) {
+    debug('failed loading config.json: ' + error.message);
+    throw new Error('Theme error');
+  });
+}
+
+function loadBackgroundConfigLocal() {
+  debug('in loadBackgroundConfigLocal');
+  fetch('background.json.local').then(async function (res) {
+    debug('in fetch background.json.local');
+    bg_config = await res.json();
+    debug('success loading background.json.local');
+    theme_config.backgrounds = bg_config.backgrounds;
+    applyConfig();
+  }).catch(function(error) {
+    debug('failed loading background.json.local: ' + error.message);
+    loadBackgroundConfig();
+  });
+}
+
+function loadBackgroundConfig() {
+  debug('in loadBackgroundConfig');
+  fetch('background.json').then(async function (res) {
+    debug('in fetch background.json');
+    bg_config = await res.json();
+    debug('success loading background.json');
+    theme_config.backgrounds = bg_config.backgrounds;
+    applyConfig();
+  }).catch(function(error) {
+    debug('failed loading background.json: ' + error.message);
+    theme_config.backgrounds = [];
+    applyConfig();
+  });
+}
+
+function applyConfig() {
+  $('#panel').css(theme_config.styles.panel);
+  $('.panels').css(theme_config.styles.panels_color);
+  $('.panels').css(theme_config.styles.panels_shadow);
+  $('.content').css(theme_config.styles.content);
+  $('#statusPanel').css(theme_config.styles.panels_shadow);
+  $('#statusPanel').css(theme_config.styles.status_panel);
+  $('.content-footer').css(theme_config.styles.contentFooter);
+  $('.bg').css(theme_config.styles.background);
+  $('#banner img').attr('src', `img/banners/${theme_config.banner}.png`);
+  $('#logo img').attr('src', `img/banners/${theme_config.logo}.png`);
+
+  addBackgroundButtons();
+  addBackgroundButtonsHandler();
+  addActionButtons();
+  activeSessions = setLockedSessions();
+  setHeader(activeSessions);
+  setInfoBlock();
+  setTabIndex();
+  setSelectable();
+  showPanel();
 }
 
 function addBackgroundButtons() {
