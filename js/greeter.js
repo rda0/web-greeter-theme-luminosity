@@ -202,8 +202,13 @@ function sessionToggle(element) {
 };
 
 function handleAction(id) {
-  debug("handleAction(" + id + ")");
-  eval("lightdm." + id + "()");
+  let label = id.substr(0, 1).toUpperCase() + id.substr(1, id.length - 1);
+  if ((id == 'shutdown') || (id == 'hibernate') || (id == 'suspend') || (id == 'restart')) {
+    if (confirm(label + '?')) {
+      debug('handleAction(' + id + ')');
+      eval('lightdm.' + id + '()');
+    }
+  }
 };
 
 function slideToPasswordArea(e) {
