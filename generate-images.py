@@ -14,9 +14,6 @@ dirpath = os.path.dirname(scriptpath)
 abspath = os.path.abspath(dirpath)
 os.chdir(abspath)
 
-with open('config.json') as config_file:
-    config = json.load(config_file, object_pairs_hook=collections.OrderedDict)
-
 subprocess.call(['mogrify',
                  '-resize', '100x56',
                  '-gravity', 'center',
@@ -24,6 +21,7 @@ subprocess.call(['mogrify',
                  '-quality', '100',
                  '-path', PATH_THUMB, PATH_WALL + '/*.jpg'])
 
+config = dict()
 config['backgrounds'] = list()
 
 for image in os.listdir(PATH_WALL):
@@ -38,5 +36,5 @@ for image in os.listdir(PATH_WALL):
         background['image'] = wall
         config['backgrounds'].append(background)
 
-with open('config.json', 'w') as outfile:
+with open('background.json.local', 'w') as outfile:
     json.dump(config, outfile, indent=2)
