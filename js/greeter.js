@@ -40,22 +40,20 @@ let theme_config = {};
 
 $(document).ready(function () {
   if (greeter_config.greeter.debug_mode && DEBUG) {
-    showLogPanel();
+    showDebugPanel();
   }
 
   for (let key in greeter_config.greeter) {
     debug(key + ': ' + greeter_config.greeter[key]);
   }
 
-  debug('before loadThemeConfigLocal');
   loadThemeConfigLocal();
-  debug('after loadThemeConfigLocal');
 
   // Focus user input field on keydown
   document.body.addEventListener('keydown', inputUserEventHandler);
 
   $(window).on('load', function () {
-    debug('window on load');
+    debug('window.on(load)');
     setBackground();
     setHostname();
     getSessionList();
@@ -156,6 +154,7 @@ $(document).ready(function () {
  */
 
 function authenticate(e, username) {
+  debug('authenticate(' + username + ')');
   $("#user-login-name").text(username);
   $('#user').prop('disabled', true);
   let userSession = getLastUserSession(username);
@@ -170,7 +169,7 @@ function authenticate(e, username) {
 }
 
 function cancelAuthentication(e) {
-  debug("authentication cancelled for " + $('#user').val());
+  debug('cancelAuthentication()');
   $('#pass').prop('disabled', false);
   $('#pass').val('');
   $('#pass').focus();
@@ -182,6 +181,7 @@ function cancelAuthentication(e) {
 };
 
 function submitPassword(e) {
+  debug('submitPassword()');
   let submitTimeout = 600;
   let submitButton = e.target;
   $('#authenticateButton').addClass("processing");
@@ -193,10 +193,9 @@ function submitPassword(e) {
 };
 
 function sessionToggle(element) {
-  debug('sessionToggle');
+  debug('sessionToggle()');
   let sessionText = $(element).text();
   let sessionID = $(element).attr('data-session-id');
-  //let username = $('#user').val();
   $(element).parents('.btn-group').find('.selected').attr('data-session-id', sessionID);
   $(element).parents('.btn-group').find('.selected').html(sessionText);
 };
@@ -258,14 +257,12 @@ function inputUserEventHandler(e) {
   if (!ignoreCharacter(e.which)) {
     switch (e.which) {
       case 27:
-        debug('keydown: esc');
         $('#user').val('');
         document.body.focus();
         break;
       default:
         if (!$('#user').is(':focus')) {
           $('#user').focus();
-          debug("set focus on #user");
         }
     }
   }
@@ -275,17 +272,13 @@ function inputPassEventHandler(e) {
   if (!ignoreCharacter(e.which)) {
     switch (e.which) {
       case 27:
-        debug('keydown: esc');
         $('#pass').val('');
         $('#user').val('');
-        //$('#user').focus();
-        //document.body.focus();
         $('.backButton').trigger('click');
         break;
       default:
         if (!$('#pass').is(':focus')) {
           $('#pass').focus();
-          debug("set focus on #pass");
         }
     }
   }
@@ -327,16 +320,8 @@ function debug(text) {
   }
 }
 
-/*function message(text) {
-  if (DEBUG) {
-    // $('#messageArea').append(text);
-    // $('#messageArea').append('<br/>');
-  }
-}*/
-
-function showLogPanel() {
+function showDebugPanel() {
   $("#debugPanel").show().css('display', 'flex');
-  // $("#messagePanel").show().css('display', 'flex');
 }
 
 function showPanel() {
@@ -525,11 +510,9 @@ function show_error(text) {
  */
 
 function loadThemeConfigLocal() {
-  debug('in loadThemeConfigLocal');
+  debug('loadThemeConfigLocal()');
   fetch('config.json.local').then(async function (res) {
-    debug('in fetch config.json.local');
     theme_config = await res.json();
-    debug('success loading config.json.local');
     loadBackgroundConfigLocal();
   }).catch(function(error) {
     debug('failed loading config.json.local: ' + error.message);
@@ -538,11 +521,9 @@ function loadThemeConfigLocal() {
 }
 
 function loadThemeConfig() {
-  debug('in loadThemeConfig');
+  debug('loadThemeConfig()');
   fetch('config.json').then(async function (res) {
-    debug('in fetch config.json');
     theme_config = await res.json();
-    debug('success loading config.json');
     loadBackgroundConfigLocal();
   }).catch(function(error) {
     debug('failed loading config.json: ' + error.message);
@@ -551,11 +532,9 @@ function loadThemeConfig() {
 }
 
 function loadBackgroundConfigLocal() {
-  debug('in loadBackgroundConfigLocal');
+  debug('loadBackgroundConfigLocal()');
   fetch('background.json.local').then(async function (res) {
-    debug('in fetch background.json.local');
     bg_config = await res.json();
-    debug('success loading background.json.local');
     theme_config.backgrounds = bg_config.backgrounds;
     applyConfig();
   }).catch(function(error) {
@@ -565,11 +544,9 @@ function loadBackgroundConfigLocal() {
 }
 
 function loadBackgroundConfig() {
-  debug('in loadBackgroundConfig');
+  debug('loadBackgroundConfig()');
   fetch('background.json').then(async function (res) {
-    debug('in fetch background.json');
     bg_config = await res.json();
-    debug('success loading background.json');
     theme_config.backgrounds = bg_config.backgrounds;
     applyConfig();
   }).catch(function(error) {
@@ -598,7 +575,6 @@ function applyConfig() {
   setHeader(activeSessions);
   setInfoBlock();
   setTabIndex();
-  //setSelectable();
   showPanel();
 }
 
@@ -613,7 +589,6 @@ function addBackgroundButtons() {
 }
 
 function addBackgroundButtonsHandler() {
-  // Add background buttons handler
   let backgroundButtons = $(".bg-switch .background");
   backgroundButtons.click(function (e) {
     e.preventDefault();
@@ -639,12 +614,6 @@ function setTabIndex() {
 
   setTabIndexUsernameArea(true);
 }
-
-/*function setSelectable() {
-  $('*').each(function () {
-    //$(this).disableSelection();
-  });
-}*/
 
 function setTabIndexUsernameArea(active) {
   if (active) {

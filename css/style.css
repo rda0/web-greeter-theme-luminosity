@@ -234,7 +234,7 @@ a {
   padding: 20px;
   left: 40px;
   width: 600px;
-  height: calc(50% - 60px);
+  height: calc(100% - 80px);
   z-index: 2;
 }
 .logWrap {
