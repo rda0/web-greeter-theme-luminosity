@@ -14,6 +14,7 @@ Many thanks to the following guys for their support on this project.
 - Anastassios Martakos ([realmar](https://github.com/realmar))
 - Christian Herzog ([daduke](https://github.com/daduke))
 - Alex Myczko ([alexmyczko](https://github.com/alexmyczko))
+- Janosch Bühler ([WitteShadovv](https://github.com/WitteShadovv))
 
 ## Features
 
