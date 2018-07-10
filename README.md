@@ -73,7 +73,7 @@ ninja install
 Enable `lightdm-webkit2-greeter` by editing `/etc/lightdm/lightdm.conf` and setting `greeter-session` property to `lightdm-webkit2-greeter`:
 
 ```
-[SeatDefaults]
+[Seat:*]
 greeter-session=lightdm-webkit2-greeter
 greeter-show-manual-login=true
 greeter-hide-users=true
@@ -81,7 +81,7 @@ user-session=ubuntu
 allow-guest=false
 ```
 
-# Installation
+## Installation
 
 Clone the theme to `/usr/share/lightdm-webkit/themes/luminosity`:
 
@@ -111,11 +111,23 @@ Now restart `lightdm`:
 systemctl restart lightdm
 ```
 
-# Wallpapers
+## Configuration
 
-To add more background wallpapers, copy the `jpg` files to `img/wallpapers` and run the script `generate-images.py`. This will generate thumbnails in `img/thumbs` and the metadata in `config.json`.
+The theme configuration is read from `config.json` or `config.json.local` (optional) and the background image metadata is stored in `background.json` or `background.json.local` (optional), while the respective local config file takes precedence if present.
 
-# Using light-locker
+To configure the theme make a copy of the json config:
+
+```sh
+cp config.json config.json.local
+```
+
+and edit the local json config.
+
+## Wallpapers
+
+To add more background wallpapers, copy the `jpg` files to `img/wallpapers` and run the script `generate-images.py`. This will generate thumbnails in `img/thumbs` and the metadata in `background.json.local`.
+
+## Using light-locker
 
 You may also want to install `light-locker` to replace `gnome-screensaver` to show the Web Greeter lock screen after automatic session lock.
 
@@ -129,7 +141,7 @@ apt install light-locker light-locker-settings
 
 At the moment you need an ugly workaround (better solution will hopefully follow):
 
-```
+```sh
 rm /usr/lib/gnome-settings-daemon/gsd-screensaver-proxy
 sed -i '/NotShowIn=/d' /etc/xdg/autostart/light-locker.desktop
 ```
@@ -147,7 +159,7 @@ $ light-locker-command -l
 # this will lock the screen
 ```
 
-# Uninstallation
+## Uninstallation
 
 To uninstall, simply restore the `greeter-session` property of the `/etc/lightdm/lightdm.conf` file and restart your computer (or at least lightdm).
 
