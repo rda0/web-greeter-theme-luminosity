@@ -449,8 +449,12 @@ function addActionButton(id) {
  * Lightdm Callbacks
  */
 
-function show_prompt(text) {
-  debug("callback: show_prompt(): " + text);
+function show_prompt(text, type) {
+  debug('callback: show_prompt(' + type + '): ' + text);
+}
+
+function show_message(text, type) {
+  debug('callback: show_message(' + type + '): ' + text);
 }
 
 function authentication_complete() {
@@ -497,12 +501,8 @@ function authentication_complete() {
   }
 }
 
-function show_message(text) {
-  debug('callback: show_message(): ' + text);
-}
-
-function show_error(text) {
-  debug('callback: show_error(): ' + text);
+function autologin_timer_expired() {
+  debug('callback: autologin_timer_expired()');
 }
 
 /*
