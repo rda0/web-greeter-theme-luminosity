@@ -196,7 +196,7 @@ function sessionToggle(element) {
   debug('sessionToggle');
   let sessionText = $(element).text();
   let sessionID = $(element).attr('data-session-id');
-  let username = $('#user').val();
+  //let username = $('#user').val();
   $(element).parents('.btn-group').find('.selected').attr('data-session-id', sessionID);
   $(element).parents('.btn-group').find('.selected').html(sessionText);
 };
@@ -327,12 +327,12 @@ function debug(text) {
   }
 }
 
-function message(text) {
+/*function message(text) {
   if (DEBUG) {
     // $('#messageArea').append(text);
     // $('#messageArea').append('<br/>');
   }
-}
+}*/
 
 function showLogPanel() {
   $("#debugPanel").show().css('display', 'flex');
@@ -471,8 +471,9 @@ function show_prompt(text) {
 function authentication_complete() {
   debug('callback: authentication_complete()');
   let username = lightdm.authentication_user;
-  username = 'rdatest';
+  debug('lightdm.authentication_user: ' + username);
   let selectedSession = $('.selected').attr('data-session-id');
+  debug('selectedSession: ' + selectedSession);
   if (lightdm.is_authenticated) {
     debug('authentication successful');
     $('#statusMessage').html('ACCESS GRANTED');
@@ -512,13 +513,11 @@ function authentication_complete() {
 }
 
 function show_message(text) {
-  debug('callback: show_message(): ' + text)
-  message(text);
+  debug('callback: show_message(): ' + text);
 }
 
 function show_error(text) {
-  debug('callback: show_error(): ' + text)
-  show_message('error: ' + text);
+  debug('callback: show_error(): ' + text);
 }
 
 /*
@@ -599,7 +598,7 @@ function applyConfig() {
   setHeader(activeSessions);
   setInfoBlock();
   setTabIndex();
-  setSelectable();
+  //setSelectable();
   showPanel();
 }
 
@@ -641,12 +640,11 @@ function setTabIndex() {
   setTabIndexUsernameArea(true);
 }
 
-function setSelectable() {
-  // Set tabindex = -1 on all alements
+/*function setSelectable() {
   $('*').each(function () {
     //$(this).disableSelection();
   });
-}
+}*/
 
 function setTabIndexUsernameArea(active) {
   if (active) {
