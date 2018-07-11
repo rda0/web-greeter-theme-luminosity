@@ -103,10 +103,10 @@ a {
   z-index: 2;
 }
 #bg-switch-wrapper {
-  margin-right: -250px;
+  margin-right: -480px;
   top: 0;
   right: 0;
-  width: 250px;
+  width: 480px;
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   height: 100%;
@@ -115,8 +115,8 @@ a {
   transition: all 0.4s ease 0s;
 }
 #bg-switch-wrapper.active {
-  right: 250px;
-  width: 250px;
+  right: 480px;
+  width: 480px;
   transition: all 0.4s ease 0s;
   overflow-x: hidden;
 }
@@ -138,13 +138,14 @@ a {
   cursor: pointer;
 }
 .bg-switch {
-  width: 250px;
+  width: 100%;
   color: #F5F5F5;
 }
 .bg-switch h3 {
   font-size: 16px;
   text-align: center;
   font-weight: 500;
+  pointer-events: none;
 }
 .bg-switch .bgs {
   text-align: center;
@@ -302,6 +303,7 @@ a {
 .content .content-header {
   padding-left: 40px;
   padding-right: 40px;
+  pointer-events: none;
 }
 .content .content-login {
   padding-top: 40px;
@@ -315,6 +317,7 @@ a {
   bottom: 108px;
   left: 0;
   width: 100%;
+  pointer-events: none;
 }
 .content .content-header h1 {
   text-indent: -1px;
