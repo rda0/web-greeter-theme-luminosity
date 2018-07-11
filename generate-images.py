@@ -6,7 +6,8 @@ import pprint
 import subprocess
 import collections
 
-PATH_WALL = 'img/wallpapers'
+FORMATS = [ '.jpg', '.jpeg', '.png' ]
+PATH_WALL = [ 'img/wallpapers', '/usr/share/backgrounds' ]
 PATH_THUMB = 'img/thumbs'
 
 scriptpath = os.path.realpath(__file__)
@@ -14,27 +15,37 @@ dirpath = os.path.dirname(scriptpath)
 abspath = os.path.abspath(dirpath)
 os.chdir(abspath)
 
-subprocess.call(['mogrify',
-                 '-resize', '100x56',
-                 '-gravity', 'center',
-                 '-format', 'jpg',
-                 '-quality', '100',
-                 '-path', PATH_THUMB, PATH_WALL + '/*.jpg'])
+images = list()
+
+for path in PATH_WALL:
+    for root, directories, filenames in os.walk(path):
+        for filename in filenames:
+            filepath = os.path.join(root, filename)
+            name, ext = os.path.splitext(filename)
+            if ext in FORMATS:
+                image = dict()
+                image['name'] = name
+                image['filename'] = filename
+                image['filepath'] = filepath
+                images.append(image)
+                subprocess.call(['mogrify',
+                    '-resize', '100x56',
+                    '-gravity', 'center',
+                    '-format', 'jpg',
+                    '-quality', '100',
+                    '-path', PATH_THUMB, filepath])
 
 config = dict()
 config['backgrounds'] = list()
 
-for image in os.listdir(PATH_WALL):
-    if image.endswith(".jpg"):
-        print('found image: ' + image)
-        name = image.split('.jpg', maxsplit=1)
-        thumb = PATH_THUMB + '/' + image
-        wall = PATH_WALL + '/' + image
-        background = dict()
-        background['name'] = name[0]
-        background['thumb'] = thumb
-        background['image'] = wall
-        config['backgrounds'].append(background)
+for image in images:
+    print('found image: ' + image['filepath'])
+    thumb = PATH_THUMB + '/' + image['name'] + '.jpg'
+    background = dict()
+    background['name'] = image['name']
+    background['thumb'] = thumb
+    background['image'] = image['filepath']
+    config['backgrounds'].append(background)
 
 with open('background.json.local', 'w') as outfile:
     json.dump(config, outfile, indent=2)
