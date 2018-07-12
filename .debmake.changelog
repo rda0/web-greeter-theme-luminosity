@@ -1,3 +1,9 @@
+lightdm-webkit2-greeter-theme-luminosity (0.8.3-1) bionic; urgency=medium
+  
+  * New upstream release.
+
+ -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Thu, 12 Jul 2018 16:50:12 +0200
+
 lightdm-webkit2-greeter-theme-luminosity (0.8.2-1) bionic; urgency=medium
 
   * New upstream release.
