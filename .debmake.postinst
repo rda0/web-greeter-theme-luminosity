@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+SCRIPT="/usr/share/lightdm-webkit/themes/luminosity/generate-images.py"
+
+[ -x ${SCRIPT} ] && ${SCRIPT}
+
+exit 0
+
+#DEBHELPER#

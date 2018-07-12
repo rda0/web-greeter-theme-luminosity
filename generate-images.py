@@ -39,7 +39,6 @@ config = dict()
 config['backgrounds'] = list()
 
 for image in images:
-    print('found image: ' + image['filepath'])
     thumb = PATH_THUMB + '/' + image['name'] + '.jpg'
     background = dict()
     background['name'] = image['name']
