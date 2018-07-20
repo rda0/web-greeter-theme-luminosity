@@ -82,6 +82,14 @@ user-session=ubuntu
 allow-guest=false
 ```
 
+To select another screen for the lightdm greeter in a multimonitor configuration, add the following line:
+
+```
+display-setup-script=xrandr --output <id> --primary
+```
+
+while `<id>` is the screen, use `xrandr` to list your screen ids.
+
 ## Installation
 
 Clone the theme to `/usr/share/lightdm-webkit/themes/luminosity`:
@@ -132,22 +140,34 @@ To add more background wallpapers, copy the `jpg` files to `img/wallpapers` and 
 
 You may also want to install `light-locker` to replace `gnome-screensaver` to show the Web Greeter lock screen after automatic session lock.
 
-Installation:
+### Installation
 
 ```sh
-apt remove gnome-screensaver
+apt purge gnome-screensaver
 apt install python-gi python3-pyside
 apt install light-locker light-locker-settings
 ```
 
-At the moment you need an ugly workaround (better solution will hopefully follow):
+### Configuration
+
+Remove the line starting with `NotShowIn=` in `light-locker.desktop` to start `light-locker` also in gnome:
 
 ```sh
-rm /usr/lib/gnome-settings-daemon/gsd-screensaver-proxy
 sed -i '/NotShowIn=/d' /etc/xdg/autostart/light-locker.desktop
 ```
 
+Disable gnome screensaver proxy:
+
+```
+cat > /etc/xdg/autostart/org.gnome.SettingsDaemon.ScreensaverProxy.desktop << EOF
+[Desktop Entry]
+Hidden=false
+EOF
+```
+
 Now kill the screensaver (if it is running) and then restart `lightdm`.
+
+### User configuration
 
 The user can configure `light-locker` with the settings panel `light-locker-settings`.
 
@@ -159,6 +179,8 @@ The screensaver is inactive  (means: it is running)
 $ light-locker-command -l
 # this will lock the screen
 ```
+
+You may also use `loginctl lock-session` to lock your screen.
 
 ## Uninstallation
 
