@@ -45,6 +45,9 @@
   <script src="js/greeter.js"></script>
 </head>
 <body>
+  <a id="reset-switch" href="#" onclick="$(document.location.reload(true))" data-i18n="reset" title="reset" class="btn btn-default bg-toggle">
+    <i class="fas fa-sync-alt"></i>
+  </a>
   <a id="bg-switch-toggle" href="#" class="btn btn-default bg-toggle">
     <i class="fas fa-bars"></i>
   </a>
@@ -166,6 +169,18 @@
       <span id="locked" class="fas fa-lock"></span>
       <span id="unlocked" class="fas fa-lock-open"></span>
       <span id="statusMessage">ACCESS DENIED</span>
+    </div>
+  </div>
+  <div id="errorPanel" class="panels">
+    <div id="errorArea">
+      <a id="error-reset-switch" href="#" onclick="$(document.location.reload(true))" data-i18n="reset" title="reset" class="btn btn-default">
+        <i id="error-reset" class="fas fa-sync-alt"></i>
+      </a>
+      <span id="errorMessage">
+	I'm sorry something went wrong :(<br/><br/>
+	Please report this to your administrator<br/>
+	and/or click the reset button above
+      </span>
     </div>
   </div>
   <div id="debugPanel" class="panels logPanel">

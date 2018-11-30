@@ -33,120 +33,159 @@
 let DEBUG = true;
 let processing = false;
 let theme_config = {};
+let greeter_error = false;
 
 /*
  * document ready
  */
 
 $(document).ready(function () {
-  if (greeter_config.greeter.debug_mode && DEBUG) {
-    showDebugPanel();
+  /*let random = Math.floor(Math.random() * 2);
+  debug('random: ' + random);
+
+  if (random == 1) {
+    delete lightdm;
+    delete greeter_config;
+    delete theme_utils;
+  }*/
+
+  if ('object' !== typeof(lightdm)) {
+    greeter_error = true;
+    debug('lightdm: not an object');
   }
 
-  for (let key in greeter_config.greeter) {
-    debug(key + ': ' + greeter_config.greeter[key]);
+  if ('object' !== typeof(greeter_config)) {
+    greeter_error = true;
+    debug('greeter_config: not an object');
   }
 
-  loadThemeConfigLocal();
+  if ('object' !== typeof(theme_utils)) {
+    greeter_error = true;
+    debug('theme_utils: not an object');
+  }
 
-  // Focus user input field on keydown
-  document.body.addEventListener('keydown', inputUserEventHandler);
+  if ('object' !== typeof(localStorage)) {
+    greeter_error = true;
+    debug('localStorage: not an object');
+  }
 
-  $(window).on('load', function () {
-    debug('window.on(load)');
-    setBackground();
-    setHostname();
-    getSessionList();
-  });
-
-  // Events
-
-  // Username submit
-  $('#authenticateButton').click(function (e) {
-    e.preventDefault();
-    if (!processing) {
-      debug('authenticateButton.click()');
-      processing = true;
-      submitPassword(e);
+  if (greeter_error) {
+    console.error('Theme: greeter error');
+    //console.error('Theme: greeter error, trying to reload in 5s...');
+    showErrorPanel();
+    /*setTimeout(function() {
+      $(document.location.reload(true));
+    }, (5 * 1000));*/
+  } else {
+    if (greeter_config.greeter.debug_mode && DEBUG) {
+      showDebugPanel();
     }
-  });
 
-  // Username submit when enter key is pressed
-  $('#user').keydown(function (e) {
-    switch (e.which) {
-      case 13:
-        let username = $('#user').val();
-        if (username == '') {
-          debug('username: null!');
-        } else {
-          debug('username: ' + username)
-          slideToPasswordArea(e);
-          authenticate(event, username);
-        }
-        break;
+    for (let key in greeter_config.greeter) {
+      debug(key + ': ' + greeter_config.greeter[key]);
     }
-  });
 
-  // Password submit when enter key is pressed
-  $('#pass').keydown(function (e) {
-    switch (e.which) {
-      case 13:
-        $('#authenticateButton').trigger('click');
-        break;
-    }
-  });
+    loadThemeConfigLocal();
 
-  // Cancel authentication
-  $(".backButton").click(function (e) {
-    slideToUsernameArea(event);
-    $('#user').prop('disabled', false);
-    $('#user').val('');
-    $('#session-list .selected').html('')
-    cancelAuthentication(event);
-  });
+    // Focus user input field on keydown
+    document.body.addEventListener('keydown', inputUserEventHandler);
 
-  // Open background panel
-  $("#bg-switch-toggle").click(function (e) {
-    e.preventDefault();
-    $("#bg-switch-wrapper").toggleClass("active");
-    $(this).hide();
-    $("#bg-switch-close").show();
-  });
-
-  // Close background panel
-  $("#bg-switch-close").click(function (e) {
-    e.preventDefault();
-    $("#bg-switch-wrapper").toggleClass("active");
-    $(this).hide();
-    $("#bg-switch-toggle").show();
-  });
-
-  // Input focus transition
-  $(".input input").focus(function () {
-    $(this).parent(".input").each(function () {
-      $("label", this).css({
-        "line-height": "16px",
-        "font-size": "16px",
-        "top": "0px"
-      })
-      $(".spin", this).css({
-        "width": "calc(100% - 80px)"
-      })
+    $(window).on('load', function () {
+      debug('window.on(load)');
+      setBackground();
+      setHostname();
+      getSessionList();
     });
-  }).blur(function () {
-    $(".spin").css({
-      "width": "0px"
-    })
-    if ($(this).val() == "") {
+
+    // Events
+
+    // Username submit
+    $('#authenticateButton').click(function (e) {
+      e.preventDefault();
+      if (!processing) {
+        debug('authenticateButton.click()');
+        processing = true;
+        submitPassword(e);
+      }
+    });
+
+    // Username submit when enter key is pressed
+    $('#user').keydown(function (e) {
+      switch (e.which) {
+        case 13:
+          let username = $('#user').val();
+          if (username == '') {
+            debug('username: null!');
+          } else {
+            debug('username: ' + username)
+            slideToPasswordArea(e);
+            authenticate(event, username);
+          }
+          break;
+      }
+    });
+
+    // Password submit when enter key is pressed
+    $('#pass').keydown(function (e) {
+      switch (e.which) {
+        case 13:
+          $('#authenticateButton').trigger('click');
+          break;
+      }
+    });
+
+    // Cancel authentication
+    $(".backButton").click(function (e) {
+      slideToUsernameArea(event);
+      $('#user').prop('disabled', false);
+      $('#user').val('');
+      $('#session-list .selected').html('')
+      cancelAuthentication(event);
+    });
+
+    // Open background panel
+    $("#bg-switch-toggle").click(function (e) {
+      e.preventDefault();
+      $("#bg-switch-wrapper").toggleClass("active");
+      $(this).hide();
+      $("#bg-switch-close").show();
+    });
+
+    // Close background panel
+    $("#bg-switch-close").click(function (e) {
+      e.preventDefault();
+      $("#bg-switch-wrapper").toggleClass("active");
+      $(this).hide();
+      $("#bg-switch-toggle").show();
+    });
+
+    // Input focus transition
+    $(".input input").focus(function () {
       $(this).parent(".input").each(function () {
         $("label", this).css({
-          "line-height": "60px",
-          "font-size": "20px",
-          "top": "10px"
+          "line-height": "16px",
+          "font-size": "16px",
+          "top": "0px"
+        })
+        $(".spin", this).css({
+          "width": "calc(100% - 80px)"
         })
       });
-    }
-  });
+    }).blur(function () {
+      $(".spin").css({
+        "width": "0px"
+      })
+      if ($(this).val() == "") {
+        $(this).parent(".input").each(function () {
+          $("label", this).css({
+            "line-height": "60px",
+            "font-size": "20px",
+            "top": "10px"
+          })
+        });
+      }
+    });
+  }
 });
 
 /*
@@ -315,9 +354,15 @@ function ignoreCharacter(character) {
 
 function debug(text) {
   if (DEBUG) {
+    console.debug('Theme: ' + text);
     $('#debugArea').append(text);
     $('#debugArea').append('<br/>');
   }
+}
+
+function showErrorPanel() {
+  $('#errorPanel').show();
+  $('#errorPanel').fadeTo(400, 1);
 }
 
 function showDebugPanel() {
