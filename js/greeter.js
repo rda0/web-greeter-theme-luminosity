@@ -90,12 +90,9 @@ $(document).ready(function () {
     // Focus user input field on keydown
     document.body.addEventListener('keydown', inputUserEventHandler);
 
-    $(window).on('load', function () {
-      debug('window.on(load)');
-      setBackground();
-      setHostname();
-      getSessionList();
-    });
+    setBackground();
+    setHostname();
+    getSessionList();
 
     // Events
 
