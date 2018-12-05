@@ -1,3 +1,15 @@
+lightdm-webkit2-greeter-theme-luminosity (0.8.6-1) bionic; urgency=medium
+
+  * Add exception handling.
+  * Fix race condition with async config loading.
+  * Add default configuration in js.
+  * Add some configuration validation.
+  * Automatically submit username when locked by single user.
+  * Replace reboot icon.
+  * Remove unused function arguments.
+
+ -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Fri, 30 Nov 2018 13:30:22 +0200
+
 lightdm-webkit2-greeter-theme-luminosity (0.8.5-1) bionic; urgency=medium
 
   * Fix theme loading bug.

@@ -35,153 +35,123 @@ let processing = false;
 let theme_config = {};
 let greeter_error = false;
 
+let THEME_CONFIG_DEFAULTS = {
+  "username_area": {
+    "title": "Authentication",
+    "title_locked": "Authentication",
+    "comment": "Enter your Account name to sign in",
+    "comment_locked": "Enter your Account name to unlock / sign in"
+  },
+  "password_area": {
+    "comment": "Please enter your Password"
+  },
+  "active_sessions_label": "Locked Sessions",
+  "info_top": [],
+  "info_bottom": [],
+  "banner": "dphys",
+  "logo": "ethz",
+  "styles": {
+    "panel": {
+      "position": "absolute",
+      "width": "450px",
+      "top": "50%",
+      "left": "50%",
+      "transform": "translate(-50%, -50%)"
+    },
+    "content": {
+      "height": "541px"
+    },
+    "panels_shadow": {
+      "boxShadow": "0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)"
+    },
+    "panels_color": {
+      "background": "rgba(0,0,0,.7)",
+      "color": "#fff"
+    },
+    "status_panel": {
+      "background": "rgba(143,0,17,.6)",
+      "color": "#fff"
+    },
+    "status_panel_granted": {
+      "background": "rgba(66,133,244,.6)"
+    },
+    "status_panel_granted_green": {
+      "background": "rgba(66,244,95,.6)"
+    },
+    "status_panel_denied": {
+      "background": "rgba(143,0,17,.6)"
+    },
+    "contentFooter": {
+      "paddingTop": "0px"
+    },
+    "background": {
+      "backgroundPosition": "center",
+      "backgroundSize": "cover"
+    }
+  }
+};
+
+
 /*
  * document ready
  */
 
 $(document).ready(function () {
-  /*let random = Math.floor(Math.random() * 2);
-  debug('random: ' + random);
+  try {
+    /*let random = Math.floor(Math.random() * 2);
+    debug('random: ' + random);
 
-  if (random == 1) {
-    delete lightdm;
-    delete greeter_config;
-    delete theme_utils;
-  }*/
+    if (random == 1) {
+      delete lightdm;
+      delete greeter_config;
+      delete theme_utils;
+    }*/
 
-  if ('object' !== typeof(lightdm)) {
-    greeter_error = true;
-    debug('lightdm: not an object');
-  }
+    if ('object' !== typeof(lightdm)) {
+      greeter_error = true;
+      debug('lightdm: not an object');
+    }
 
-  if ('object' !== typeof(greeter_config)) {
-    greeter_error = true;
-    debug('greeter_config: not an object');
-  }
+    if ('object' !== typeof(greeter_config)) {
+      greeter_error = true;
+      debug('greeter_config: not an object');
+    }
 
-  if ('object' !== typeof(theme_utils)) {
-    greeter_error = true;
-    debug('theme_utils: not an object');
-  }
+    if ('object' !== typeof(theme_utils)) {
+      greeter_error = true;
+      debug('theme_utils: not an object');
+    }
 
-  if ('object' !== typeof(localStorage)) {
-    greeter_error = true;
-    debug('localStorage: not an object');
-  }
+    if ('object' !== typeof(localStorage)) {
+      greeter_error = true;
+      debug('localStorage: not an object');
+    }
 
-  if (greeter_error) {
-    console.error('Theme: greeter error');
-    //console.error('Theme: greeter error, trying to reload in 5s...');
+    if (greeter_error) {
+      console.error('Theme: greeter error');
+      //console.error('Theme: greeter error, trying to reload in 5s...');
+      showErrorPanel();
+      /*setTimeout(function() {
+        $(document.location.reload(true));
+      }, (5 * 1000));*/
+    } else {
+      if (greeter_config.greeter.debug_mode && DEBUG) {
+        showDebugPanel();
+      }
+
+      for (let key in greeter_config.greeter) {
+        debug(key + ': ' + greeter_config.greeter[key]);
+      }
+
+      loadThemeConfigLocal();
+    }
+  } catch (err) {
+    console.error('Theme: greeter exception: ' + err);
+    //console.error('Theme: greeter exception, trying to reload in 5s...');
     showErrorPanel();
     /*setTimeout(function() {
       $(document.location.reload(true));
     }, (5 * 1000));*/
-  } else {
-    if (greeter_config.greeter.debug_mode && DEBUG) {
-      showDebugPanel();
-    }
-
-    for (let key in greeter_config.greeter) {
-      debug(key + ': ' + greeter_config.greeter[key]);
-    }
-
-    loadThemeConfigLocal();
-
-    // Focus user input field on keydown
-    document.body.addEventListener('keydown', inputUserEventHandler);
-
-    setBackground();
-    setHostname();
-    getSessionList();
-
-    // Events
-
-    // Username submit
-    $('#authenticateButton').click(function (e) {
-      e.preventDefault();
-      if (!processing) {
-        debug('authenticateButton.click()');
-        processing = true;
-        submitPassword(e);
-      }
-    });
-
-    // Username submit when enter key is pressed
-    $('#user').keydown(function (e) {
-      switch (e.which) {
-        case 13:
-          let username = $('#user').val();
-          if (username == '') {
-            debug('username: null!');
-          } else {
-            debug('username: ' + username)
-            slideToPasswordArea(e);
-            authenticate(event, username);
-          }
-          break;
-      }
-    });
-
-    // Password submit when enter key is pressed
-    $('#pass').keydown(function (e) {
-      switch (e.which) {
-        case 13:
-          $('#authenticateButton').trigger('click');
-          break;
-      }
-    });
-
-    // Cancel authentication
-    $(".backButton").click(function (e) {
-      slideToUsernameArea(event);
-      $('#user').prop('disabled', false);
-      $('#user').val('');
-      $('#session-list .selected').html('')
-      cancelAuthentication(event);
-    });
-
-    // Open background panel
-    $("#bg-switch-toggle").click(function (e) {
-      e.preventDefault();
-      $("#bg-switch-wrapper").toggleClass("active");
-      $(this).hide();
-      $("#bg-switch-close").show();
-    });
-
-    // Close background panel
-    $("#bg-switch-close").click(function (e) {
-      e.preventDefault();
-      $("#bg-switch-wrapper").toggleClass("active");
-      $(this).hide();
-      $("#bg-switch-toggle").show();
-    });
-
-    // Input focus transition
-    $(".input input").focus(function () {
-      $(this).parent(".input").each(function () {
-        $("label", this).css({
-          "line-height": "16px",
-          "font-size": "16px",
-          "top": "0px"
-        })
-        $(".spin", this).css({
-          "width": "calc(100% - 80px)"
-        })
-      });
-    }).blur(function () {
-      $(".spin").css({
-        "width": "0px"
-      })
-      if ($(this).val() == "") {
-        $(this).parent(".input").each(function () {
-          $("label", this).css({
-            "line-height": "60px",
-            "font-size": "20px",
-            "top": "10px"
-          })
-        });
-      }
-    });
   }
 });
 
@@ -189,7 +159,7 @@ $(document).ready(function () {
  * functions
  */
 
-function authenticate(e, username) {
+function authenticate(username) {
   debug('authenticate(' + username + ')');
   $("#user-login-name").text(username);
   $('#user').prop('disabled', true);
@@ -200,11 +170,9 @@ function authenticate(e, username) {
   debug('userSessionName: ' + userSessionName);
   $('#session-list .selected').html(userSessionName);
   $('#session-list .selected').attr('data-session-id', userSession);
-  debug('call: lightdm.start_authentication(' + username + ')');
-  lightdm.start_authentication(username);
 }
 
-function cancelAuthentication(e) {
+function cancelAuthentication() {
   debug('cancelAuthentication()');
   $('#pass').prop('disabled', false);
   $('#pass').val('');
@@ -216,12 +184,14 @@ function cancelAuthentication(e) {
   processing = false;
 };
 
-function submitPassword(e) {
+function submitPassword() {
   debug('submitPassword()');
-  let submitTimeout = 600;
-  let submitButton = e.target;
+  let submitTimeout = 1000;
   $('#authenticateButton').addClass("processing");
   $('#pass').prop('disabled', true);
+  let username = $('#user').val();
+  debug('call: lightdm.start_authentication(' + username + ')');
+  lightdm.start_authentication(username);
   setTimeout(() => {
     debug("call: lightdm.respond(password)")
     lightdm.respond($('#pass').val());
@@ -229,9 +199,9 @@ function submitPassword(e) {
 };
 
 function sessionToggle(element) {
-  debug('sessionToggle()');
   let sessionText = $(element).text();
   let sessionID = $(element).attr('data-session-id');
+  debug('sessionToggle(' + sessionID + ')');
   $(element).parents('.btn-group').find('.selected').attr('data-session-id', sessionID);
   $(element).parents('.btn-group').find('.selected').html(sessionText);
 };
@@ -246,12 +216,12 @@ function handleAction(id) {
   }
 };
 
-function slideToPasswordArea(e) {
+function slideToPasswordArea() {
   debug('slideToPasswordArea()');
   setTabIndexUsernameArea(false);
   document.body.removeEventListener('keydown', inputUserEventHandler);
   const content = document.querySelector('.content');
-  const onTransitionEnd = function (e) {
+  const onTransitionEnd = function () {
     document.body.addEventListener('keydown', inputPassEventHandler);
     setTabIndexPasswordArea(true);
     document.body.focus();
@@ -267,12 +237,12 @@ function slideToPasswordArea(e) {
   });
 }
 
-function slideToUsernameArea(e) {
+function slideToUsernameArea() {
   debug('slideToUsernameArea()');
   setTabIndexPasswordArea(false);
   document.body.removeEventListener('keydown', inputPassEventHandler);
   const content = document.querySelector('.content');
-  const onTransitionEnd = function (e) {
+  const onTransitionEnd = function () {
     document.body.addEventListener('keydown', inputUserEventHandler);
     setTabIndexUsernameArea(true);
     $('#user').focus();
@@ -412,30 +382,29 @@ function setHostname() {
 }
 
 function setLockedSessions() {
-  let first_locked_user = true;
+  let locked_sessions = [];
   for (let i in lightdm.users) {
     if (lightdm.users[i].logged_in) {
-      if (first_locked_user) {
-        first_locked_user = false;
+      if (locked_sessions.length == 0) {
         $('#info-top-left').append('</br>\n<span id="active-sessions-label">' + theme_config.active_sessions_label + '</span>');
         $('#info-top-right').append('</br>\n<span id="active-sessions-value">');
       } else {
         $('#info-top-right').append(', ');
       }
       $('#info-top-right').append(lightdm.users[i].username);
+      locked_sessions.push(lightdm.users[i].username);
     }
   }
 
-  if (!first_locked_user) {
+  if (locked_sessions.length != 0) {
     $('#info-top-right').append('</span>');
-    return true;
   }
 
-  return false;
+  return locked_sessions;
 }
 
 function setHeader(activeSessions) {
-  if (activeSessions) {
+  if (activeSessions.length != 0) {
     $('#username-area-title').text(theme_config.username_area.title_locked);
     $('#username-area-comment').text(theme_config.username_area.comment_locked);
   } else {
@@ -477,7 +446,7 @@ function addActionButton(id) {
       id2 = "arrow-down"
     }
     if (id == "restart") {
-      id2 = "sync-alt"
+      id2 = "undo-alt"
     }
     $("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id +
         ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label +
@@ -555,9 +524,9 @@ function loadThemeConfigLocal() {
   debug('loadThemeConfigLocal()');
   fetch('config.json.local').then(async function (res) {
     theme_config = await res.json();
-    loadBackgroundConfigLocal();
+    validateThemeConfig();
   }).catch(function(error) {
-    debug('failed loading config.json.local: ' + error.message);
+    debug('failed loading config.json.local');
     loadThemeConfig();
   });
 }
@@ -566,11 +535,24 @@ function loadThemeConfig() {
   debug('loadThemeConfig()');
   fetch('config.json').then(async function (res) {
     theme_config = await res.json();
-    loadBackgroundConfigLocal();
+    validateThemeConfig();
   }).catch(function(error) {
-    debug('failed loading config.json: ' + error.message);
-    throw new Error('Theme error');
+    debug('failed loading config.json');
+    //throw new Error('Theme error');
+    theme_config = THEME_CONFIG_DEFAULTS;
+    loadBackgroundConfigLocal();
   });
+}
+
+function validateThemeConfig() {
+  debug('validateThemeConfig()');
+  const entries = Object.entries(THEME_CONFIG_DEFAULTS);
+  for (const [key, value] of entries) {
+    if (!theme_config.hasOwnProperty(key)) {
+      theme_config[key] = value;
+    }
+  }
+  loadBackgroundConfigLocal();
 }
 
 function loadBackgroundConfigLocal() {
@@ -580,7 +562,7 @@ function loadBackgroundConfigLocal() {
     theme_config.backgrounds = bg_config.backgrounds;
     applyConfig();
   }).catch(function(error) {
-    debug('failed loading background.json.local: ' + error.message);
+    debug('failed loading background.json.local');
     loadBackgroundConfig();
   });
 }
@@ -592,7 +574,7 @@ function loadBackgroundConfig() {
     theme_config.backgrounds = bg_config.backgrounds;
     applyConfig();
   }).catch(function(error) {
-    debug('failed loading background.json: ' + error.message);
+    debug('failed loading background.json');
     theme_config.backgrounds = [];
     applyConfig();
   });
@@ -617,7 +599,12 @@ function applyConfig() {
   setHeader(activeSessions);
   setInfoBlock();
   setTabIndex();
+  setBackground();
+  setHostname();
+  getSessionList();
   showPanel();
+  addEvents();
+  autoSubmitUsername(activeSessions);
 }
 
 function addBackgroundButtons() {
@@ -683,6 +670,109 @@ function setTabIndexPasswordArea(active) {
     $('#session-button').attr('tabindex', -1);
     $('.backButton').attr('tabindex', -1);
   }
+}
+
+function autoSubmitUsername(activeSessions) {
+  if (activeSessions.length == 1) {
+    $('#user').val(activeSessions[0]);
+    submitUsername();
+  }
+}
+
+function submitUsername() {
+  let username = $('#user').val();
+  if (username == '') {
+    debug('username: null!');
+  } else {
+    debug('username: ' + username)
+    slideToPasswordArea();
+    authenticate(username);
+  }
+}
+
+function addEvents() {
+  // Focus user input field on keydown
+  document.body.addEventListener('keydown', inputUserEventHandler);
+
+  // Username submit
+  $('#authenticateButton').click(function (e) {
+    e.preventDefault();
+    if (!processing) {
+      debug('authenticateButton.click()');
+      processing = true;
+      submitPassword();
+    }
+  });
+
+  // Username submit when enter key is pressed
+  $('#user').keydown(function (e) {
+    switch (e.which) {
+      case 13:
+        submitUsername();
+        break;
+    }
+  });
+
+  // Password submit when enter key is pressed
+  $('#pass').keydown(function (e) {
+    switch (e.which) {
+      case 13:
+        $('#authenticateButton').trigger('click');
+        break;
+    }
+  });
+
+  // Cancel authentication
+  $(".backButton").click(function (e) {
+    slideToUsernameArea();
+    $('#user').prop('disabled', false);
+    $('#user').val('');
+    $('#session-list .selected').html('')
+    cancelAuthentication();
+  });
+
+  // Open background panel
+  $("#bg-switch-toggle").click(function (e) {
+    e.preventDefault();
+    $("#bg-switch-wrapper").toggleClass("active");
+    $(this).hide();
+    $("#bg-switch-close").show();
+  });
+
+  // Close background panel
+  $("#bg-switch-close").click(function (e) {
+    e.preventDefault();
+    $("#bg-switch-wrapper").toggleClass("active");
+    $(this).hide();
+    $("#bg-switch-toggle").show();
+  });
+
+  // Input focus transition
+  $(".input input").focus(function () {
+    $(this).parent(".input").each(function () {
+      $("label", this).css({
+        "line-height": "16px",
+        "font-size": "16px",
+        "top": "0px"
+      })
+      $(".spin", this).css({
+        "width": "calc(100% - 80px)"
+      })
+    });
+  }).blur(function () {
+    $(".spin").css({
+      "width": "0px"
+    })
+    if ($(this).val() == "") {
+      $(this).parent(".input").each(function () {
+        $("label", this).css({
+          "line-height": "60px",
+          "font-size": "20px",
+          "top": "10px"
+        })
+      });
+    }
+  });
 }
 
 function switchBackground(background) {

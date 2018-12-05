@@ -1,12 +1,12 @@
 {
   "username_area": {
-    "title": "LDAP Authentication",
-    "title_locked": "LDAP Authentication",
-    "comment": "Enter your DPHYS Account name to sign in",
-    "comment_locked": "Enter your DPHYS Account name to unlock / sign in"
+    "title": "Authentication",
+    "title_locked": "Authentication",
+    "comment": "Enter your Account name to sign in",
+    "comment_locked": "Enter your Account name to unlock / sign in"
   },
   "password_area": {
-    "comment": "Please enter your DPHYS Password"
+    "comment": "Please enter your Password"
   },
   "active_sessions_label": "Locked Sessions",
   "info_top": [
@@ -16,7 +16,7 @@
     },
     {
       "label": "Authorized Users",
-      "value": "IPA, Student"
+      "value": "Student"
     },
     {
       "label": "Managed by",
@@ -33,8 +33,8 @@
       "value": "nic.phys.ethz.ch"
     },
     {
-      "label": "IRC",
-      "value": "irc.phys.ethz.ch/#isgphys"
+      "label": "Chat",
+      "value": "irc.phys.ethz.ch"
     },
     {
       "label": "Mail",
