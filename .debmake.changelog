@@ -1,3 +1,9 @@
+lightdm-webkit2-greeter-theme-luminosity (0.8.6-2) bionic; urgency=medium
+
+  * Fix package dependencies.
+
+ -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Wed, 05 Dec 2018 12:44:26 +0100
+
 lightdm-webkit2-greeter-theme-luminosity (0.8.6-1) bionic; urgency=medium
 
   * Add exception handling.
@@ -8,19 +14,19 @@ lightdm-webkit2-greeter-theme-luminosity (0.8.6-1) bionic; urgency=medium
   * Replace reboot icon.
   * Remove unused function arguments.
 
- -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Wed, 05 Dec 2018 12:18:40 +0200
+ -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Wed, 05 Dec 2018 12:18:40 +0100
 
 lightdm-webkit2-greeter-theme-luminosity (0.8.5-1) bionic; urgency=medium
 
   * Fix theme loading bug.
 
- -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Fri, 30 Nov 2018 13:30:22 +0200
+ -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Fri, 30 Nov 2018 13:30:22 +0100
 
 lightdm-webkit2-greeter-theme-luminosity (0.8.4-1) bionic; urgency=medium
 
   * Add greeter error handling.
 
- -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Fri, 30 Nov 2018 12:03:58 +0200
+ -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Fri, 30 Nov 2018 12:03:58 +0100
 
 lightdm-webkit2-greeter-theme-luminosity (0.8.3-1) bionic; urgency=medium
 
