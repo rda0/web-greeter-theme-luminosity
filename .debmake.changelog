@@ -8,7 +8,7 @@ lightdm-webkit2-greeter-theme-luminosity (0.8.6-1) bionic; urgency=medium
   * Replace reboot icon.
   * Remove unused function arguments.
 
- -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Wed, 5 Dec 2018 12:18:40 +0200
+ -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Wed, 05 Dec 2018 12:18:40 +0200
 
 lightdm-webkit2-greeter-theme-luminosity (0.8.5-1) bionic; urgency=medium
 
