@@ -1,3 +1,9 @@
+lightdm-webkit2-greeter-theme-luminosity (0.8.7-1) bionic; urgency=medium
+
+  * Remove debug code.
+
+ -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Fri, 06 Sep 2019 10:09:56 +0200
+
 lightdm-webkit2-greeter-theme-luminosity (0.8.6-2) bionic; urgency=medium
 
   * Fix package dependencies.
