@@ -98,15 +98,6 @@ let THEME_CONFIG_DEFAULTS = {
 
 $(document).ready(function () {
   try {
-    /*let random = Math.floor(Math.random() * 2);
-    debug('random: ' + random);
-
-    if (random == 1) {
-      delete lightdm;
-      delete greeter_config;
-      delete theme_utils;
-    }*/
-
     if ('object' !== typeof(lightdm)) {
       greeter_error = true;
       debug('lightdm: not an object');
@@ -129,29 +120,17 @@ $(document).ready(function () {
 
     if (greeter_error) {
       console.error('Theme: greeter error');
-      //console.error('Theme: greeter error, trying to reload in 5s...');
       showErrorPanel();
-      /*setTimeout(function() {
-        $(document.location.reload(true));
-      }, (5 * 1000));*/
     } else {
       if (greeter_config.greeter.debug_mode && DEBUG) {
         showDebugPanel();
-      }
-
-      for (let key in greeter_config.greeter) {
-        debug(key + ': ' + greeter_config.greeter[key]);
       }
 
       loadThemeConfigLocal();
     }
   } catch (err) {
     console.error('Theme: greeter exception: ' + err);
-    //console.error('Theme: greeter exception, trying to reload in 5s...');
     showErrorPanel();
-    /*setTimeout(function() {
-      $(document.location.reload(true));
-    }, (5 * 1000));*/
   }
 });
 
@@ -160,40 +139,32 @@ $(document).ready(function () {
  */
 
 function authenticate(username) {
-  debug('authenticate(' + username + ')');
   $("#user-login-name").text(username);
   $('#user').prop('disabled', true);
   let userSession = getLastUserSession(username);
-  debug('userSession: ' + userSession);
   let userSessionEl = "#sessions [data-session-id=" + userSession + "]";
   let userSessionName = $(userSessionEl).html();
-  debug('userSessionName: ' + userSessionName);
   $('#session-list .selected').html(userSessionName);
   $('#session-list .selected').attr('data-session-id', userSession);
 }
 
 function cancelAuthentication() {
-  debug('cancelAuthentication()');
   $('#pass').prop('disabled', false);
   $('#pass').val('');
   $('#pass').focus();
   document.body.focus();
-  debug("call: lightdm.cancel_authentication()");
   lightdm.cancel_authentication();
   $('#authenticateButton').removeClass('processing');
   processing = false;
 };
 
 function submitPassword() {
-  debug('submitPassword()');
   let submitTimeout = 1000;
   $('#authenticateButton').addClass("processing");
   $('#pass').prop('disabled', true);
   let username = $('#user').val();
-  debug('call: lightdm.start_authentication(' + username + ')');
   lightdm.start_authentication(username);
   setTimeout(() => {
-    debug("call: lightdm.respond(password)")
     lightdm.respond($('#pass').val());
   }, submitTimeout);
 };
@@ -201,7 +172,6 @@ function submitPassword() {
 function sessionToggle(element) {
   let sessionText = $(element).text();
   let sessionID = $(element).attr('data-session-id');
-  debug('sessionToggle(' + sessionID + ')');
   $(element).parents('.btn-group').find('.selected').attr('data-session-id', sessionID);
   $(element).parents('.btn-group').find('.selected').html(sessionText);
 };
@@ -210,14 +180,12 @@ function handleAction(id) {
   let label = id.substr(0, 1).toUpperCase() + id.substr(1, id.length - 1);
   if ((id == 'shutdown') || (id == 'hibernate') || (id == 'suspend') || (id == 'restart')) {
     if (confirm(label + '?')) {
-      debug('handleAction(' + id + ')');
       eval('lightdm.' + id + '()');
     }
   }
 };
 
 function slideToPasswordArea() {
-  debug('slideToPasswordArea()');
   setTabIndexUsernameArea(false);
   document.body.removeEventListener('keydown', inputUserEventHandler);
   const content = document.querySelector('.content');
@@ -238,7 +206,6 @@ function slideToPasswordArea() {
 }
 
 function slideToUsernameArea() {
-  debug('slideToUsernameArea()');
   setTabIndexPasswordArea(false);
   document.body.removeEventListener('keydown', inputPassEventHandler);
   const content = document.querySelector('.content');
@@ -353,11 +320,9 @@ function getLastUserSession(username) {
   }
 
   if (!lastSession) {
-    debug('last session not found. using default: ' + lightdm.default_session)
     lastSession = lightdm.default_session;
   }
-  
-  debug(username + '\'s last session: ' + lastSession);
+
   return lastSession;
 }
 
@@ -371,14 +336,12 @@ function getSessionList() {
         className + '">' + session.name + '</a></li>';
 
     $(buttonGroup).append(button);
-    debug('session: ' + session.key);
   }
 }
 
 function setHostname() {
   let hostname = lightdm.hostname;
   $("#hostname-value").text(hostname);
-  debug('hostname: ' + hostname);
 }
 
 function setLockedSessions() {
@@ -452,7 +415,6 @@ function addActionButton(id) {
         ' actionButton" data-toggle="tooltip" data-placement="top" title="' + label +
         '" data-container="body" onclick="handleAction(\'' + id +
         '\')"><i class="fas fa-' + id2 + '"></i></button>');
-    debug('lightdm.can: ' + id);
   }
 }
 
@@ -461,21 +423,15 @@ function addActionButton(id) {
  */
 
 function show_prompt(text, type) {
-  debug('callback: show_prompt(' + type + '): ' + text);
 }
 
 function show_message(text, type) {
-  debug('callback: show_message(' + type + '): ' + text);
 }
 
 function authentication_complete() {
-  debug('callback: authentication_complete()');
   let username = lightdm.authentication_user;
-  debug('lightdm.authentication_user: ' + username);
   let selectedSession = $('.selected').attr('data-session-id');
-  debug('selectedSession: ' + selectedSession);
   if (lightdm.is_authenticated) {
-    debug('authentication successful');
     $('#statusMessage').html('ACCESS GRANTED');
     $('#unlocked').show();
     $('#locked').hide();
@@ -486,14 +442,12 @@ function authentication_complete() {
         $('#statusPanel').fadeTo(200, 0, function () {
           $('#statusPanel').hide();
           setTimeout(() => {
-            debug('call: lightdm.start_session(' + selectedSession + ')');
             lightdm.start_session(selectedSession);
           }, 200);
         });
-      }, 300); 
+      }, 300);
     });
   } else {
-    debug('authentication failure: ' + username);
     cancelAuthentication();
     $('#statusMessage').html('ACCESS DENIED');
     $('#locked').show();
@@ -505,15 +459,13 @@ function authentication_complete() {
         $('#statusPanel').fadeTo(400, 0, function () {
           $('#statusPanel').hide();
         });
-      }, 1000); 
+      }, 1000);
     });
-    debug('call: lightdm.authenticate(' + username + ')');
     lightdm.authenticate(username);
   }
 }
 
 function autologin_timer_expired() {
-  debug('callback: autologin_timer_expired()');
 }
 
 /*
@@ -521,18 +473,15 @@ function autologin_timer_expired() {
  */
 
 function loadThemeConfigLocal() {
-  debug('loadThemeConfigLocal()');
   fetch('config.json.local').then(async function (res) {
     theme_config = await res.json();
     validateThemeConfig();
   }).catch(function(error) {
-    debug('failed loading config.json.local');
     loadThemeConfig();
   });
 }
 
 function loadThemeConfig() {
-  debug('loadThemeConfig()');
   fetch('config.json').then(async function (res) {
     theme_config = await res.json();
     validateThemeConfig();
@@ -545,7 +494,6 @@ function loadThemeConfig() {
 }
 
 function validateThemeConfig() {
-  debug('validateThemeConfig()');
   const entries = Object.entries(THEME_CONFIG_DEFAULTS);
   for (const [key, value] of entries) {
     if (!theme_config.hasOwnProperty(key)) {
@@ -556,25 +504,21 @@ function validateThemeConfig() {
 }
 
 function loadBackgroundConfigLocal() {
-  debug('loadBackgroundConfigLocal()');
   fetch('background.json.local').then(async function (res) {
     bg_config = await res.json();
     theme_config.backgrounds = bg_config.backgrounds;
     applyConfig();
   }).catch(function(error) {
-    debug('failed loading background.json.local');
     loadBackgroundConfig();
   });
 }
 
 function loadBackgroundConfig() {
-  debug('loadBackgroundConfig()');
   fetch('background.json').then(async function (res) {
     bg_config = await res.json();
     theme_config.backgrounds = bg_config.backgrounds;
     applyConfig();
   }).catch(function(error) {
-    debug('failed loading background.json');
     theme_config.backgrounds = [];
     applyConfig();
   });
@@ -682,9 +626,7 @@ function autoSubmitUsername(activeSessions) {
 function submitUsername() {
   let username = $('#user').val();
   if (username == '') {
-    debug('username: null!');
   } else {
-    debug('username: ' + username)
     slideToPasswordArea();
     authenticate(username);
   }
@@ -698,7 +640,6 @@ function addEvents() {
   $('#authenticateButton').click(function (e) {
     e.preventDefault();
     if (!processing) {
-      debug('authenticateButton.click()');
       processing = true;
       submitPassword();
     }
@@ -814,4 +755,4 @@ function setDefaultBackground() {
       "background-image": "url('img/default-bg.jpg')"
     }));
   }).fadeTo('slow', 1);
-} 
+}
