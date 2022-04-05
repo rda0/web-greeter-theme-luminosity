@@ -1,16 +1,22 @@
-lightdm-webkit2-greeter-theme-luminosity (0.8.7-1) bionic; urgency=medium
+web-greeter-theme-luminosity (1.0.0-1) jammy; urgency=medium
+
+  * Adapt for web-greeter 3.4.0.
+
+ -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Tue, 05 Apr 2022 14:44:00 +0200
+
+web-greeter-theme-luminosity (0.8.7-1) bionic; urgency=medium
 
   * New upstream release.
 
  -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Fri, 06 Sep 2019 10:47:48 +0200
 
-lightdm-webkit2-greeter-theme-luminosity (0.8.6-2) bionic; urgency=medium
+web-greeter-theme-luminosity (0.8.6-2) bionic; urgency=medium
 
   * Fix package dependencies.
 
  -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Wed, 05 Dec 2018 12:44:26 +0100
 
-lightdm-webkit2-greeter-theme-luminosity (0.8.6-1) bionic; urgency=medium
+web-greeter-theme-luminosity (0.8.6-1) bionic; urgency=medium
 
   * Add exception handling.
   * Fix race condition with async config loading.
@@ -22,43 +28,43 @@ lightdm-webkit2-greeter-theme-luminosity (0.8.6-1) bionic; urgency=medium
 
  -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Wed, 05 Dec 2018 12:18:40 +0100
 
-lightdm-webkit2-greeter-theme-luminosity (0.8.5-1) bionic; urgency=medium
+web-greeter-theme-luminosity (0.8.5-1) bionic; urgency=medium
 
   * Fix theme loading bug.
 
  -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Fri, 30 Nov 2018 13:30:22 +0100
 
-lightdm-webkit2-greeter-theme-luminosity (0.8.4-1) bionic; urgency=medium
+web-greeter-theme-luminosity (0.8.4-1) bionic; urgency=medium
 
   * Add greeter error handling.
 
  -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Fri, 30 Nov 2018 12:03:58 +0100
 
-lightdm-webkit2-greeter-theme-luminosity (0.8.3-1) bionic; urgency=medium
+web-greeter-theme-luminosity (0.8.3-1) bionic; urgency=medium
 
   * New upstream release.
 
  -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Thu, 12 Jul 2018 16:50:12 +0200
 
-lightdm-webkit2-greeter-theme-luminosity (0.8.2-1) bionic; urgency=medium
+web-greeter-theme-luminosity (0.8.2-1) bionic; urgency=medium
 
   * New upstream release.
 
  -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Tue, 10 Jul 2018 16:10:09 +0200
 
-lightdm-webkit2-greeter-theme-luminosity (0.8.1-2) bionic; urgency=medium
+web-greeter-theme-luminosity (0.8.1-2) bionic; urgency=medium
 
   * Add missing config file background.json.
 
  -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Mon, 09 Jul 2018 15:59:13 +0200
 
-lightdm-webkit2-greeter-theme-luminosity (0.8.1-1) bionic; urgency=medium
+web-greeter-theme-luminosity (0.8.1-1) bionic; urgency=medium
 
   * New upstream release.
 
  -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Fri, 29 Jun 2018 14:03:24 +0200
 
-lightdm-webkit2-greeter-theme-luminosity (0.8.0-1) bionic; urgency=medium
+web-greeter-theme-luminosity (0.8.0-1) bionic; urgency=medium
 
   * Initial release.
 

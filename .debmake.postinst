@@ -2,7 +2,7 @@
 
 set -e
 
-SCRIPT="/usr/share/lightdm-webkit/themes/luminosity/generate-images.py"
+SCRIPT="/usr/share/web-greeter/themes/luminosity/generate-images.py"
 
 [ -x ${SCRIPT} ] && ${SCRIPT}
 

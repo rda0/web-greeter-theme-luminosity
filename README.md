@@ -28,7 +28,7 @@ Many thanks to the following guys for their support on this project.
 - Shows useful static information
 - Short feedback after authenticating (success/failure)
 - Drop-down list for session selection
-- Wallpaper changer (todo)
+- Wallpaper changer
 
 ## Screenshots
 
@@ -74,13 +74,13 @@ To select luminosity as default theme just change the `greeter.theme` property i
 
 ```
 greeter:
-  debug_mode: False
-  detect_theme_errors: True
-  screensaver_timeout: 300
-  secure_mode: True
-  theme: luminosity
-  icon_theme:
-  time_language:
+    debug_mode: False
+    detect_theme_errors: True
+    screensaver_timeout: 300
+    secure_mode: True
+    theme: luminosity
+    icon_theme:
+    time_language:
 ```
 
 Now restart `lightdm`:
@@ -89,73 +89,7 @@ Now restart `lightdm`:
 systemctl restart lightdm.service
 ```
 
-## Configuration
-
-The theme configuration is read from `branding.theme` (optional), example:
-
-```yaml
-branding:
-  background_images_dir: /usr/share/backgrounds
-  logo_image: /usr/share/web-greeter/themes/default/img/antergos-logo-user.png
-  user_image: /usr/share/web-greeter/themes/default/img/antergos.png
-  theme:
-    username_area:
-      title: Authentication
-      title_locked: Authentication
-      comment: Enter your Account name to sign in
-      comment_locked: Enter your Account name to unlock / sign in
-    password_area:
-      comment: Please enter your Password
-    active_sessions_label: Locked Sessions
-    info_top:
-      - label: OS Version
-        value: Ubuntu 22.04 Jammy
-      - label: Authorized Users
-        value: Student
-      - label: Managed by
-        value: ISG DPHYS
-    info_bottom:
-      - label: Documentation
-        value: readme.phys.ethz.ch
-      - label: Announcements
-        value: isg.phys.ethz.ch
-      - label: Chat
-        value: chat.phys.ethz.ch
-      - label: Mail
-        value: isg@phys.ethz.ch
-      - label: Tel
-        value: '+41 44 633 26 68'
-    banner: dphys
-    logo: ethz
-    styles:
-      panel:
-        position: 'absolute'
-        width: '450px'
-        top: '50%'
-        left: '50%'
-        transform: 'translate(-50%, -50%)'
-      content:
-        height: '541px'
-      panels_shadow:
-        boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)'
-      panels_color:
-        background: 'rgba(0,0,0,.7)'
-        color: '#fff'
-      status_panel:
-        background: 'rgba(143,0,17,.6)'
-        color: '#fff'
-      status_panel_granted:
-        background: 'rgba(66,133,244,.6)'
-      status_panel_granted_green:
-        background: 'rgba(66,244,95,.6)'
-      status_panel_denied:
-        background: 'rgba(143,0,17,.6)'
-      contentFooter:
-        paddingTop: '0px'
-      background:
-        backgroundPosition: 'center'
-        backgroundSize: 'cover'
-```
+The theme can be customized in `branding.theme` (optional), see [docs](https://github.com/rda0/web-greeter-theme-luminosity/blob/master/doc/etc/lightdm/web-greeter.conf) for example. To generate thumbnails run `generate-images.py` (requires `graphicsmagick`).
 
 ## Using light-locker
 
@@ -209,5 +143,5 @@ To uninstall, simply restore the `greeter-session` property of the `/etc/lightdm
 
 You may also want to:
 
-- Remove the folder `luminosity` which was created in `/usr/share/lightdm-webkit/themes/`
-- Restore the `webkit-theme` property of the `/etc/lightdm/lightdm-webkit-greeter.conf` file
+- Remove the folder `luminosity` which was created in `/usr/share/web-greeter/themes/`
+- Restore the `webkit-theme` property of the `/etc/lightdm/web-greeter.conf` file
