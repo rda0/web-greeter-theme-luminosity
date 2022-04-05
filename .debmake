@@ -1,7 +1,7 @@
 TARGET="usr/share/web-greeter/themes/luminosity"
 HOMEPAGE="https://github.com/rda0/web-greeter-theme-luminosity.git"
 DEPENDS="web-greeter"
-PREDEPENDS="python3, graphicsmagick"
+PREDEPENDS="python3, graphicsmagick, python3-ruamel.yaml"
 SUGGESTS="light-locker"
 DESCRIPTION_SHORT="Customizable LightDM Web Greeter theme"
 DESCRIPTION_LONG="This dark theme was built for use on Linux Workstations at the Department of Physics ETH Zurich, because there was no suitable theme available that would allow us to use it in combination with a central authentication provider like LDAP or Kerberos. Other themes present a list of users to select from, as it is done with the default LightDM configuration, which does not scale with thousands of LDAP user accounts"
