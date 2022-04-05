@@ -352,27 +352,6 @@ function addActionButton(id) {
  * functions for UI initialisation
  */
 
-function addBackgroundButtons() {
-  theme_config.backgrounds.forEach(function (background) {
-    $('.bgs').append(`
-          <a href="#" data-img="${background.image}" class="background">
-            <img src="${background.thumb}" />
-          </a>
-        `);
-  });
-}
-
-function addBackgroundButtonsHandler() {
-  let backgroundButtons = $(".bg-switch .background");
-  backgroundButtons.click(function (e) {
-    e.preventDefault();
-    backgroundButtons.removeClass("active");
-    $(".bgs .background .default").first().removeClass('active');
-    $(this).addClass("active");
-    switchBackground($(this).data("img"));
-  });
-}
-
 function addActionButtons() {
   addActionButton("shutdown");
   addActionButton("hibernate");
@@ -554,8 +533,8 @@ function applyConfig() {
   $('#banner img').attr('src', `img/banners/${theme_config.banner}.png`);
   $('#logo img').attr('src', `img/banners/${theme_config.logo}.png`);
 
-  addBackgroundButtons();
-  addBackgroundButtonsHandler();
+  //addBackgroundButtons();
+  //addBackgroundButtonsHandler();
   addActionButtons();
   activeSessions = setLockedSessions();
   setHeader(activeSessions);
@@ -666,17 +645,21 @@ function submitUsername() {
 }
 
 /*
- * greeter ready
+ * greeter init
  */
+
+function initBackgrounds() {
+  let backgrounds = new Backgrounds();
+  backgrounds._init()
+}
 
 function initGreeter() {
   theme_config = THEME_CONFIG_DEFAULTS;
-  theme_config.backgrounds = [];
   lightdm.authentication_complete.connect(authentication_complete);
   lightdm.autologin_timer_expired.connect(autologin_timer_expired);
   loadThemeConfig();
+  initBackgrounds();
   applyConfig();
 }
 
 window.addEventListener("GreeterReady", initGreeter);
-
