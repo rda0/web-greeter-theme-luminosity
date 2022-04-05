@@ -1,10 +1,12 @@
 # web-greeter-theme-luminosity
 
+A theme for [Web Greeter](https://github.com/JezerM/web-greeter)
+
 ## Overview
 
-Customizable LightDM Web Greeter theme based on the design of [luminos](https://github.com/muhammadsayuti/lightdm-webkit-theme-luminos) by (Muhammad Sayuti) which is based on the [official LightDM Webkit Greeter theme](https://github.com/Antergos/lightdm-webkit-theme-antergos) of [Antergos Linux](http://antergos.com)
+Customizable LightDM Web Greeter theme based on the design of [luminos](https://github.com/muhammadsayuti/lightdm-webkit-theme-luminos) by (Muhammad Sayuti) which was based on the [official LightDM Webkit Greeter theme](https://github.com/Antergos/lightdm-webkit-theme-antergos) of [Antergos Linux](http://antergos.com).
 
-This dark theme was built for use on Linux Workstations at the [Department of Physics ETH Zurich](https://www.phys.ethz.ch/), because there was no suitable theme available that would allow us to use it in combination with a central authentication provider like LDAP or Kerberos. Other themes present a list of users to select from, as it is done with the default LightDM configuration, which does just not scale with our currently active 1728 LDAP user accounts :)
+This dark theme was built for use on Linux Workstations at the [Department of Physics ETH Zurich](https://www.phys.ethz.ch/), because there was no suitable theme available that would allow us to use it in combination with a central authentication provider like LDAP or Kerberos. Other themes present a list of users to select from, as it is done with the default LightDM configuration, which does just not scale with our currently active 2464 LDAP user accounts :)
 
 ## Credits
 
@@ -18,64 +20,33 @@ Many thanks to the following guys for their support on this project.
 
 ## Features
 
+- Works with [web-greeter](https://github.com/Antergos/web-greeter) 3.4.0
 - Username promt (no userlist)
-- Customizable configuration (see `config.json`)
-- Uses updated [JavaScript API](https://doclets.io/Antergos/web-greeter/stable) of [Web Greeter for LightDM](https://github.com/Antergos/web-greeter)
+- Customizable configuration
 - Shows the hostname
 - Shows currently active lighdm user sessions (when locked)
 - Shows useful static information
 - Short feedback after authenticating (success/failure)
-- On screen logging (only in debug mode)
 - Drop-down list for session selection
-- Wallpaper changer
+- Wallpaper changer (todo)
 
 ## Screenshots
 
-<img src="img/Screenshot1.png" alt="screenshot1" />
-<img src="img/Screenshot2.png" alt="screenshot2" />
+<img src="img/Screenshot1.jpg" alt="screenshot1" />
+<img src="img/Screenshot2.jpg" alt="screenshot2" />
 
 ## Prerequisites
 
 - `lightdm`
-- `lightdm-webkit2-greeter`
-
-Installation packages of `lightdm-webkit2-greeter` for Ubuntu (and other distros) can be found [here](https://github.com/Antergos/web-greeter).
-
-### Package installation
-
-For example to install it from their apt repo (Also working for `Bionic`), run the following commands as `root`:
-
-```sh
-apt-key adv --fetch-keys https://download.opensuse.org/repositories/home:antergos/xUbuntu_17.10/Release.key
-echo "deb http://download.opensuse.org/repositories/home:/antergos/xUbuntu_17.10/ /" > /etc/apt/sources.list.d/antergos.list
-echo "deb-src http://download.opensuse.org/repositories/home:/antergos/xUbuntu_17.10/ /" >> /etc/apt/sources.list.d/antergos.list
-apt update
-apt install lightdm lightdm-webkit2-greeter
-```
-
-### Build instructions
-
-You may also build it from source:
-
-```sh
-git clone https://github.com/Antergos/web-greeter.git /tmp/web-greeter
-cd /tmp/web-greeter/build
-git tag
-# checkout the latest stable tag
-git checkout 2.2.5
-apt install meson gcc build-essential pkg-config libdbus-glib-1-dev liblightdm-gobject-1-dev libwebkit2gtk-4.0-dev libxml2-utils
-meson --prefix=/usr --libdir=lib ..
-ninja
-ninja install
-```
+- `web-greeter` ([releases](https://github.com/JezerM/web-greeter/releases))
 
 ### Configuration
 
-Enable `lightdm-webkit2-greeter` by editing `/etc/lightdm/lightdm.conf` and setting `greeter-session` property to `lightdm-webkit2-greeter`:
+Enable `web-greeter` by editing `/etc/lightdm/lightdm.conf` and setting `greeter-session` property to `web-greeter`:
 
 ```
 [Seat:*]
-greeter-session=lightdm-webkit2-greeter
+greeter-session=web-greeter
 greeter-show-manual-login=true
 greeter-hide-users=true
 user-session=ubuntu
@@ -92,49 +63,99 @@ while `<id>` is the screen, use `xrandr` to list your screen ids.
 
 ## Installation
 
-Clone the theme to `/usr/share/lightdm-webkit/themes/luminosity`:
+Clone the theme to `/usr/share/web-greeter/themes/luminosity`:
 
 ```sh
-cd /usr/share/lightdm-webkit/themes
+cd /usr/share/web-greeter/themes
 git clone https://github.com/rda0/web-greeter-theme-luminosity.git luminosity
 ```
 
-To select luminosity as default theme just change the `webkit-theme` property in `/etc/lightdm/lightdm-webkit2-greeeter.conf` to `luminosity`:
+To select luminosity as default theme just change the `greeter.theme` property in `/etc/lightdm/web-greeter.yml` to `luminosity`::
 
 ```
-# Example configuration
-
-[greeter]
-debug_mode          = false
-detect_theme_errors = true
-screensaver_timeout = 300
-secure_mode         = true
-time_format         = LT
-time_language       = auto
-webkit_theme        = luminosity
+greeter:
+  debug_mode: False
+  detect_theme_errors: True
+  screensaver_timeout: 300
+  secure_mode: True
+  theme: luminosity
+  icon_theme:
+  time_language:
 ```
 
 Now restart `lightdm`:
 
 ```
-systemctl restart lightdm
+systemctl restart lightdm.service
 ```
 
 ## Configuration
 
-The theme configuration is read from `config.json` or `config.json.local` (optional) and the background image metadata is stored in `background.json` or `background.json.local` (optional), while the respective local config file takes precedence if present.
+The theme configuration is read from `branding.theme` (optional), example:
 
-To configure the theme make a copy of the json config:
-
-```sh
-cp config.json config.json.local
+```yaml
+branding:
+  background_images_dir: /usr/share/backgrounds
+  logo_image: /usr/share/web-greeter/themes/default/img/antergos-logo-user.png
+  user_image: /usr/share/web-greeter/themes/default/img/antergos.png
+  theme:
+    username_area:
+      title: Authentication
+      title_locked: Authentication
+      comment: Enter your Account name to sign in
+      comment_locked: Enter your Account name to unlock / sign in
+    password_area:
+      comment: Please enter your Password
+    active_sessions_label: Locked Sessions
+    info_top:
+      - label: OS Version
+        value: Ubuntu 22.04 Jammy
+      - label: Authorized Users
+        value: Student
+      - label: Managed by
+        value: ISG DPHYS
+    info_bottom:
+      - label: Documentation
+        value: readme.phys.ethz.ch
+      - label: Announcements
+        value: isg.phys.ethz.ch
+      - label: Chat
+        value: chat.phys.ethz.ch
+      - label: Mail
+        value: isg@phys.ethz.ch
+      - label: Tel
+        value: '+41 44 633 26 68'
+    banner: dphys
+    logo: ethz
+    styles:
+      panel:
+        position: 'absolute'
+        width: '450px'
+        top: '50%'
+        left: '50%'
+        transform: 'translate(-50%, -50%)'
+      content:
+        height: '541px'
+      panels_shadow:
+        boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)'
+      panels_color:
+        background: 'rgba(0,0,0,.7)'
+        color: '#fff'
+      status_panel:
+        background: 'rgba(143,0,17,.6)'
+        color: '#fff'
+      status_panel_granted:
+        background: 'rgba(66,133,244,.6)'
+      status_panel_granted_green:
+        background: 'rgba(66,244,95,.6)'
+      status_panel_denied:
+        background: 'rgba(143,0,17,.6)'
+      contentFooter:
+        paddingTop: '0px'
+      background:
+        backgroundPosition: 'center'
+        backgroundSize: 'cover'
 ```
-
-and edit the local json config.
-
-## Wallpapers
-
-To add more background wallpapers, copy the `jpg` files to `img/wallpapers` and run the script `generate-images.py`. This will generate thumbnails in `img/thumbs` and the metadata in `background.json.local`.
 
 ## Using light-locker
 

@@ -30,10 +30,8 @@
  * global variables
  */
 
-let DEBUG = true;
 let processing = false;
 let theme_config = {};
-let greeter_error = false;
 
 let THEME_CONFIG_DEFAULTS = {
   "username_area": {
@@ -91,83 +89,27 @@ let THEME_CONFIG_DEFAULTS = {
   }
 };
 
-
 /*
- * document ready
+ * theme config
  */
 
-$(document).ready(function () {
-  try {
-    if ('object' !== typeof(lightdm)) {
-      greeter_error = true;
-      debug('lightdm: not an object');
-    }
-
-    if ('object' !== typeof(greeter_config)) {
-      greeter_error = true;
-      debug('greeter_config: not an object');
-    }
-
-    if ('object' !== typeof(theme_utils)) {
-      greeter_error = true;
-      debug('theme_utils: not an object');
-    }
-
-    if ('object' !== typeof(localStorage)) {
-      greeter_error = true;
-      debug('localStorage: not an object');
-    }
-
-    if (greeter_error) {
-      console.error('Theme: greeter error');
-      showErrorPanel();
-    } else {
-      if (greeter_config.greeter.debug_mode && DEBUG) {
-        showDebugPanel();
+function loadThemeConfig() {
+  if (greeter_config.branding['theme'] !== undefined && greeter_config.branding['theme'] !== null ) {
+    theme_config = greeter_config.branding.theme;
+    const entries = Object.entries(THEME_CONFIG_DEFAULTS);
+    for (const [key, value] of entries) {
+      if (!theme_config.hasOwnProperty(key)) {
+        theme_config[key] = value;
       }
-
-      loadThemeConfigLocal();
     }
-  } catch (err) {
-    console.error('Theme: greeter exception: ' + err);
-    showErrorPanel();
+  } else {
+    theme_config = THEME_CONFIG_DEFAULTS;
   }
-});
+}
 
 /*
  * functions
  */
-
-function authenticate(username) {
-  $("#user-login-name").text(username);
-  $('#user').prop('disabled', true);
-  let userSession = getLastUserSession(username);
-  let userSessionEl = "#sessions [data-session-id=" + userSession + "]";
-  let userSessionName = $(userSessionEl).html();
-  $('#session-list .selected').html(userSessionName);
-  $('#session-list .selected').attr('data-session-id', userSession);
-}
-
-function cancelAuthentication() {
-  $('#pass').prop('disabled', false);
-  $('#pass').val('');
-  $('#pass').focus();
-  document.body.focus();
-  lightdm.cancel_authentication();
-  $('#authenticateButton').removeClass('processing');
-  processing = false;
-};
-
-function submitPassword() {
-  let submitTimeout = 1000;
-  $('#authenticateButton').addClass("processing");
-  $('#pass').prop('disabled', true);
-  let username = $('#user').val();
-  lightdm.start_authentication(username);
-  setTimeout(() => {
-    lightdm.respond($('#pass').val());
-  }, submitTimeout);
-};
 
 function sessionToggle(element) {
   let sessionText = $(element).text();
@@ -286,21 +228,9 @@ function ignoreCharacter(character) {
   }
 }
 
-function debug(text) {
-  if (DEBUG) {
-    console.debug('Theme: ' + text);
-    $('#debugArea').append(text);
-    $('#debugArea').append('<br/>');
-  }
-}
-
 function showErrorPanel() {
   $('#errorPanel').show();
   $('#errorPanel').fadeTo(400, 1);
-}
-
-function showDebugPanel() {
-  $("#debugPanel").show().css('display', 'flex');
 }
 
 function showPanel() {
@@ -419,137 +349,8 @@ function addActionButton(id) {
 }
 
 /*
- * Lightdm Callbacks
- */
-
-function show_prompt(text, type) {
-}
-
-function show_message(text, type) {
-}
-
-function authentication_complete() {
-  let username = lightdm.authentication_user;
-  let selectedSession = $('.selected').attr('data-session-id');
-  if (lightdm.is_authenticated) {
-    $('#statusMessage').html('ACCESS GRANTED');
-    $('#unlocked').show();
-    $('#locked').hide();
-    $('#statusPanel').css(theme_config.styles.status_panel_granted);
-    $('#statusPanel').show();
-    $('#statusPanel').fadeTo(200, 1, function () {
-      setTimeout(() => {
-        $('#statusPanel').fadeTo(200, 0, function () {
-          $('#statusPanel').hide();
-          setTimeout(() => {
-            lightdm.start_session(selectedSession);
-          }, 200);
-        });
-      }, 300);
-    });
-  } else {
-    cancelAuthentication();
-    $('#statusMessage').html('ACCESS DENIED');
-    $('#locked').show();
-    $('#unlocked').hide();
-    $('#statusPanel').css(theme_config.styles.status_panel_denied);
-    $('#statusPanel').show();
-    $('#statusPanel').fadeTo(400, 1, function () {
-      setTimeout(() => {
-        $('#statusPanel').fadeTo(400, 0, function () {
-          $('#statusPanel').hide();
-        });
-      }, 1000);
-    });
-    lightdm.authenticate(username);
-  }
-}
-
-function autologin_timer_expired() {
-}
-
-/*
  * functions for UI initialisation
  */
-
-function loadThemeConfigLocal() {
-  fetch('config.json.local').then(async function (res) {
-    theme_config = await res.json();
-    validateThemeConfig();
-  }).catch(function(error) {
-    loadThemeConfig();
-  });
-}
-
-function loadThemeConfig() {
-  fetch('config.json').then(async function (res) {
-    theme_config = await res.json();
-    validateThemeConfig();
-  }).catch(function(error) {
-    debug('failed loading config.json');
-    //throw new Error('Theme error');
-    theme_config = THEME_CONFIG_DEFAULTS;
-    loadBackgroundConfigLocal();
-  });
-}
-
-function validateThemeConfig() {
-  const entries = Object.entries(THEME_CONFIG_DEFAULTS);
-  for (const [key, value] of entries) {
-    if (!theme_config.hasOwnProperty(key)) {
-      theme_config[key] = value;
-    }
-  }
-  loadBackgroundConfigLocal();
-}
-
-function loadBackgroundConfigLocal() {
-  fetch('background.json.local').then(async function (res) {
-    bg_config = await res.json();
-    theme_config.backgrounds = bg_config.backgrounds;
-    applyConfig();
-  }).catch(function(error) {
-    loadBackgroundConfig();
-  });
-}
-
-function loadBackgroundConfig() {
-  fetch('background.json').then(async function (res) {
-    bg_config = await res.json();
-    theme_config.backgrounds = bg_config.backgrounds;
-    applyConfig();
-  }).catch(function(error) {
-    theme_config.backgrounds = [];
-    applyConfig();
-  });
-}
-
-function applyConfig() {
-  $('#panel').css(theme_config.styles.panel);
-  $('.panels').css(theme_config.styles.panels_color);
-  $('.panels').css(theme_config.styles.panels_shadow);
-  $('.content').css(theme_config.styles.content);
-  $('#statusPanel').css(theme_config.styles.panels_shadow);
-  $('#statusPanel').css(theme_config.styles.status_panel);
-  $('.content-footer').css(theme_config.styles.contentFooter);
-  $('.bg').css(theme_config.styles.background);
-  $('#banner img').attr('src', `img/banners/${theme_config.banner}.png`);
-  $('#logo img').attr('src', `img/banners/${theme_config.logo}.png`);
-
-  addBackgroundButtons();
-  addBackgroundButtonsHandler();
-  addActionButtons();
-  activeSessions = setLockedSessions();
-  setHeader(activeSessions);
-  setInfoBlock();
-  setTabIndex();
-  setBackground();
-  setHostname();
-  getSessionList();
-  showPanel();
-  addEvents();
-  autoSubmitUsername(activeSessions);
-}
 
 function addBackgroundButtons() {
   theme_config.backgrounds.forEach(function (background) {
@@ -616,20 +417,45 @@ function setTabIndexPasswordArea(active) {
   }
 }
 
-function autoSubmitUsername(activeSessions) {
-  if (activeSessions.length == 1) {
-    $('#user').val(activeSessions[0]);
-    submitUsername();
+function switchBackground(background) {
+  if (background == 'default') {
+    localStorage.setItem("bgdefault", '1');
+    setDefaultBackground();
+  } else {
+    let backgroundUrl = "url('" + background + "')";
+    localStorage.setItem("bgdefault", '0');
+    $('.bg').fadeTo('slow', 0.3, function () {
+      $(".bg").css(Object.assign(theme_config.styles.background, {
+        "background-image": backgroundUrl,
+      }));
+    }).fadeTo('slow', 1);
+    localStorage.setItem("bgsaved", backgroundUrl)
   }
 }
 
-function submitUsername() {
-  let username = $('#user').val();
-  if (username == '') {
-  } else {
-    slideToPasswordArea();
-    authenticate(username);
+function setBackground() {
+  if (localStorage.getItem("bgdefault") === null && (localStorage.getItem("bgsaved") === null)) {
+    localStorage.setItem("bgdefault", "1");
   }
+
+  if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgdefault") === '0')) {
+    $('.bg').fadeTo('slow', 0.3, function () {
+      $(".bg").css(Object.assign((theme_config && theme_config.styles) ? theme_config.styles.background : {}, {
+        "background-image": localStorage.bgsaved
+      }));
+    }).fadeTo('slow', 1);
+  } else {
+    setDefaultBackground();
+  }
+}
+
+function setDefaultBackground() {
+  localStorage.setItem("bgsaved", 'img/default-bg.jpg');
+  $('.bg').fadeTo('slow', 0.3, function () {
+    $(".bg").css(Object.assign(theme_config.styles.background, {
+      "background-image": "url('img/default-bg.jpg')"
+    }));
+  }).fadeTo('slow', 1);
 }
 
 function addEvents() {
@@ -716,43 +542,141 @@ function addEvents() {
   });
 }
 
-function switchBackground(background) {
-  if (background == 'default') {
-    localStorage.setItem("bgdefault", '1');
-    setDefaultBackground();
+function applyConfig() {
+  $('#panel').css(theme_config.styles.panel);
+  $('.panels').css(theme_config.styles.panels_color);
+  $('.panels').css(theme_config.styles.panels_shadow);
+  $('.content').css(theme_config.styles.content);
+  $('#statusPanel').css(theme_config.styles.panels_shadow);
+  $('#statusPanel').css(theme_config.styles.status_panel);
+  $('.content-footer').css(theme_config.styles.contentFooter);
+  $('.bg').css(theme_config.styles.background);
+  $('#banner img').attr('src', `img/banners/${theme_config.banner}.png`);
+  $('#logo img').attr('src', `img/banners/${theme_config.logo}.png`);
+
+  addBackgroundButtons();
+  addBackgroundButtonsHandler();
+  addActionButtons();
+  activeSessions = setLockedSessions();
+  setHeader(activeSessions);
+  setInfoBlock();
+  setTabIndex();
+  setBackground();
+  setHostname();
+  getSessionList();
+  showPanel();
+  addEvents();
+  autoSubmitUsername(activeSessions);
+}
+
+/*
+ * Lightdm Callbacks
+ */
+
+function autologin_timer_expired() {
+}
+
+window.authentication_complete = function() {
+  let username = lightdm.authentication_user;
+  let selectedSession = $('.selected').attr('data-session-id');
+  if (lightdm.is_authenticated) {
+    $('#statusMessage').html('ACCESS GRANTED');
+    $('#unlocked').show();
+    $('#locked').hide();
+    $('#statusPanel').css(theme_config.styles.status_panel_granted);
+    $('#statusPanel').show();
+    $('#statusPanel').fadeTo(200, 1, function () {
+      setTimeout(() => {
+        $('#statusPanel').fadeTo(200, 0, function () {
+          $('#statusPanel').hide();
+          setTimeout(() => {
+            lightdm.start_session(selectedSession);
+          }, 200);
+        });
+      }, 300);
+    });
   } else {
-    let backgroundUrl = "url('" + background + "')";
-    localStorage.setItem("bgdefault", '0');
-    $('.bg').fadeTo('slow', 0.3, function () {
-      $(".bg").css(Object.assign(theme_config.styles.background, {
-        "background-image": backgroundUrl,
-      }));
-    }).fadeTo('slow', 1);
-    localStorage.setItem("bgsaved", backgroundUrl)
+    cancelAuthentication();
+    $('#statusMessage').html('ACCESS DENIED');
+    $('#locked').show();
+    $('#unlocked').hide();
+    $('#statusPanel').css(theme_config.styles.status_panel_denied);
+    $('#statusPanel').show();
+    $('#statusPanel').fadeTo(400, 1, function () {
+      setTimeout(() => {
+        $('#statusPanel').fadeTo(400, 0, function () {
+          $('#statusPanel').hide();
+        });
+      }, 1000);
+    });
+    //lightdm.authenticate(username);
+  }
+};
+
+/*
+ * greeter authentication
+ */
+
+function authenticate(username) {
+  $("#user-login-name").text(username);
+  $('#user').prop('disabled', true);
+  let userSession = getLastUserSession(username);
+  let userSessionEl = "#sessions [data-session-id=" + userSession + "]";
+  let userSessionName = $(userSessionEl).html();
+  $('#session-list .selected').html(userSessionName);
+  $('#session-list .selected').attr('data-session-id', userSession);
+}
+
+function cancelAuthentication() {
+  $('#pass').prop('disabled', false);
+  $('#pass').val('');
+  $('#pass').focus();
+  document.body.focus();
+  lightdm.cancel_authentication();
+  $('#authenticateButton').removeClass('processing');
+  processing = false;
+};
+
+function submitPassword() {
+  let submitTimeout = 1000;
+  $('#authenticateButton').addClass("processing");
+  $('#pass').prop('disabled', true);
+  let username = $('#user').val();
+  //lightdm.start_authentication(username);
+  lightdm.authenticate(username);
+  setTimeout(() => {
+    lightdm.respond($('#pass').val());
+  }, submitTimeout);
+};
+
+function autoSubmitUsername(activeSessions) {
+  if (activeSessions.length == 1) {
+    $('#user').val(activeSessions[0]);
+    submitUsername();
   }
 }
 
-function setBackground() {
-  if (localStorage.getItem("bgdefault") === null && (localStorage.getItem("bgsaved") === null)) {
-    localStorage.setItem("bgdefault", "1");
-  }
-
-  if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgdefault") === '0')) {
-    $('.bg').fadeTo('slow', 0.3, function () {
-      $(".bg").css(Object.assign((theme_config && theme_config.styles) ? theme_config.styles.background : {}, {
-        "background-image": localStorage.bgsaved
-      }));
-    }).fadeTo('slow', 1);
+function submitUsername() {
+  let username = $('#user').val();
+  if (username == '') {
   } else {
-    setDefaultBackground();
+    slideToPasswordArea();
+    authenticate(username);
   }
 }
 
-function setDefaultBackground() {
-  localStorage.setItem("bgsaved", 'img/default-bg.jpg');
-  $('.bg').fadeTo('slow', 0.3, function () {
-    $(".bg").css(Object.assign(theme_config.styles.background, {
-      "background-image": "url('img/default-bg.jpg')"
-    }));
-  }).fadeTo('slow', 1);
+/*
+ * greeter ready
+ */
+
+function initGreeter() {
+  theme_config = THEME_CONFIG_DEFAULTS;
+  theme_config.backgrounds = [];
+  lightdm.authentication_complete.connect(authentication_complete);
+  lightdm.autologin_timer_expired.connect(autologin_timer_expired);
+  loadThemeConfig();
+  applyConfig();
 }
+
+window.addEventListener("GreeterReady", initGreeter);
+
