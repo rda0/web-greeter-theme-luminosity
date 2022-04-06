@@ -1,3 +1,9 @@
+web-greeter-theme-luminosity (1.0.1-1) jammy; urgency=medium
+
+  *  Load background_images_dir from config, fix #1
+
+ -- Sven Mäder (rda) <maeder@phys.ethz.ch>  Tue, 06 Apr 2022 12:48:00 +0200
+
 web-greeter-theme-luminosity (1.0.0-1) jammy; urgency=medium
 
   * Adapt for web-greeter 3.4.0.
