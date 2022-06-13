@@ -21,8 +21,8 @@ def get_config(fpath):
         try:
             return yaml.load(f)
         except Exception as e:
-            print(f"{Y}Warning: could not parse yaml file: {fpath}{A}")
-            print(f"{Y}Exception: {e}{A}")
+            print(f"Warning: could not parse yaml file: {fpath}")
+            print(f"Exception: {e}")
             return None
 
 config = get_config(PATH_CONFIG)
